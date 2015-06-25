@@ -7,26 +7,26 @@ var _ = require('lodash');
 var mongoose = require('mongoose');
 var Video = mongoose.model('Video');
 
-router.get('/', function(req, res, error) {
+router.get('/', function(req, res) {
     Video.find({}).exec().then(function(videos) {
         res.json(videos);
-    }, error = function(err) {
+    }, function(err) {
         console.log(err);
     })
 });
 
-router.get('/:videoId', function(req, res, error) {
+router.get('/:videoId', function(req, res) {
     Video.findOneById(req.params.id).exec().then(function(video) {
         res.json(video);
-    }, error = function(err) {
+    }, function(err) {
         console.log(err);
     })
 });
 
-router.post('/', function(req, res, error) {
+router.post('/', function(req, res) {
     var video = new Video(req.body);
-    video.save(function(err, video) {
+    video.save(function(err, vid) {
         if (err) console.log(err);
-        res.json(video);
+        res.json(vid);
     })
 })

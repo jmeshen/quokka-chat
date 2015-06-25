@@ -13,13 +13,13 @@ var schema = new mongoose.Schema({
     rating: {
         type: Number,
         default: 0
-    }.
+    },
     videoUrl: {
         type: String,
         required: true
     },
     tags: [{
-        type: string
+        type: String
     }]
 })
 
