@@ -5,14 +5,22 @@ var schema = new mongoose.Schema({
         type: String,
         required: true
     },
+
+    description: {
+        type: String,
+        required: true
+    },
+
     url: {
         type: String,
         required: true
     },
+
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment'
     }],
+
     owner: {
         type: String
     }
