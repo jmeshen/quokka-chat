@@ -13,9 +13,11 @@ var schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment'
     }],
-    owner: {
-        type: String
-    }
+    moderators: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
+
 });
 
 mongoose.model('Video', schema);

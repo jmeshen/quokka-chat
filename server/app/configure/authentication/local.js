@@ -5,12 +5,14 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var UserModel = mongoose.model('User');
 
-module.exports = function (app) {
+module.exports = function(app) {
 
     // When passport.authenticate('local') is used, this function will receive
     // the email and password to run the actual authentication logic.
-    var strategyFn = function (email, password, done) {
-        UserModel.findOne({ email: email }, function (err, user) {
+    var strategyFn = function(email, password, done) {
+        UserModel.findOne({
+            email: email
+        }, function(err, user) {
             if (err) return done(err);
             // user.correctPassword is a method from our UserModel schema.
             if (!user || !user.correctPassword(password)) return done(null, false);
@@ -19,12 +21,15 @@ module.exports = function (app) {
         });
     };
 
-    passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, strategyFn));
+    passport.use(new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password'
+    }, strategyFn));
 
     // A POST /login route is created to handle login.
-    app.post('/login', function (req, res, next) {
+    app.post('/login', function(req, res, next) {
 
-        var authCb = function (err, user) {
+        var authCb = function(err, user) {
 
             if (err) return next(err);
 
@@ -35,16 +40,43 @@ module.exports = function (app) {
             }
 
             // req.logIn will establish our session.
-            req.logIn(user, function (loginErr) {
+            req.logIn(user, function(loginErr) {
                 if (loginErr) return next(loginErr);
                 // We respond with a response object that has user with _id and email.
-                res.status(200).send({ user: _.omit(user.toJSON(), ['password', 'salt']) });
+                res.status(200).send({
+                    user: _.omit(user.toJSON(), ['password', 'salt'])
+                });
             });
 
         };
 
         passport.authenticate('local', authCb)(req, res, next);
 
+    });
+
+    // A POST /signup route is created to handle registering users
+    app.post('/signup', function(req, res, next) {
+        console.log('HIT THAT ISH')
+        UserModel.findOne({
+            email: req.body.email
+        }, function(err, user) {
+            if (!user) {
+                UserModel.create(req.body, function(err, user) {
+                    if (err) next(err);
+                    else {
+                        req.logIn(user, function(err) {
+                            if (err) return next(err);
+                            res.status(201).send({
+                                user: _.omit(user.toJSON(), ['password', 'salt'])
+                            });
+                        });
+
+                    }
+                })
+            } else {
+                res.send(500);
+            }
+        })
     });
 
 };
