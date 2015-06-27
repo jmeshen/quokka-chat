@@ -5,7 +5,17 @@ var schema = new mongoose.Schema({
         type: String,
         required: true
     },
+
+    description: {
+        type: String,
+        required: true
+    },
+
     url: {
+        type: String,
+        required: true
+    },
+    embedId: {
         type: String,
         required: true
     },
@@ -16,8 +26,10 @@ var schema = new mongoose.Schema({
     moderators: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
-
+    }],
+    owner: {
+        type: String
+    }
 });
 
 mongoose.model('Video', schema);
