@@ -3,7 +3,7 @@ var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
 var mongoose = require('mongoose');
-var Comments = mongoose.model('Comments');
+var Comment = mongoose.model('Comment');
 
 router.get('/', function(req, res) {
     var modelParams = {}
@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
     if (req.query.userId) modelParams.user_id = req.query.userId;
     if (req.query.tags) modelParams.tags = req.query.tags;
 
-    Comments.find(modelParams).then(function(comments) {
+    Comment.find(modelParams).then(function(comments) {
         res.json(comments);
     })
 
@@ -28,7 +28,7 @@ router.post('/:videoId', function(req, res) {
 })
 
 router.put('/', function(req, res) {
-    Comments.findOneAndUpdate(req.body._id, req.body, function(err, comment) {
+    Comment.findOneAndUpdate(req.body._id, req.body, function(err, comment) {
         if (err) console.log(err);
         res.json(comment);
     })

@@ -14,21 +14,28 @@ var schema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    videoUrl: {
-        type: String,
-        required: true
+    video: {
+        url: {
+            type: String
+        },
+        time: {
+            type: Number
+        }
     },
     tags: [{
         type: String
     }]
 })
 
-schema.method.addChild = function(reply) {
-    reply.parent = this._id
+schema.method.createChild = function(reply) {
+    this.child = new Comment()
+    this.child = this.child._id
+    this.child.user = reply.user
+    this.child.content = reply.content
 }
 
 schema.pre('save', function(next) {
     this.date = Date.now()
 })
 
-mongoose.model('Comments', schema)
+mongoose.model('Comment', schema)
