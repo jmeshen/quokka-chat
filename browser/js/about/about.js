@@ -1,4 +1,4 @@
-app.config(function ($stateProvider) {
+app.config(function($stateProvider) {
 
     // Register our *about* state.
     $stateProvider.state('about', {
@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AboutController', function ($scope, FullstackPics) {
+app.controller('AboutController', function($scope) {
 
     // Images of beautiful Fullstack people.
     $scope.images = _.shuffle(FullstackPics);
