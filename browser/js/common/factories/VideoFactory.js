@@ -7,12 +7,14 @@ app.factory('VideoFactory', function($http) {
         player = new YT.Player('player', {
             height: '390',
             width: '640',
-            videoId: newVideo.embedId,
+            videoId: newVideo,
             events: {
                 'onReady': onPlayerReady,
                 //'onStateChange': onPlayerStateChange
             }
         });
+        console.log(newVideo, "this is new video");
+        console.log(player, "this is the player");
     }
 
     function onPlayerReady(event) {
