@@ -1,6 +1,26 @@
 app.factory('VideoFactory', function($http) {
     var video = {};
 
+    var player;
+
+    video.onYouTubeIframeAPIReady = function(newVideo) {
+        player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            videoId: newVideo.embedId,
+            events: {
+                'onReady': onPlayerReady,
+                //'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        event.target.playVideo();
+    }
+
+
+
     video.pullIdFromUrl = function(url) {
         url = url.split('')
         if (url.indexOf('=')) {

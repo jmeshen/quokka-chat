@@ -1,14 +1,16 @@
-app.directive('videoBox', function ($rootScope, AuthService, AUTH_EVENTS, $state, $stateParams, VideoFactory) {
+app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state, $stateParams, VideoFactory) {
     return {
         restrict: 'E',
         scope: {
-          video: "="
+            video: "="
         },
         templateUrl: 'js/common/directives/video-box/video-box.html',
-        link: function (scope) {
-          console.log('this is scope from link', scope)
+        link: function(scope) {
+            console.log('this is scope from link', scope)
 
-          // scope.embedURL = 'https://youtube.com/embed/'+ scope.video.embedId;
+            VideoFactory.onYouTubeIframeAPIReady();
+
+            // scope.embedURL = 'https://youtube.com/embed/'+ scope.video.embedId;
             // VideoFactory.getVideoObjectId($stateParams.id).then(function(video) {
 
             //     scope.video = video;
@@ -19,4 +21,3 @@ app.directive('videoBox', function ($rootScope, AuthService, AUTH_EVENTS, $state
         }
     };
 });
-
