@@ -1,4 +1,4 @@
-app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state, VideoFactory) {
     return {
         restrict: 'E',
         scope: {
@@ -10,6 +10,7 @@ app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state)
             // console.log(scope.video)
 
             scope.embedURL = 'https://youtube.com/embed/' + scope.video.embedId;
+            VideoFactory.onYouTubeIframeAPIReady(scope.video.embedId);
             console.log('this is embedURL', scope.embedURL);
         }
     };

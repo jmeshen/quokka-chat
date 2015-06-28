@@ -5,6 +5,7 @@ var schema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: true
     },
     content: {
         type: String,
@@ -15,9 +16,6 @@ var schema = new mongoose.Schema({
         default: 0
     },
     video: {
-        url: {
-            type: String
-        },
         time: {
             type: Number
         }
