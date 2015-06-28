@@ -15,6 +15,7 @@ app.controller('AddVideo', function($scope, AuthService, $state, VideoFactory) {
             $state.go('room.id', {
                 id: video._id
             });
+            console.log('why you no go?');
         }, function(error) {
             console.log(error);
         });
