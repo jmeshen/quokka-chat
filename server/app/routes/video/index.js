@@ -16,10 +16,9 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:videoId', function(req, res) {
-    console.log('hitting video/:videoId route')
-    console.log('req.params.videoId', req.params.videoId)
-    Video.findOne({_id: req.params.videoId}).exec().then(function(video) {
-        console.log('getting video from db', video)
+    Video.findOne({
+        _id: req.params.videoId
+    }).exec().then(function(video) {
         res.json(video);
     }, function(err) {
         console.log(err);
@@ -31,5 +30,12 @@ router.post('/', function(req, res) {
     video.save(function(err, vid) {
         if (err) console.log(err);
         res.json(vid);
+    })
+})
+
+router.put('/:id', function(req, res) {
+    Video.findById(req.params.id).exec().then(function(video) {
+        video.comments.push(req.body._id);
+        video.save();
     })
 })

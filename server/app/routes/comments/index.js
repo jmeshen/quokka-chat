@@ -19,7 +19,8 @@ router.get('/', function(req, res) {
     console.log('failed to find comments', err);
 })
 
-router.post('/:videoId', function(req, res) {
+router.post('/', function(req, res) {
+    console.log("made it", req.body);
     var comment = new Comment(req.body);
     comment.save(function(err) {
         if (err) console.log(err);

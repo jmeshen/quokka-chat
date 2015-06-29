@@ -13,8 +13,6 @@ app.factory('VideoFactory', function($http) {
                 //'onStateChange': onPlayerStateChange
             }
         });
-        // console.log(newVideo, "this is new video");
-        // console.log(player, "this is the player");
     }
 
     function onPlayerReady(event) {
@@ -26,9 +24,7 @@ app.factory('VideoFactory', function($http) {
     }
 
     video.getCurTime = function() {
-        console.log('THIS BE PLAYER, YO', player)
         var curTime = player.getCurrentTime();
-        console.log(curTime);
         return curTime;
     }
 
@@ -43,18 +39,24 @@ app.factory('VideoFactory', function($http) {
 
     video.getVideoObjectId = function(objectId) {
         return $http.get('/api/video/' + objectId).then(function(videoObj) {
-            console.log('getting video from objectId', videoObj.data)
             return videoObj.data
         })
     }
 
     video.add = function(newVideo) {
         return $http.post('api/video/', newVideo).then(function(response) {
-            console.log('what is response? from add', response)
             return response.data;
         }, function(error) {
             console.log(error);
         });
+    }
+
+    video.addCommentToVid = function(comment, videoId) {
+        return $http.put('/api/video/' + videoId, comment).then(function(response) {
+            return;
+        }, function(error) {
+            console.log(error);
+        })
     }
 
     return video;
