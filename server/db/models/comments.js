@@ -15,14 +15,16 @@ var schema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    video: {
-        time: {
-            type: Number
-        }
+    videoTime: {
+        type: Number
     },
     tags: [{
         type: String
-    }]
+    }],
+    commentTime: {
+        type: Date,
+        default: Date
+    }
 })
 
 schema.method.createChild = function(reply) {
@@ -32,8 +34,8 @@ schema.method.createChild = function(reply) {
     this.child.content = reply.content
 }
 
-schema.pre('save', function(next) {
-    this.date = Date.now()
-})
+// schema.pre('save', function(next) {
+//     next();
+// })
 
 mongoose.model('Comment', schema)
