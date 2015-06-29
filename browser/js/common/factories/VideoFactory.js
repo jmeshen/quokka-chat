@@ -21,6 +21,12 @@ app.factory('VideoFactory', function($http) {
         event.target.pauseVideo();
     }
 
+    video.getAll = function() {
+        return $http.get('/api/video/').then(function(response) {
+            return response.data;
+        })
+    }
+
     video.pauseVid = function() {
         player.pauseVideo();
     }
@@ -34,9 +40,11 @@ app.factory('VideoFactory', function($http) {
 
     video.pullIdFromUrl = function(url) {
         url = url.split('')
-        if (url.indexOf('=')) {
+        if (url.indexOf('=') > -1) {
+            console.log('hitting if with ', url)
             return url.slice((url.indexOf('=') + 1)).join('');
         } else {
+            console.log('hitting else with ', url)
             return url.slice((url.indexOf('.') + 4)).join('');
         }
     };

@@ -1,0 +1,9 @@
+<div class="col-md-12">
+  <div ng-repeat="video in videos" ui-sref="aRoom({id:video._id})" class="col-sm-6 col-md-4">
+    <div class="room-card">
+      <h2>{{video.name}}</h2>
+      <p>{{video.description}}</p>
+    </div>
+  </div>
+</div>
+<!-- <div ui-view></div> -->

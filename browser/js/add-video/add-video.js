@@ -12,7 +12,7 @@ app.controller('AddVideo', function($scope, AuthService, $state, VideoFactory) {
         $scope.video.embedId = VideoFactory.pullIdFromUrl($scope.video.url);
         VideoFactory.add($scope.video).then(function(video) {
             console.log('what is video after add', video)
-            $state.go('room.id', {
+            $state.go('aRoom', {
                 id: video._id
             });
             console.log('why you no go?');
