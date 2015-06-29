@@ -1,12 +1,13 @@
-app.directive('comments', function($rootScope, AuthService, AUTH_EVENTS, $state, VideoFactory, CommentFactory) {
+app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $state, VideoFactory, CommentFactory) {
     return {
         restrict: 'E',
-        scope: {},
+        scope: {
+            video: '='
+        },
         templateUrl: 'js/common/directives/comments/comments.html',
-        // controller: 'NewCommentCtrl',
         link: function(scope) {
 
-            scope.click = false;
+            scope.clicked = false;
 
             scope.showForm = function() {
                 scope.clicked = true;
@@ -15,45 +16,24 @@ app.directive('comments', function($rootScope, AuthService, AUTH_EVENTS, $state,
 
             scope.isLoggedIn = AuthService.isAuthenticated();
 
-
-            // scope.comment = {
-            //     user: AuthService.getLoggedInUser(),
-            //     video: {
-            //         time: VideoFactory.getCurTime()
-            //     }
-            // }
-
-            
+            AuthService.getLoggedInUser().then(function(user) {
+                scope.user = user;
+            });
 
 
-
-            // scope.comment.video.time = VideoFactory.getCurTimeAndPause();
-
-            scope.addingComment = function() {
-                CommentFactory.saveComment(scope.comment);
-                console.log('THIS IS SCOPE.COMMENT', scope.comment);
+            scope.addingComment = function(comment) {
+                comment = {
+                    user: scope.user._id,
+                    videoTime: VideoFactory.getCurTime(),
+                    content: scope.comment.content,
+                    tags: scope.comment.tags.replace(/\s/g, '').split(',')
+                }
+                CommentFactory.saveComment(comment).then(function(comment) {
+                    VideoFactory.addCommentToVid(comment, scope.video._id);
+                });
             }
             // CommentFactory.saveComment(scope.comment);
         }
     }
 
 });
-
-// app.controller('NewCommentCtrl', function($scope, AuthService, CommentFactory) {
-//     console.log('hello')
-//     $scope.clicked = false;
-
-//     $scope.showForm = function() {
-//         $scope.clicked = true;
-//     }
-
-//     $scope.isLoggedIn = AuthService.isAuthenticated();
-
-//     AuthService.getLoggedInUser().then(function(user) {
-//         $scope.comment.user = user;
-//     });
-
-//     $scope.comment.video.time =
-
-//     CommentFactory.saveComment($scope.comment);
-// })
