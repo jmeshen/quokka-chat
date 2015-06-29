@@ -1,11 +1,3 @@
-<button class="btn btn-info" ng-show= "isLoggedIn" ng-click="showForm()" ng-hide="clicked">Add Comment</button>
+<h3 id = "user">{{comment.user}}</h3>
+<h4 id = "body"> {{comment.content}}</h4>
 
-<form ng-show="clicked" ng-submit="addingComment(comment)">
-  <div class="form-group">
-    <input type="text" class="form-control" id="newCommentText" placeholder="Enter question here" ng-model="comment.content">
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control" id="newCommentTags" placeholder="Add tags separated by commas" ng-model="comment.tags">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>

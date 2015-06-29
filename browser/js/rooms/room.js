@@ -31,7 +31,31 @@ app.controller('AllRoomCtrl', function($scope, VideoFactory) {
         console.log('videos on scope?', $scope.videos)
     })
 });
-app.controller('SingleRoomCtrl', function($scope, VideoObj) {
+app.controller('SingleRoomCtrl', function($scope, VideoObj, CommentFactory, VideoFactory) {
     $scope.video = VideoObj;
-    console.log('HITTING CONTROLLER!!!', $scope.video);
+    $scope.clicked = false;
+
+    $scope.showForm = function() {
+        scope.clicked = true;
+        VideoFactory.pauseVid();
+    };
+
+    $scope.isLoggedIn = AuthService.isAuthenticated();
+
+    AuthService.getLoggedInUser().then(function(user) {
+        scope.user = user;
+    });
+
+
+    $scope.addingComment = function(comment) {
+        comment = {
+            user: scope.user._id,
+            videoTime: VideoFactory.getCurTime(),
+            content: scope.comment.content,
+            tags: scope.comment.tags.replace(/\s/g, '').split(',')
+        }
+        CommentFactory.saveComment(comment).then(function(comment) {
+            VideoFactory.addCommentToVid(comment, scope.video._id);
+        });
+    }
 });
