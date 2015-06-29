@@ -1,4 +1,5 @@
 <div class = "comment">
-	<h4>{{comment.user.email}}</h4>
-	<h3> {{comment.content}}</h3>
+	<form ng-submit="reply()">
+		<input type="submit" class="form-control" placeholder="Write a comment..." ng-keyup="$event.keycode === 13 && reply()"></input>
+	</form>
 </div>
