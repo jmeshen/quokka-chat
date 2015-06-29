@@ -6,6 +6,8 @@ module.exports = router;
 var _ = require('lodash');
 var mongoose = require('mongoose');
 var Video = mongoose.model('Video');
+var Promise = require('bluebird')
+var deepPopulate = require('mongoose-deep-populate');
 
 router.get('/', function(req, res) {
     Video.find({}).exec().then(function(videos) {
@@ -18,7 +20,7 @@ router.get('/', function(req, res) {
 router.get('/:videoId', function(req, res) {
     Video.findOne({
         _id: req.params.videoId
-    }).exec().then(function(video) {
+    }).populate('comments').deepPopulate('comments.user').exec().then(function(video) {
         res.json(video);
     }, function(err) {
         console.log(err);
