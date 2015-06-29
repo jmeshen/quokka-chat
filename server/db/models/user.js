@@ -8,6 +8,15 @@ var schema = new mongoose.Schema({
         enum: ["user", "admin"],
         default: "user"
     },
+    username: {
+        type: String
+    },
+    first: {
+        type: String
+    },
+    last: {
+        type: String
+    },
     email: {
         type: String
     },

@@ -2,7 +2,7 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
     return {
         restrict: 'E',
         scope: {
-            video: '='
+            comment: '='
         },
         templateUrl: 'js/common/directives/comments/comments.html',
         link: function(scope) {

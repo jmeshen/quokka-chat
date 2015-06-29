@@ -10,5 +10,7 @@ app.factory('CommentFactory', function($http) {
         });
     }
 
+
+
     return comment;
 });
