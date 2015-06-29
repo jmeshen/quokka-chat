@@ -11,5 +11,10 @@
     <label for="video">Description</label>
     <input type="text" class="form-control" id="videoDescription" ng-model="video.description">
   </div>
+  <div class="form-group">
+    <label for="video">Tags</label>
+    <tags-input ng-model='video.tags'></tags-input>
+    <pre>{{video.tags}}</pre>
+  </div>
   <button type="submit" class="btn btn-default">Add</button>
 </form>

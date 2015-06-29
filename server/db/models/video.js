@@ -29,7 +29,12 @@ var schema = new mongoose.Schema({
     }],
     owner: {
         type: String
-    }
+    },
+    tags: [{
+        text: {
+            type: String
+        }
+    }]
 });
 
 mongoose.model('Video', schema);
