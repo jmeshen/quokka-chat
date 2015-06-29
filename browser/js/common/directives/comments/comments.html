@@ -1,6 +1,6 @@
 <button class="btn btn-info" ng-show= "isLoggedIn" ng-click="showForm()" ng-hide="clicked">Add Comment</button>
 
-<form ng-show="clicked" ng-submit="saveComment()">
+<form ng-show="clicked" ng-submit="addingComment()">
   <div class="form-group">
     <input type="text" class="form-control" id="newCommentText" placeholder="Enter text here" ng-model="comment.content">
   </div>

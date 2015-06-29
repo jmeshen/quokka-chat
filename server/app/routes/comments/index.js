@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
 })
 
 router.post('/:videoId', function(req, res) {
-    var comment = new Comments(req.body);
+    var comment = new Comment(req.body);
     comment.save(function(err) {
         if (err) console.log(err);
         res.status(200).send(comment);

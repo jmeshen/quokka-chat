@@ -13,15 +13,24 @@ app.factory('VideoFactory', function($http) {
                 //'onStateChange': onPlayerStateChange
             }
         });
-        console.log(newVideo, "this is new video");
-        console.log(player, "this is the player");
+        // console.log(newVideo, "this is new video");
+        // console.log(player, "this is the player");
     }
 
     function onPlayerReady(event) {
-        event.target.playVideo();
+        event.target.pauseVideo();
     }
 
+    video.pauseVid = function() {
+        player.pauseVideo();
+    }
 
+    video.getCurTime = function() {
+        console.log('THIS BE PLAYER, YO', player)
+        var curTime = player.getCurrentTime();
+        console.log(curTime);
+        return curTime;
+    }
 
     video.pullIdFromUrl = function(url) {
         url = url.split('')
