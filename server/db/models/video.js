@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+var deepPopulate = require('mongoose-deep-populate')
 
 var schema = new mongoose.Schema({
     name: {
@@ -36,5 +37,11 @@ var schema = new mongoose.Schema({
         }
     }]
 });
+
+schema.plugin(deepPopulate, {
+    populate: {
+        "comments.user": {}
+    }
+})
 
 mongoose.model('Video', schema);
