@@ -5,9 +5,7 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             comment: '='
         },
         templateUrl: 'js/common/directives/comments/comments.html',
-        link: function(scope) {
-
-        }
+        link: function(scope) {}
     }
 
 });

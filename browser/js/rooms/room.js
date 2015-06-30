@@ -54,6 +54,8 @@ app.controller('SingleRoomCtrl', function($scope, VideoObj, CommentFactory, Vide
         $scope.clicked = false;
     }
 
+    $scope.oneAtATime = true;
+
     $scope.isLoggedIn = AuthService.isAuthenticated();
 
     AuthService.getLoggedInUser().then(function(user) {

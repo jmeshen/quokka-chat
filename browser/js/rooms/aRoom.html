@@ -3,6 +3,7 @@
 
     <button class="btn btn-info" ng-show= "isLoggedIn" ng-click="showForm()" ng-hide="clicked">Add Comment</button>
     <form ng-show="clicked" ng-submit="addingComment(comment)">
+        <button class="btn btn-default" ng-click = "hideForm()">x</button>
     	<div class="form-group">
     		<input type="text" class="form-control" id="newCommentText" placeholder="Enter question here" ng-model="comment.content">
     	</div>
@@ -10,12 +11,14 @@
     		<input type="text" class="form-control" id="newCommentTags" placeholder="Add tags separated by commas" ng-model="comment.tags">
     	</div>
     	<button type="submit" class="btn btn-default">Submit</button>
-    	<button class="btn btn-default" ng-click = "hideForm()">Submit</button>
     </form>
 
     <div class="col-md-8" video="video">
-    	<ul>
-    		<comments comment = "comment" ng-repeat = "comment in comments"></comments>
-    	</ul>
+        <accordion close-others="oneAtATime">
+            <accordion-group heading="{{comment.content}}, {{comment.user.email}}" ng-repeat="comment in comments">
+            <p>children go here</p>
+            <comments></comments>
+            </accordion-group>
+        </accordion>
     </div>
 </div>
