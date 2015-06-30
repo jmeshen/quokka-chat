@@ -9,6 +9,12 @@ app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state,
 
             scope.embedURL = 'https://youtube.com/embed/' + scope.video.embedId;
             VideoFactory.onYouTubeIframeAPIReady(scope.video.embedId);
+            scope.play = function() {
+                VideoFactory.playVid();
+            }
+            scope.pause = function() {
+                VideoFactory.pauseVid();
+            }
         }
     };
 });

@@ -8,6 +8,7 @@ app.factory('VideoFactory', function($http, $rootScope) {
             height: '390',
             width: '640',
             videoId: newVideo,
+            playerVars: {'controls': 0},
             events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
@@ -29,6 +30,10 @@ app.factory('VideoFactory', function($http, $rootScope) {
         return $http.get('/api/video/').then(function(response) {
             return response.data;
         })
+    }
+
+    video.playVid = function() {
+        player.playVideo();
     }
 
     video.pauseVid = function() {
