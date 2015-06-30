@@ -19,18 +19,36 @@ router.get('/', function(req, res) {
     console.log('failed to find comments', err);
 })
 
-router.post('/', function(req, res) {
+router.get('/:parentId/response/', function(req, res, next) {
+    Comment.find({
+        parent: req.params.parentId
+    }).then(function(comments) {
+        res.json(comments);
+    })
+})
+
+router.post('/', function(req, res, next) {
     console.log("made it", req.body);
     var comment = new Comment(req.body);
     comment.save(function(err) {
-        if (err) console.log(err);
+        if (err) return next(err);
         res.status(200).send(comment);
     })
 })
 
-router.put('/', function(req, res) {
-    Comment.findOneAndUpdate(req.body._id, req.body, function(err, comment) {
-        if (err) console.log(err);
+router.put('/:commentId', function(req, res, next) {
+    Comment.findOneAndUpdate(req.params.commentId, req.body, function(err, comment) {
+        if (err) return next(err);
         res.json(comment);
     })
 });
+
+router.post('/:parentId/response/', function(req, res, next) {
+    Comment.findById(req.params.parentId, function(err, comment) {
+        if (err) return next(err);
+        comment.createChild(req.body, function(err, child) {
+            if (err) return next(err);
+            res.json(child);
+        });
+    })
+})

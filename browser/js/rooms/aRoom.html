@@ -5,19 +5,24 @@
     <form ng-show="clicked" ng-submit="addingComment(comment)">
         <button class="btn btn-default" ng-click = "hideForm()">x</button>
     	<div class="form-group">
+            <!-- <label for="comment">Add Question</label> -->
     		<input type="text" class="form-control" id="newCommentText" placeholder="Enter question here" ng-model="comment.content">
     	</div>
-    	<div class="form-group">
+        <div class="form-group">
+<!--             <label for="comment">Tags</label> -->
+            <tags-input ng-model='comment.tags'></tags-input>
+            <!--     <pre>{{video.tags}}</pre> -->
+          </div>
+<!--     	<div class="form-group">
     		<input type="text" class="form-control" id="newCommentTags" placeholder="Add tags separated by commas" ng-model="comment.tags">
-    	</div>
+    	</div> -->
     	<button type="submit" class="btn btn-default">Submit</button>
     </form>
 
     <div class="col-md-8" video="video">
         <accordion close-others="oneAtATime">
-            <accordion-group heading="{{comment.content}}, {{comment.user.email}}" ng-repeat="comment in comments">
-            <p>children go here</p>
-            <comments></comments>
+            <accordion-group heading="{{comment.content}}" ng-repeat="comment in comments" ng-click="getReplies(comment)">
+            <comments comment='comment' children='children'></comments>
             </accordion-group>
         </accordion>
     </div>

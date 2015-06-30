@@ -1,5 +1,7 @@
 <div class = "comment">
+	<p ng-repeat='child in children'>{{child.content}}</p>
 	<form ng-submit="reply()">
-		<input type="submit" class="form-control" placeholder="Write a comment..." ng-keyup="$event.keycode === 13 && reply()"></input>
+		<input type="text" class="form-control" placeholder="Write a comment..." ng-model='childComment.content'></input>
+		<button>Add response</button>
 	</form>
 </div>

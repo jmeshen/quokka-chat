@@ -19,19 +19,32 @@ var schema = new mongoose.Schema({
         type: Number
     },
     tags: [{
-        type: String
+        text: {
+            type: String
+        }
     }],
     commentTime: {
         type: Date,
         default: Date
+    },
+    parent: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 
-schema.method.createChild = function(reply) {
-    this.child = new Comment()
-    this.child = this.child._id
-    this.child.user = reply.user
-    this.child.content = reply.content
+schema.methods.createChild = function(reply, cb) {
+    var Comment = mongoose.model('Comment');
+
+    var response = new Comment({
+        parent: this._id,
+        user: reply.userId,
+        content: reply.content
+    });
+
+    console.log(response);
+
+    response.save(cb);
 }
 
 // schema.pre('save', function(next) {

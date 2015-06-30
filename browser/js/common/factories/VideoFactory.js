@@ -67,9 +67,7 @@ app.factory('VideoFactory', function($http) {
 
     video.addCommentToVid = function(comment, videoId) {
         return $http.put('/api/video/' + videoId, comment).then(function(response) {
-            return;
-        }, function(error) {
-            console.log(error);
+            return response.data;
         })
     }
 
