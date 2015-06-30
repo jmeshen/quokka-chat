@@ -12,10 +12,8 @@ app.config(function($stateProvider) {
         controller: 'SingleRoomCtrl',
         resolve: {
             VideoObj: function(VideoFactory, $stateParams) {
-                console.log('hitting the resolve')
                 return VideoFactory.getVideoObjectId($stateParams.id)
                     .then(function(video) {
-                        console.log('hello')
                         return video;
                     });
             }
@@ -24,11 +22,8 @@ app.config(function($stateProvider) {
 });
 
 app.controller('AllRoomCtrl', function($scope, VideoFactory) {
-    console.log('hitting RoomCtrl, yo!')
     VideoFactory.getAll().then(function(videos) {
-        console.log('videos??', videos)
         $scope.videos = videos;
-        console.log('videos on scope?', $scope.videos)
     })
 
     $scope.whichTag;
@@ -43,7 +38,6 @@ app.controller('SingleRoomCtrl', function($scope, VideoObj, CommentFactory, Vide
     $scope.video = VideoObj;
     $scope.clicked = false;
     $scope.comments = VideoObj.comments
-    console.log($scope.comments)
 
     $scope.showForm = function() {
         $scope.clicked = true;
@@ -66,7 +60,6 @@ app.controller('SingleRoomCtrl', function($scope, VideoObj, CommentFactory, Vide
 
     $scope.getReplies = function(parent) {
         CommentFactory.getReplies(parent._id).then(function(replies) {
-            console.log('THIS IS REPLIES', replies);
             $scope.children = replies;
         });
     }
@@ -80,7 +73,6 @@ app.controller('SingleRoomCtrl', function($scope, VideoObj, CommentFactory, Vide
         }
         CommentFactory.saveComment(comment).then(function(comment) {
             VideoFactory.addCommentToVid(comment, $scope.video._id).then(function(video) {
-                console.log(video);
                 $scope.comments = video.comments;
             }).catch(console.log);
         });
