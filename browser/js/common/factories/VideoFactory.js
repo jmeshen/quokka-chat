@@ -1,4 +1,4 @@
-app.factory('VideoFactory', function($http) {
+app.factory('VideoFactory', function($http, $rootScope) {
     var video = {};
 
     var player;
@@ -10,13 +10,19 @@ app.factory('VideoFactory', function($http) {
             videoId: newVideo,
             events: {
                 'onReady': onPlayerReady,
-                //'onStateChange': onPlayerStateChange
+                'onStateChange': onPlayerStateChange
             }
         });
     }
 
     function onPlayerReady(event) {
+        $rootScope.$emit('duration', event.target)
         event.target.pauseVideo();
+    }
+
+    function onPlayerStateChange(event) {
+        console.log('changed')
+        $rootScope.$emit('status', event.target.getPlayerState())
     }
 
     video.getAll = function() {
@@ -37,10 +43,8 @@ app.factory('VideoFactory', function($http) {
     video.pullIdFromUrl = function(url) {
         url = url.split('')
         if (url.indexOf('=') > -1) {
-            console.log('hitting if with ', url)
             return url.slice((url.indexOf('=') + 1)).join('');
         } else {
-            console.log('hitting else with ', url)
             return url.slice((url.indexOf('.') + 4)).join('');
         }
     }
