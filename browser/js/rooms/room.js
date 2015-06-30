@@ -63,15 +63,27 @@ app.controller('SingleRoomCtrl', function($scope, VideoObj, CommentFactory, Vide
     });
 
 
+
+    $scope.getReplies = function(parent) {
+        CommentFactory.getReplies(parent._id).then(function(replies) {
+            console.log('THIS IS REPLIES', replies);
+            $scope.children = replies;
+        });
+    }
+
     $scope.addingComment = function(comment) {
         comment = {
             user: $scope.user._id,
             videoTime: VideoFactory.getCurTime(),
             content: $scope.comment.content,
-            tags: $scope.comment.tags.replace(/\s/g, '').split(',')
+            tags: $scope.comment.tags
         }
         CommentFactory.saveComment(comment).then(function(comment) {
-            VideoFactory.addCommentToVid(comment, $scope.video._id);
+            VideoFactory.addCommentToVid(comment, $scope.video._id).then(function(video) {
+                console.log(video);
+                $scope.comments = video.comments;
+            }).catch(console.log);
         });
+        $scope.hideForm();
     }
 });

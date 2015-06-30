@@ -51,9 +51,25 @@ router.post('/', function(req, res) {
     })
 })
 
-router.put('/:id', function(req, res) {
-    Video.findById(req.params.id).exec().then(function(video) {
-        video.comments.push(req.body._id);
-        video.save();
-    })
-})
+router.put('/:id', function(req, res, next) {
+    Video.findById(req.params.id)
+        .exec()
+        .then(function(video) {
+            video.comments.push(req.body._id);
+            return video.save();
+        })
+        .then(function(video) {
+            console.log('saved', video);
+            return Video.populate(video, {
+                path: 'comments'
+            })
+        })
+        .then(function(video) {
+            console.log('pop', video)
+            res.json(video);
+        })
+        .then(null, next);
+});
+
+
+// .Populate('comments').deepPopulate('comments.user')
