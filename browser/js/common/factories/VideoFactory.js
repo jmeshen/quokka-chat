@@ -43,7 +43,13 @@ app.factory('VideoFactory', function($http) {
             console.log('hitting else with ', url)
             return url.slice((url.indexOf('.') + 4)).join('');
         }
-    };
+    }
+
+    video.getVidsByTag = function(tag) {
+        return $http.get('/api/video/tag/' + tag).then(function(response) {
+            return response.data;
+        })
+    }
 
     video.getVideoObjectId = function(objectId) {
         return $http.get('/api/video/' + objectId).then(function(videoObj) {
