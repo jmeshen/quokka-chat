@@ -1,12 +1,23 @@
 app.factory('CommentFactory', function($http) {
     var comment = {};
 
+    comment.getReplies = function(parentId) {
+        console.log(parentId);
+        return $http.get('/api/comments/' + parentId + '/response/').then(function(response) {
+            return response.data;
+        })
+    }
+
     comment.saveComment = function(comment) {
         console.log(comment)
         return $http.post('/api/comments/', comment).then(function(response) {
             return response.data;
-        }, function(error) {
-            console.log(error);
+        });
+    }
+
+    comment.addReply = function(commentId, reply) {
+        return $http.post('/api/comments/' + commentId + '/response/', reply).then(function(response) {
+            return response.data;
         });
     }
 
