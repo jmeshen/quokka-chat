@@ -27,6 +27,22 @@ router.get('/:videoId', function(req, res) {
     })
 });
 
+router.get('/tag/:tag', function(req, res) {
+    console.log('THIS IS THE TAG WE BE SEARCHING, yo', req.params.tag);
+
+    Video.find({
+        tags: {
+            $elemMatch: {
+                text: req.params.tag
+            }
+        }
+    }).exec().then(function(videos) {
+        res.json(videos);
+    }, function(err) {
+        console.log(err);
+    })
+})
+
 router.post('/', function(req, res) {
     var video = new Video(req.body);
     video.save(function(err, vid) {

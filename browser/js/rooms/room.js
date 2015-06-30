@@ -30,6 +30,14 @@ app.controller('AllRoomCtrl', function($scope, VideoFactory) {
         $scope.videos = videos;
         console.log('videos on scope?', $scope.videos)
     })
+
+    $scope.whichTag;
+
+    $scope.searchVidsByTag = function(tag) {
+        VideoFactory.getVidsByTag(tag).then(function(videos) {
+            $scope.videos = videos;
+        })
+    }
 });
 app.controller('SingleRoomCtrl', function($scope, VideoObj, CommentFactory, VideoFactory, AuthService) {
     $scope.video = VideoObj;

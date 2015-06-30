@@ -30,7 +30,12 @@ var schema = new mongoose.Schema({
     }],
     owner: {
         type: String
-    }
+    },
+    tags: [{
+        text: {
+            type: String
+        }
+    }]
 });
 
 schema.plugin(deepPopulate, {
