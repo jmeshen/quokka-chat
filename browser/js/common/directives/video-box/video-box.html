@@ -17,10 +17,10 @@
 <button ng-click="seekTo(5)" class="btn btn-primary">Seek to 5</button></div>
 
 <div class="playhead">
-  <div class="playbits" ng-repeat="n in testData" ng-click="seekTo(n)">{{n}}</div>
+  <div class="playbits" ng-repeat="n in timeline" ng-click="seekTo(n)">{{n}}</div>
 </div>
 
-<pre>{{testData}}</pre>
+<pre>{{timeline}}</pre>
 <!-- <div class="playhead">
   <div id="bit-1" class="playbits"></div>
   <div id="bit-2" class="playbits"></div>
