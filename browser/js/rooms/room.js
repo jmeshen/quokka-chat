@@ -34,53 +34,67 @@ app.controller('AllRoomCtrl', function($scope, VideoFactory) {
         })
     }
 });
+
 app.controller('SingleRoomCtrl', function($scope, $rootScope, VideoObj, CommentFactory, VideoFactory, AuthService) {
     $scope.video = VideoObj;
     $scope.clicked = false;
-    $scope.comments = VideoObj.comments
-    console.log('comments', $scope.comments)
-    $scope.displayComments = []
-    var section = 0
-    var refresher;
+    $scope.comments = VideoObj.comments.sort(function(a, b) {
+        if (a.videoTime < b.videoTime) return -1
+        else if (a.videoTime > b.videoTime) return 1
+        else return 0
+    })
+    $scope.oneAtATime = true;
+    $scope.isLoggedIn = AuthService.isAuthenticated();
+    $scope.displayComments = {}
     $scope.interval = 5000
+    $scope.clicked = false;
+    AuthService.getLoggedInUser().then(function(user) {
+        $scope.user = user;
+    });
+    var refresher;
 
+    $rootScope.$on('duration', function(event, player) {
+        $scope.duration = player.getDuration()
+        $scope.changeInterval(5)
 
-
-
-
-    $rootScope.$on('duration', function(event, target) {
-        $scope.duration = target.getDuration()
-        var x = (Math.ceil($scope.duration / ($scope.interval / 1000)))
-        console.log(x)
-        for (var i = 0; i < x; i++) {
-            $scope.displayComments.push([])
-            for (var j = 0; j < $scope.comments.length; j++) {
-                if ($scope.comments[j].videoTime < (($scope.interval / 1000) * (i + 1))) {
-                    console.log($scope.comments)
-                    console.log($scope.displayComments)
-                    $scope.displayComments[i].push($scope.comments[j])
-                    $scope.comments[j].videoTime = undefined
-                }
+    })
+    $scope.changeInterval = function(number) {
+        $scope.interval = number * 1000
+        console.log($scope.comments)
+        var lowerbound = 0 - (number / 2)
+        var upperbound = 0 + (number / 2)
+        var bucket = 0
+        for (var i = 0; i < $scope.comments.length; i++) {
+            debugger
+            if (!$scope.displayComments[bucket]) $scope.displayComments[bucket] = []
+            if ((lowerbound < $scope.comments[i].videoTime) && ($scope.comments[i].videoTime < upperbound)) {
+                $scope.displayComments[bucket].push($scope.comments[i])
+            } else {
+                console.log('here', bucket)
+                i--
+                bucket += 1
+                lowerbound += number
+                upperbound += number
             }
         }
-        console.log($scope.displayComments)
-    })
 
+    }
 
-    $rootScope.$on('status', function(event, status) {
-
-        if (status === 1) {
+    $rootScope.$on('status', function(event, player) {
+        if (player.getPlayerState() === 1) {
             refresher = window.setInterval(function() {
-                section += 1
-                console.log('logging', $scope.displayComments[section])
+                $rootScope.$emit('playing', player.getCurrentTime())
             }, $scope.interval)
-        } else if (status === 2) {
+        } else if (player.getPlayerState() === 2) {
             window.clearInterval(refresher)
             refresher = undefined
             console.log('never stop', refresher)
         }
     })
 
+    $rootScope.$on('playing', function(event, currentTime) {
+        console.log('display', $scope.displayComments)
+    })
 
     $scope.showForm = function() {
         $scope.clicked = true;
@@ -88,19 +102,8 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, VideoObj, CommentF
     };
 
     $scope.hideForm = function() {
-        $scope.clicked = false;
+
     }
-
-    $scope.oneAtATime = true;
-
-    $scope.isLoggedIn = AuthService.isAuthenticated();
-
-    AuthService.getLoggedInUser().then(function(user) {
-        $scope.user = user;
-    });
-
-
-
     $scope.getReplies = function(parent) {
         CommentFactory.getReplies(parent._id).then(function(replies) {
             $scope.children = replies;
