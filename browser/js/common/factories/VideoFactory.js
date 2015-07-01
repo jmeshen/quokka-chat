@@ -40,6 +40,10 @@ app.factory('VideoFactory', function($http, $rootScope) {
         player.pauseVideo();
     }
 
+    video.seekTo = function(sec) {
+        player.seekTo(sec);
+    }
+
     video.getCurTime = function() {
         var curTime = player.getCurrentTime();
         return curTime;

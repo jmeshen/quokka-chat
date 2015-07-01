@@ -13,4 +13,113 @@
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Cpc-t-Uwv1I"></iframe>
 </div> -->
 
-<div><button ng-click="play()" class="btn btn-primary">Start</button><button ng-click="pause()" class="btn btn-primary">Pause</button>|----------------------------------------|</div>
+<div><button ng-click="play()" class="btn btn-primary">Start</button><button ng-click="pause()" class="btn btn-primary">Pause</button>
+<button ng-click="seekTo(5)" class="btn btn-primary">Seek to 5</button></div>
+
+<div class="playhead">
+  <div class="playbits" ng-repeat="n in testData" ng-click="seekTo(n)">{{n}}</div>
+</div>
+
+<pre>{{testData}}</pre>
+<!-- <div class="playhead">
+  <div id="bit-1" class="playbits"></div>
+  <div id="bit-2" class="playbits"></div>
+  <div id="bit-3" class="playbits"></div>
+  <div id="bit-4" class="playbits"></div>
+  <div id="bit-5" class="playbits"></div>
+  <div id="bit-6" class="playbits"></div>
+  <div id="bit-7" class="playbits"></div>
+  <div id="bit-8" class="playbits"></div>
+  <div id="bit-9" class="playbits"></div>
+  <div id="bit-10" class="playbits"></div>
+  <div id="bit-11" class="playbits"></div>
+  <div id="bit-12" class="playbits"></div>
+  <div id="bit-13" class="playbits"></div>
+  <div id="bit-14" class="playbits"></div>
+  <div id="bit-15" class="playbits"></div>
+  <div id="bit-16" class="playbits"></div>
+  <div id="bit-17" class="playbits"></div>
+  <div id="bit-18" class="playbits"></div>
+  <div id="bit-19" class="playbits"></div>
+  <div id="bit-20" class="playbits"></div>
+  <div id="bit-21" class="playbits"></div>
+  <div id="bit-22" class="playbits"></div>
+  <div id="bit-23" class="playbits"></div>
+  <div id="bit-24" class="playbits"></div>
+  <div id="bit-25" class="playbits"></div>
+  <div id="bit-26" class="playbits"></div>
+  <div id="bit-27" class="playbits"></div>
+  <div id="bit-28" class="playbits"></div>
+  <div id="bit-29" class="playbits"></div>
+  <div id="bit-30" class="playbits"></div>
+  <div id="bit-31" class="playbits"></div>
+  <div id="bit-32" class="playbits"></div>
+  <div id="bit-33" class="playbits"></div>
+  <div id="bit-34" class="playbits"></div>
+  <div id="bit-35" class="playbits"></div>
+  <div id="bit-36" class="playbits"></div>
+  <div id="bit-37" class="playbits"></div>
+  <div id="bit-38" class="playbits"></div>
+  <div id="bit-39" class="playbits"></div>
+  <div id="bit-40" class="playbits"></div>
+  <div id="bit-41" class="playbits"></div>
+  <div id="bit-42" class="playbits"></div>
+  <div id="bit-43" class="playbits"></div>
+  <div id="bit-44" class="playbits"></div>
+  <div id="bit-45" class="playbits"></div>
+  <div id="bit-46" class="playbits"></div>
+  <div id="bit-47" class="playbits"></div>
+  <div id="bit-48" class="playbits"></div>
+  <div id="bit-49" class="playbits"></div>
+  <div id="bit-50" class="playbits"></div>
+  <div id="bit-51" class="playbits"></div>
+  <div id="bit-52" class="playbits"></div>
+  <div id="bit-53" class="playbits"></div>
+  <div id="bit-54" class="playbits"></div>
+  <div id="bit-55" class="playbits"></div>
+  <div id="bit-56" class="playbits"></div>
+  <div id="bit-57" class="playbits"></div>
+  <div id="bit-58" class="playbits"></div>
+  <div id="bit-59" class="playbits"></div>
+  <div id="bit-60" class="playbits"></div>
+  <div id="bit-61" class="playbits"></div>
+  <div id="bit-62" class="playbits"></div>
+  <div id="bit-63" class="playbits"></div>
+  <div id="bit-64" class="playbits"></div>
+  <div id="bit-65" class="playbits"></div>
+  <div id="bit-66" class="playbits"></div>
+  <div id="bit-67" class="playbits"></div>
+  <div id="bit-68" class="playbits"></div>
+  <div id="bit-69" class="playbits"></div>
+  <div id="bit-70" class="playbits"></div>
+  <div id="bit-71" class="playbits"></div>
+  <div id="bit-72" class="playbits"></div>
+  <div id="bit-73" class="playbits"></div>
+  <div id="bit-74" class="playbits"></div>
+  <div id="bit-75" class="playbits"></div>
+  <div id="bit-76" class="playbits"></div>
+  <div id="bit-77" class="playbits"></div>
+  <div id="bit-78" class="playbits"></div>
+  <div id="bit-79" class="playbits"></div>
+  <div id="bit-80" class="playbits"></div>
+  <div id="bit-81" class="playbits"></div>
+  <div id="bit-82" class="playbits"></div>
+  <div id="bit-83" class="playbits"></div>
+  <div id="bit-84" class="playbits"></div>
+  <div id="bit-85" class="playbits"></div>
+  <div id="bit-86" class="playbits"></div>
+  <div id="bit-87" class="playbits"></div>
+  <div id="bit-88" class="playbits"></div>
+  <div id="bit-89" class="playbits"></div>
+  <div id="bit-90" class="playbits"></div>
+  <div id="bit-91" class="playbits"></div>
+  <div id="bit-92" class="playbits"></div>
+  <div id="bit-93" class="playbits"></div>
+  <div id="bit-94" class="playbits"></div>
+  <div id="bit-95" class="playbits"></div>
+  <div id="bit-96" class="playbits"></div>
+  <div id="bit-97" class="playbits"></div>
+  <div id="bit-98" class="playbits"></div>
+  <div id="bit-99" class="playbits"></div>
+  <div id="bit-100" class="playbits"></div>
+</div>

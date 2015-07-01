@@ -15,6 +15,12 @@ app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state,
             scope.pause = function() {
                 VideoFactory.pauseVid();
             }
+            scope.seekTo = function(sec) {
+                VideoFactory.seekTo(sec);
+            }
+            scope.testData = [6,12,18,24,30,36,42,48,54,60,66,72,76,82,88,94,100,106,112,118];
+            // console.log(scope.testData);
+
         }
     };
 });
