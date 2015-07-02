@@ -8,23 +8,60 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
         templateUrl: 'js/common/directives/comments/comments.html',
         link: function(scope) {
 
-            scope.childComment = {
-                parent: scope.comment._id
+            scope.checked = false;
+
+            scope.toggle = function() {
+                if (scope.checked === true) {
+                    scope.checked = false;
+                } else {
+                    scope.checked = true;
+                }
             }
+            //////////////////////children stuff////////////////////////////////////
+
+            scope.childComment = {};
+
+            // scope.childComment = {
+            //     parent: scope.comment._id
+            // }
 
             var user = AuthService.getLoggedInUser().then(function(user) {
                 scope.childComment.userId = user._id;
             });
 
             scope.reply = function() {
+                scope.childComment.parent = scope.comment._id;
                 user.then(function() {
                     return CommentFactory.addReply(scope.childComment.parent, scope.childComment);
                 }).then(function(child) {
-                    console.log('THIS IS CHILD', child);
                     scope.children.push(child);
                     scope.childComment = null;
                 }).catch(console.log);
             }
+
+
+            //////////////////////grandkids stuff////////////////////////////////////
+            scope.getReplies = function(parent) {
+                scope.parent = parent;
+                CommentFactory.getReplies(parent._id).then(function(replies) {
+                    scope.grandChildren = replies;
+                });
+            }
+            scope.grandChild = {};
+            scope.replyToReply = function() {
+                scope.grandChild.parent = scope.parent._id;
+                user = AuthService.getLoggedInUser().then(function(user) {
+                    scope.grandChild.userId = user._id;
+                });
+                user.then(function() {
+                    return CommentFactory.addReply(scope.grandChild.parent, scope.grandChild);
+                }).then(function(grandChild) {
+                    scope.grandChildren.push(grandChild);
+                    scope.grandChild = null;
+                }).catch(console.log);
+
+            }
+
         }
     }
 
