@@ -25,12 +25,13 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             //     parent: scope.comment._id
             // }
 
-            var user = AuthService.getLoggedInUser().then(function(user) {
-                scope.childComment.userId = user._id;
-            });
+            var user;
 
             scope.reply = function() {
                 scope.childComment.parent = scope.comment._id;
+                user = AuthService.getLoggedInUser().then(function(user) {
+                    scope.childComment.userId = user._id;
+                });
                 user.then(function() {
                     return CommentFactory.addReply(scope.childComment.parent, scope.childComment);
                 }).then(function(child) {
