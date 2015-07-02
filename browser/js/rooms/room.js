@@ -104,7 +104,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, VideoObj, CommentF
     };
 
     $scope.hideForm = function() {
-
+        $scope.clicked = false;
     }
     $scope.getReplies = function(parent) {
         CommentFactory.getReplies(parent._id).then(function(replies) {
