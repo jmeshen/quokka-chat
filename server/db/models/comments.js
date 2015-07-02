@@ -29,12 +29,12 @@ var schema = new mongoose.Schema({
     },
     parent: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Comment'
     }
 })
 
 schema.methods.createChild = function(reply, cb) {
-    var Comment = mongoose.model('Comment');
+    var Comment = this.constructor;
 
     var response = new Comment({
         parent: this._id,
@@ -44,7 +44,8 @@ schema.methods.createChild = function(reply, cb) {
 
     console.log(response);
 
-    response.save(cb);
+    if (cb) response.save(cb);
+    else return response.save();
 }
 
 // schema.pre('save', function(next) {

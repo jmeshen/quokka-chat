@@ -1,7 +1,17 @@
-<div class = "comment">
-	<p ng-repeat='child in children'>{{child.content}}</p>
-	<form ng-submit="reply()">
-		<input type="text" class="form-control" placeholder="Write a comment..." ng-model='childComment.content'></input>
-		<button>Add response</button>
-	</form>
+<div class ="comment">
+	<div class='children' ng-hide='checked'>
+		<p ng-repeat='child in children' ng-click='toggle(); getReplies(child)'>{{child.content}}</p>
+		<form ng-submit="reply()">
+			<input type="text" class="form-control" placeholder="Write a comment..." ng-model='childComment.content'></input>
+			<button>Add response</button>
+		</form>
+	</div>
+	<button ng-hide='!checked' ng-click='toggle()'>&larr;</button>
+	<div class='grandchildren' ng-show='checked'>
+		<p ng-repeat='kid in grandChildren'> {{kid.content}} </p>
+		<form ng-submit='replyToReply(child)'>
+			<input type="text" class="form-control" placeholder="add a reply" ng-model='grandChild.content'></input>
+			<button>Add response</button>
+		</form>
+	</div>
 </div>
