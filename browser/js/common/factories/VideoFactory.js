@@ -84,5 +84,13 @@ app.factory('VideoFactory', function($http, $rootScope) {
         })
     }
 
+    video.createTimeline = function(duration, interval) {
+        var timeline = [];
+        for (var i = 0; i < duration; i + interval) {
+            timeline.push(i)
+        }
+        return timeline;
+    }
+
     return video;
 });

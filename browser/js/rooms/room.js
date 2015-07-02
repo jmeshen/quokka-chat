@@ -58,9 +58,9 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, VideoObj, CommentF
         $scope.duration = player.getDuration()
         $scope.changeInterval(5)
         $scope.timeline = [];
-        for (var i = 0; i < $scope.duration; i + $scope.interval) {
-            $scope.timeline.push(i)
-        }
+        // for (var i = 0; i < $scope.duration; i + $scope.interval) {
+        //     $scope.timeline.push(i)
+        // }
     })
     $scope.changeInterval = function(number) {
         $scope.interval = number * 1000
@@ -68,7 +68,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, VideoObj, CommentF
         var upperbound = 0 + (number / 2)
         var bucket = 0
         for (var i = 0; i < $scope.comments.length; i++) {
-            debugger
+            // debugger
             if (!$scope.displayComments[bucket]) $scope.displayComments[bucket] = []
             if ((lowerbound < $scope.comments[i].videoTime) && ($scope.comments[i].videoTime < upperbound)) {
                 $scope.displayComments[bucket].push($scope.comments[i])

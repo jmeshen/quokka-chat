@@ -1,39 +1,23 @@
-app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state, VideoFactory) {
+app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state, $compile, VideoFactory) {
     return {
         restrict: 'E',
         scope: {
-            video: "=",
-            duration: "="
+            video: "="
         },
-        transclude: true,
         templateUrl: 'js/common/directives/video-box/video-box.html',
-        link: function(scope) {
-            // console.log('this is scope from link', scope);
-            // console.log(scope.video)
-
+        link: function(scope,element,attrs) {
             scope.embedURL = 'https://youtube.com/embed/' + scope.video.embedId;
             VideoFactory.onYouTubeIframeAPIReady(scope.video.embedId);
-            scope.play = function() {
-                VideoFactory.playVid();
-            }
-            scope.pause = function() {
-                VideoFactory.pauseVid();
-            }
-            scope.seekTo = function(sec) {
-                VideoFactory.seekTo(sec);
-            }
-            console.log('do i haz scope.duration',scope.duration)
-            // $rootScope.$on('duration', function(event, player) {
-            //     scope.duration = player.getDuration()
-            //     scope.interval = 5;
-            //     scope.timeline;
-            //     for (var i = 0; i < scope.duration; i + scope.interval) {
-            //         scope.timeline.push(i)
-            //     }
-            // })
-            scope.testData = [6,12,18,24,30,36,42,48,54,60,66,72,76,82,88,94,100,106,112,118];
-            // console.log(scope.testData);
-
+            $rootScope.$on('duration', function(event, player) {
+                scope.duration = player.getDuration()
+                scope.interval = 5;
+                var playhead = angular.element(document.createElement('playhead'));
+                playhead.attr('duration','duration')
+                playhead.attr('video','video')
+                var el = $compile(playhead)(scope);
+                var videobox = document.getElementsByTagName('video-box');
+                angular.element(videobox[0]).append(playhead)
+            })
         }
     };
 });
