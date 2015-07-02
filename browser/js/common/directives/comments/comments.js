@@ -3,11 +3,11 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
         restrict: 'E',
         scope: {
             comment: '=',
-            children: '='
+            children: '=',
+            user: '='
         },
         templateUrl: 'js/common/directives/comments/comments.html',
         link: function(scope) {
-
             scope.checked = false;
 
             scope.toggle = function() {
@@ -21,23 +21,24 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
 
             scope.childComment = {};
 
-            // scope.childComment = {
-            //     parent: scope.comment._id
-            // }
+            scope.upVote = function(comment) {
+                comment.rating++;
+                CommentFactory.changeRating(comment._id, comment);
+            }
 
-            var user;
+            scope.downVote = function(comment) {
+                comment.rating--;
+                CommentFactory.changeRating(comment._id, comment);
+            }
 
             scope.reply = function() {
                 scope.childComment.parent = scope.comment._id;
-                user = AuthService.getLoggedInUser().then(function(user) {
-                    scope.childComment.userId = user._id;
-                });
-                user.then(function() {
-                    return CommentFactory.addReply(scope.childComment.parent, scope.childComment);
-                }).then(function(child) {
-                    scope.children.push(child);
-                    scope.childComment = null;
-                }).catch(console.log);
+                scope.childComment.userId = scope.user._id
+                CommentFactory.addReply(scope.childComment.parent, scope.childComment)
+                    .then(function(child) {
+                        scope.children.push(child);
+                        scope.childComment = null;
+                    }).catch(console.log);
             }
 
 
@@ -51,15 +52,12 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             scope.grandChild = {};
             scope.replyToReply = function() {
                 scope.grandChild.parent = scope.parent._id;
-                user = AuthService.getLoggedInUser().then(function(user) {
-                    scope.grandChild.userId = user._id;
-                });
-                user.then(function() {
-                    return CommentFactory.addReply(scope.grandChild.parent, scope.grandChild);
-                }).then(function(grandChild) {
-                    scope.grandChildren.push(grandChild);
-                    scope.grandChild = null;
-                }).catch(console.log);
+                scope.grandChild.userId = scope.user._id;
+                CommentFactory.addReply(scope.grandChild.parent, scope.grandChild)
+                    .then(function(grandChild) {
+                        scope.grandChildren.push(grandChild);
+                        scope.grandChild = null;
+                    }).catch(console.log);
 
             }
 
