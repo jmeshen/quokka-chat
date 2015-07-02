@@ -8,6 +8,7 @@ app.factory('VideoFactory', function($http, $rootScope) {
             height: '390',
             width: '640',
             videoId: newVideo,
+            playerVars: {'controls': 0},
             events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
@@ -31,8 +32,16 @@ app.factory('VideoFactory', function($http, $rootScope) {
         })
     }
 
+    video.playVid = function() {
+        player.playVideo();
+    }
+
     video.pauseVid = function() {
         player.pauseVideo();
+    }
+
+    video.seekTo = function(sec) {
+        player.seekTo(sec);
     }
 
     video.getCurTime = function() {
@@ -73,6 +82,14 @@ app.factory('VideoFactory', function($http, $rootScope) {
         return $http.put('/api/video/' + videoId, comment).then(function(response) {
             return response.data;
         })
+    }
+
+    video.createTimeline = function(duration, interval) {
+        var timeline = [];
+        for (var i = 0; i < duration; i + interval) {
+            timeline.push(i)
+        }
+        return timeline;
     }
 
     return video;
