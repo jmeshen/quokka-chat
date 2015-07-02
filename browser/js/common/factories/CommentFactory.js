@@ -19,6 +19,12 @@ app.factory('CommentFactory', function($http) {
         });
     }
 
+    comment.changeRating = function(commentId, rating) {
+        return $http.put('/api/comments/' + commentId, rating).then(function(response) {
+            return response.data;
+        })
+    }
+
 
 
     return comment;

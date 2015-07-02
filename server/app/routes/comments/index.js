@@ -36,13 +36,6 @@ router.post('/', function(req, res, next) {
     })
 })
 
-router.put('/:commentId', function(req, res, next) {
-    Comment.findOneAndUpdate(req.params.commentId, req.body, function(err, comment) {
-        if (err) return next(err);
-        res.json(comment);
-    })
-});
-
 router.post('/:parentId/response/', function(req, res, next) {
     Comment.findById(req.params.parentId, function(err, comment) {
         if (err) return next(err);
@@ -52,3 +45,14 @@ router.post('/:parentId/response/', function(req, res, next) {
         });
     })
 })
+
+router.put('/:commentId', function(req, res, next) {
+    console.log('THIS IS REQ.BODY!!!', req.body)
+    Comment.findById(req.params.commentId, function(err, comment) {
+        if (err) return next(err);
+        comment.rating = req.body.rating;
+        comment.save(function(err, updatedComment) {
+            res.json(updatedComment);
+        });
+    })
+});
