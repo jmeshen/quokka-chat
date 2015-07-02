@@ -57,10 +57,10 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, VideoObj, CommentF
     $rootScope.$on('duration', function(event, player) {
         $scope.duration = player.getDuration()
         $scope.changeInterval(5)
-        $scope.timeline;
-        for (var i = 0; i < $scope.duration; i + $scope.interval) {
-            $scope.timeline.push(i)
-        }
+        $scope.timeline = [];
+        // for (var i = 0; i < $scope.duration; i + $scope.interval) {
+        //     $scope.timeline.push(i)
+        // }
     })
     $scope.changeInterval = function(number) {
         $scope.interval = number * 1000

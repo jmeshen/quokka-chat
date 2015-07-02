@@ -40,6 +40,10 @@ app.factory('VideoFactory', function($http, $rootScope) {
         player.pauseVideo();
     }
 
+    video.seekTo = function(sec) {
+        player.seekTo(sec);
+    }
+
     video.getCurTime = function() {
         var curTime = player.getCurrentTime();
         return curTime;
@@ -78,6 +82,14 @@ app.factory('VideoFactory', function($http, $rootScope) {
         return $http.put('/api/video/' + videoId, comment).then(function(response) {
             return response.data;
         })
+    }
+
+    video.createTimeline = function(duration, interval) {
+        var timeline = [];
+        for (var i = 0; i < duration; i + interval) {
+            timeline.push(i)
+        }
+        return timeline;
     }
 
     return video;
