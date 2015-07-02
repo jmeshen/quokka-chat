@@ -21,8 +21,17 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
 
             scope.childComment = {};
 
-            scope.reply = function() {
+            scope.upVote = function(comment) {
+                comment.rating++;
+                CommentFactory.changeRating(comment._id, comment);
+            }
 
+            scope.downVote = function(comment) {
+                comment.rating--;
+                CommentFactory.changeRating(comment._id, comment);
+            }
+
+            scope.reply = function() {
                 scope.childComment.parent = scope.comment._id;
                 scope.childComment.userId = scope.user._id
                 CommentFactory.addReply(scope.childComment.parent, scope.childComment)

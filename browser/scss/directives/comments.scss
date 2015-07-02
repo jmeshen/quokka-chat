@@ -1,4 +1,8 @@
 comments {
   height: 85vh;
   overflow: scroll;
+  .child {
+  	border: 1px solid black;
+  }
 }
+
