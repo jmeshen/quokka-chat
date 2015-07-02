@@ -47,6 +47,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, VideoObj, CommentF
     $scope.isLoggedIn = AuthService.isAuthenticated();
     $scope.displayComments = {}
     $scope.interval = 5000
+    $scope.displaying = []
     $scope.clicked = false;
     AuthService.getLoggedInUser().then(function(user) {
         $scope.user = user;
@@ -60,7 +61,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, VideoObj, CommentF
         for (var i = 0; i < $scope.duration; i + $scope.interval) {
             $scope.timeline.push(i)
         }
-
     })
     $scope.changeInterval = function(number) {
         $scope.interval = number * 1000
@@ -94,7 +94,8 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, VideoObj, CommentF
     })
 
     $rootScope.$on('playing', function(event, currentTime) {
-        console.log('display', $scope.displayComments)
+        var x = currentTime / $scope.interval
+        $scope.displaying = $scope.displayComments[x]
     })
 
     $scope.showForm = function() {
