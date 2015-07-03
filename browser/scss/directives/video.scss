@@ -33,9 +33,19 @@ video-box {
   // width: 1%;
   height: 50px;
   display: inline-block;
+  position: relative;
   background-color: #132B54;
   flex-grow: 1;
   &:hover {
     background-color: #ccc;
   }
+  span {
+    display: none;
+  }
+}
+.playbits:hover span {
+  display:block;
+  position: absolute;
+  top: 54px;
+  overflow:hidden;
 }
