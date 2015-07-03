@@ -8,6 +8,40 @@ app.config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/');
 });
 
+app.filter('secondsToDateTime', [
+
+    function() {
+        return function(seconds) {
+            var hours;
+            var minutes = Math.floor(seconds / 60);
+            if (minutes >= 60) {
+                hours = Math.floor(minutes / 60);
+                minutes -= (hours * 60);
+                if (String(minutes).length < 2) {
+                    minutes = '0' + minutes;
+                }
+            }
+
+            seconds = seconds % 60;
+            if (String(seconds).length < 2) {
+                seconds = '0' + seconds;
+            }
+            console.log(hours, minutes, seconds);
+            var time = (hours ? String(hours) + ':' : '') + minutes + ':' + seconds;
+            return time.toString();
+        };
+    }
+]);
+
+app.filter('doThing', [
+
+    function() {
+        return function(seconds) {
+            return Math.floor(seconds / 60 + 'thing?');
+        };
+    }
+]);
+
 // This app.run is for controlling access to specific states.
 app.run(function($rootScope, AuthService, $state) {
 
