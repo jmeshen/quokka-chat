@@ -26,18 +26,8 @@ app.filter('secondsToDateTime', [
             if (String(seconds).length < 2) {
                 seconds = '0' + seconds;
             }
-            console.log(hours, minutes, seconds);
             var time = (hours ? String(hours) + ':' : '') + minutes + ':' + seconds;
             return time.toString();
-        };
-    }
-]);
-
-app.filter('doThing', [
-
-    function() {
-        return function(seconds) {
-            return Math.floor(seconds / 60 + 'thing?');
         };
     }
 ]);
