@@ -39,10 +39,9 @@ video-box {
   &:hover {
     background-color: #ccc;
   }
-}
-
-.playbits span {
-  display:none;
+  span {
+    display: none;
+  }
 }
 .playbits:hover span {
   display:block;
