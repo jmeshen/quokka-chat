@@ -5,8 +5,8 @@
     <div class='col-md-8'>
 
         <div class="row" video="video" ng-hide='clicked'>
-            <accordion close-others="oneAtATime">
-                <accordion-group heading="{{comment.content}}" ng-repeat="comment in comments" class="accordion-toggle" ng-click="getReplies(comment); toggleOpen()">
+            <accordion close-others="oneAtATime" ng-repeat = "set in displayComments">
+                <accordion-group heading="{{comment.content}}" ng-repeat="comment in set" class="accordion-toggle" ng-click="getReplies(comment); toggleOpen()">
                     <comments user = 'user' comment='comment' children='children'></comments>
                 </accordion-group>
             </accordion>

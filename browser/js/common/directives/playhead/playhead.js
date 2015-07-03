@@ -17,7 +17,7 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
                 VideoFactory.seekTo(sec);
             }
             scope.timeline = []
-            for(var i = 0; i <scope.duration; i += 5){
+            for (var i = 0; i < scope.duration; i += 5) {
                 scope.timeline.push(i)
             }
             $compile(element.contents())(scope);

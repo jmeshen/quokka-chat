@@ -20,6 +20,7 @@ app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state,
                     angular.element(videobox[0].lastChild).replaceWith(playhead)
                 }
                 angular.element(videobox[0]).append(playhead)
+
             })
         }
     };

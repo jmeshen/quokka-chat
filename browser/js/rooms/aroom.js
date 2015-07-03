@@ -32,8 +32,8 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     })
     $scope.oneAtATime = true;
     $scope.isLoggedIn = AuthService.isAuthenticated();
-    $scope.displayComments = {}
-    $scope.interval = 5000
+    $scope.displayComments = []
+    $scope.interval;
     $scope.displaying = []
     $scope.clicked = false;
     AuthService.getLoggedInUser().then(function(user) {
@@ -44,10 +44,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     $rootScope.$on('duration', function(event, player) {
         $scope.duration = player.getDuration()
         $scope.changeInterval(5)
-        $scope.timeline = [];
-        // for (var i = 0; i < $scope.duration; i + $scope.interval) {
-        //     $scope.timeline.push(i)
-        // }
     })
     $scope.changeInterval = function(number) {
         $scope.interval = number * 1000
@@ -55,12 +51,12 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         var upperbound = 0 + (number / 2)
         var bucket = 0
         for (var i = 0; i < $scope.comments.length; i++) {
-            // debugger
             if (!$scope.displayComments[bucket]) $scope.displayComments[bucket] = []
             if ((lowerbound < $scope.comments[i].videoTime) && ($scope.comments[i].videoTime < upperbound)) {
                 $scope.displayComments[bucket].push($scope.comments[i])
             } else {
                 i--
+                $scope.displayComments[bucket].push()
                 bucket += 1
                 lowerbound += number
                 upperbound += number
@@ -81,8 +77,9 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     })
 
     $rootScope.$on('playing', function(event, currentTime) {
-        var x = currentTime / $scope.interval
+        var x = Math.floor(currentTime / ($scope.interval / 1000))
         $scope.displaying = $scope.displayComments[x]
+        console.log(x, currentTime, $scope.displaying, 'x')
     })
 
     $scope.showForm = function() {
@@ -111,7 +108,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
                 $scope.comments = video.comments;
             }).catch(console.log);
         });
-
         $scope.hideForm();
 
     }
