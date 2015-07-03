@@ -2,6 +2,8 @@
 <button ng-click="seekTo(5)" class="btn btn-primary">Fast Forward?</button></div>
 <div class="playhead">
   <div class="playbits" ng-repeat="n in timeline" ng-click="seekTo(n)">
-    <span>{{Math.floor(n/60)}}:{{n%60}}</span>
+    
+    <span>{{n | secondsToDateTime}}</span>
+
   </div>
 </div>
