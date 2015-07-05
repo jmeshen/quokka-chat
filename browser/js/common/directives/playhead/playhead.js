@@ -16,9 +16,10 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
             scope.seekTo = function(sec) {
                 VideoFactory.seekTo(sec);
             }
-            // $rootScope.on('playing', function(event, currentTime) {
-            //     scope.currentTime = currentTime;
-            // })
+            $rootScope.$on('playing', function(event, currentTime) {
+                scope.currentTime = Math.floor(currentTime);
+                console.log('CURRENT TIME', scope.currentTime);
+            })
 
             //todo: update playbit to show currentTime progress of video in realTime
             scope.selectedN = -1;
