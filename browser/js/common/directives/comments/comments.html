@@ -8,6 +8,9 @@
 					<p>{{ child.rating }}</p>
 					<button class='glyphicon glyphicon-chevron-down' ng-click='downVote(child)'></button>
 				</div>
+				<div class="col-sm-12">
+					<p>{{child.user.email}} | {{child.commentTime}}</p>
+				</div>
 			</div>
 			<form ng-submit="reply()">
 				<input type="text" class="form-control" placeholder="Write a comment..." ng-model='childComment.content'></input>
@@ -17,7 +20,8 @@
 	</div>
 	<button ng-hide='!checked' ng-click='toggle()'>&larr;</button>
 	<div class='grandchildren' ng-show='checked'>
-		<p ng-repeat='kid in grandChildren'> {{kid.content}} </p>
+		<p ng-repeat='kid in grandChildren'> {{kid.content}} <br>
+			{{kid.user.email}} | {{kid.commentTime}}</p>
 		<form ng-submit='replyToReply(child)'>
 			<input type="text" class="form-control" placeholder="add a reply" ng-model='grandChild.content'></input>
 			<button>Add response</button>

@@ -7,6 +7,7 @@
         <div class="row" video="video" ng-hide='clicked'>
             <accordion close-others="oneAtATime">
                 <accordion-group heading="{{comment.content}}" ng-repeat="comment in comments" class="accordion-toggle" ng-click="getReplies(comment); toggleOpen()">
+                <p>{{comment.user.email}} | {{comment.commentTime}}</p>
                     <comments user = 'user' comment='comment' children='children'></comments>
                 </accordion-group>
             </accordion>
