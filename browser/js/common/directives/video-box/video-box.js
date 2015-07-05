@@ -11,7 +11,6 @@ app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state,
             $rootScope.$on('duration', function(event, player) {
                 var videobox = document.getElementsByTagName('video-box');
                 scope.duration = player.getDuration()
-                scope.interval = 5;
                 var playhead = angular.element(document.createElement('playhead'));
                 playhead.attr('duration', 'duration')
                 playhead.attr('video', 'video')
