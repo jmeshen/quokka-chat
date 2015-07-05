@@ -95,6 +95,9 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     }
     $scope.getReplies = function(parent) {
         CommentFactory.getReplies(parent._id).then(function(replies) {
+            replies.sort(function(a, b) {
+                return parseFloat(b.rating) - parseFloat(a.rating);
+            });
             $scope.children = replies;
         });
     }
