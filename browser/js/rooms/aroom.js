@@ -71,6 +71,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
 
     $rootScope.$on('status', function(event, player) {
         if (player.getPlayerState() === 1) {
+            window.clearInterval(refresher)
             refresher = window.setInterval(function() {
                 $rootScope.$emit('playing', player.getCurrentTime())
             }, $scope.interval)
