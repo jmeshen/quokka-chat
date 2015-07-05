@@ -20,7 +20,6 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             //////////////////////children stuff////////////////////////////////////
 
             scope.childComment = {};
-
             scope.upVote = function(comment) {
                 comment.rating++;
                 CommentFactory.changeRating(comment._id, comment);
@@ -30,6 +29,7 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                 comment.rating--;
                 CommentFactory.changeRating(comment._id, comment);
             }
+
 
             scope.reply = function() {
                 scope.childComment.parent = scope.comment._id;
@@ -46,6 +46,7 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             scope.getReplies = function(parent) {
                 scope.parent = parent;
                 CommentFactory.getReplies(parent._id).then(function(replies) {
+                    console.log(replies);
                     scope.grandChildren = replies;
                 });
             }
