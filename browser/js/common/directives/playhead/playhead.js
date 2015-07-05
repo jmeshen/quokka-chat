@@ -16,21 +16,28 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
             scope.seekTo = function(sec) {
                 VideoFactory.seekTo(sec);
             }
+            // $rootScope.on('playing', function(event, currentTime) {
+            //     scope.currentTime = currentTime;
+            // })
+
+            //todo: update playbit to show currentTime progress of video in realTime
+            scope.selectedN = -1;
+            scope.playbitSelected = function($index) {
+                scope.selectedN = $index;
+                console.log('THIS IS SELECTED N', scope.selectedN)
+            }
+
+
             scope.timeline = []
-            for(var i = 0; i <scope.duration; i += 5){
+            for (var i = 0; i < scope.duration; i += 5) {
                 scope.timeline.push(i)
             }
-            scope.Math = window.Math;
-            // var tooltips = document.querySelectorAll('.playbits span');
 
-            // window.onmousemove = function (e) {
-            //     var x = (e.clientX + 0) + 'px',
-            //         y = (e.clientY + 80) + 'px';
-            //     for (var i = 0; i < tooltips.length; i++) {
-            //         tooltips[i].style.top = y;
-            //         tooltips[i].style.left = x;
-            //     }
-            // };
+            // scope.timeline.forEach(function(seg) {
+            //     console.log(seg);
+            //     seg = scope.selectedN;
+            // })
+
             $compile(element.contents())(scope);
 
         }
