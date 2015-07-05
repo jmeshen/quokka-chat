@@ -22,11 +22,10 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
                 scope.$digest();
             })
 
-            //todo: update playbit to show currentTime progress of video in realTime
             scope.selectedN = 0;
             scope.playbitSelected = function($index) {
                 scope.selectedN = $index;
-                // console.log('THIS IS SELECTED N', scope.selectedN)
+
             }
 
             scope.timeline = []
