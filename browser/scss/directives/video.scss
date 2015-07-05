@@ -27,7 +27,12 @@ video-box {
   display: flex;
   align-items: center;
   // justify-content: space-between;
+  .active {
+    background-color: #ccc;
+  }
 }
+
+
 
 .playbits {
   // width: 1%;
@@ -37,6 +42,9 @@ video-box {
   background-color: #132B54;
   flex-grow: 1;
   &:hover {
+    background-color: #ccc;
+  }
+  &:active {
     background-color: #ccc;
   }
   span {

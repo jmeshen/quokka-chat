@@ -22,7 +22,7 @@ app.factory('VideoFactory', function($http, $rootScope) {
     }
 
     function onPlayerStateChange(event) {
-        console.log('changed')
+        // console.log('changed')
         $rootScope.$emit('status', event.target)
     }
 
