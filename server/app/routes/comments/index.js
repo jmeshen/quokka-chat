@@ -22,6 +22,8 @@ router.get('/', function(req, res) {
 router.get('/:parentId/response/', function(req, res, next) {
     Comment.find({
         parent: req.params.parentId
+    }).populate('user').exec(function(err, comments) {
+        if (err) return handleError(err);
     }).then(function(comments) {
         res.json(comments);
     })
