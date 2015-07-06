@@ -1,4 +1,7 @@
-.question {
-  height: 50vh;
-  overflow: scroll;
+@media screen and (max-width: 991px) {
+  .room {
+    width: 90%;
+    overflow: visible;
+    height: 100vh;
+  }
 }

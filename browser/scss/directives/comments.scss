@@ -1,8 +1,17 @@
-.comments {
+.comment-container {
   height: 85vh;
   overflow: scroll;
-  .child {
-  	border: 1px solid black;
-  }
 }
 
+.comments {
+  max-height: 300px;
+  overflow: scroll;
+  // .child {
+  // 	border: 1px solid black;
+  // }
+}
+
+.panel-collapse {
+  max-height: 300px;
+  overflow: scroll;
+}

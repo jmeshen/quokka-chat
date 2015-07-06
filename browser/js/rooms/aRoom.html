@@ -2,11 +2,11 @@
 
     <video-box class="col-md-5" video="video"></video-box>
 
-    <div class='col-md-7 comments'>
+    <div class='col-md-7 comment-container'>
 
         <div class="row" video="video" ng-hide='clicked'>
             <accordion close-others="oneAtATime">
-                <accordion-group heading="{{comment.content}}" ng-repeat="comment in comments" class="accordion-toggle" ng-click="getReplies(comment); toggleOpen()">
+                <accordion-group heading="{{comment.content}} by {{comment.user.email}}" ng-repeat="comment in comments" class="accordion-toggle" ng-click="getReplies(comment); toggleOpen()">
                 <p>{{comment.user.email}} | {{comment.commentTime}}</p>
                     <comments user = 'user' comment='comment' children='children'></comments>
                 </accordion-group>
