@@ -6,6 +6,7 @@ module.exports = router;
 
 router.use('/comments', require('./comments'));
 router.use('/video', require('./video'));
+router.use('/user', require('./users'));
 
 // Make sure this is after all of
 // the registered routes!

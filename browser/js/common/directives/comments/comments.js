@@ -50,6 +50,14 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                     scope.grandChildren = replies;
                 });
             }
+
+            // scope.getUsers = function(userID) {
+            //     CommentFactory.getUsers(userID)
+            //         .then(function(reply) {
+            //             scope.commentUser = reply.email;
+            //         });
+            // }
+
             scope.grandChild = {};
             scope.replyToReply = function() {
                 scope.grandChild.parent = scope.parent._id;
