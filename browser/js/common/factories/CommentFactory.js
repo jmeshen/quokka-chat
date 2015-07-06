@@ -25,15 +25,5 @@ app.factory('CommentFactory', function($http) {
         })
     }
 
-    // comment.getUsers = function(userID) {
-    //     return $http.get('/api/user/' + userID)
-    //         .then(function(response) {
-    //             console.log(response.data);
-    //             return response.data;
-    //         })
-    // }
-
-
-
     return comment;
 });
