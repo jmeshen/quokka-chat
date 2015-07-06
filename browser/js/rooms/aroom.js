@@ -109,10 +109,11 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         console.log(comment)
         console.log(user);
         comment = {
-            user: {
+            user:
+            // {
                 userID: $scope.user._id,
-                userName: $scope.user.username
-            },
+            //     userName: $scope.user.username
+            // },
             title: $scope.comment.title,
             videoTime: VideoFactory.getCurTime(),
             content: $scope.comment.content,
