@@ -105,8 +105,12 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
 
     $scope.addingComment = function(comment) {
         console.log(comment)
+        console.log(user);
         comment = {
-            user: $scope.user._id,
+            user: {
+                userID: $scope.user._id,
+                userName: $scope.user.username
+            }
             title: $scope.comment.title,
             videoTime: VideoFactory.getCurTime(),
             content: $scope.comment.content,
