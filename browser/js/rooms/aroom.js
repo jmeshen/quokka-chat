@@ -104,8 +104,10 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     }
 
     $scope.addingComment = function(comment) {
+        console.log(comment)
         comment = {
             user: $scope.user._id,
+            title: $scope.comment.title,
             videoTime: VideoFactory.getCurTime(),
             content: $scope.comment.content,
             tags: $scope.comment.tags
@@ -113,6 +115,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         CommentFactory.saveComment(comment).then(function(comment) {
             VideoFactory.addCommentToVid(comment, $scope.video._id).then(function(video) {
                 $scope.comments = video.comments;
+                $scope.comment = null
             }).catch(console.log);
         });
 

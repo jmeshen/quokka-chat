@@ -6,8 +6,8 @@
 
         <div class="row" video="video" ng-hide='clicked'>
             <accordion close-others="oneAtATime">
-                <accordion-group heading="{{comment.content}} by {{comment.user.email}}" ng-repeat="comment in comments" class="accordion-toggle" ng-click="getReplies(comment); toggleOpen()">
-                <p>{{comment.user.email}} | {{comment.commentTime}}</p>
+                <accordion-group heading="{{comment.title}}" ng-repeat="comment in comments" class="accordion-toggle" ng-click="getReplies(comment); toggleOpen()">
+
                     <comments user = 'user' comment='comment' children='children'></comments>
                 </accordion-group>
             </accordion>
@@ -17,10 +17,11 @@
         +
         </button>
 
+        <button class="btn btn-default" ng-show = "clicked" ng-click = "hideForm()">&larr;</button>
         <form class='row' ng-show="clicked" ng-submit="addingComment(comment)">
-            <button class="btn btn-default" ng-click = "hideForm()">&larr;</button>
             <div class="form-group">
-                <input type="text" class="form-control" id="newCommentText" placeholder="Ask a question" ng-model="comment.content">
+                <input type = "text" class="form-control" id = "newCommentTitle" placeholder = "Comment title" ng-model = "comment.title">
+                <input type="text" class="form-control" id="newCommentText" placeholder="Give some context" ng-model="comment.content">
             </div>
             <div class="form-group">
                 <tags-input ng-model='comment.tags'></tags-input>
