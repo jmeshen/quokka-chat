@@ -8,7 +8,9 @@ app.factory('VideoFactory', function($http, $rootScope) {
             height: '390',
             width: '640',
             videoId: newVideo,
-            playerVars: {'controls': 0},
+            playerVars: {
+                'controls': 0
+            },
             events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
@@ -22,7 +24,6 @@ app.factory('VideoFactory', function($http, $rootScope) {
     }
 
     function onPlayerStateChange(event) {
-        // console.log('changed')
         $rootScope.$emit('status', event.target)
     }
 

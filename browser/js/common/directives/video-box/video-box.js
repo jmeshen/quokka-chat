@@ -1,4 +1,4 @@
-app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state, $compile, VideoFactory) {
+app.directive('videoBox', function($rootScope, VideoFactory) {
     return {
         restrict: 'E',
         scope: {
@@ -8,19 +8,16 @@ app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state,
         link: function(scope, element, attrs) {
             scope.embedURL = 'https://youtube.com/embed/' + scope.video.embedId;
             VideoFactory.onYouTubeIframeAPIReady(scope.video.embedId);
+            scope.arr = [];
             $rootScope.$on('duration', function(event, player) {
-                var videobox = document.getElementsByTagName('video-box');
                 scope.duration = player.getDuration()
-                var playhead = angular.element(document.createElement('playhead'));
-                playhead.attr('duration', 'duration')
-                playhead.attr('video', 'video')
-                var el = $compile(playhead)(scope);
-                if (angular.element(videobox[0]).children.length) {
-                    angular.element(videobox[0].lastChild).replaceWith(playhead)
-                }
-                angular.element(videobox[0]).append(playhead)
-
+                scope.arr.push({
+                    duration: scope.duration,
+                    video: scope.video
+                })
+                scope.$apply();
             })
+
         }
     };
 });
