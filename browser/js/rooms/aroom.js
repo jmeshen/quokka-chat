@@ -32,58 +32,60 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     })
     $scope.oneAtATime = true;
     $scope.isLoggedIn = AuthService.isAuthenticated();
-    $scope.displayComments = {}
-    $scope.interval = 5000
-    $scope.displaying = []
+    $scope.displayComments = []
     $scope.clicked = false;
-    AuthService.getLoggedInUser().then(function(user) {
-        $scope.user = user;
-    });
+    $scope.display = false;
     var refresher;
-
+    $scope.empty = true
     $rootScope.$on('duration', function(event, player) {
         $scope.duration = player.getDuration()
-        $scope.changeInterval(5)
-        $scope.timeline = [];
-        // for (var i = 0; i < $scope.duration; i + $scope.interval) {
-        //     $scope.timeline.push(i)
-        // }
     })
+    $scope.refreshDisplay = function(num) {
+        var x = Math.ceil(num / ($scope.interval / 1000))
+        console.log($scope.displayComments)
+        $scope.displaying = $scope.displayComments[x]
+        if (!$scope.displaying) $scope.displaying = []
+        if ($scope.displaying.length === 0) $scope.empty = true
+        else $scope.empty = false
+        console.log('display', $scope.displaying, x)
+    }
     $scope.changeInterval = function(number) {
         $scope.interval = number * 1000
         var lowerbound = 0 - (number / 2)
         var upperbound = 0 + (number / 2)
         var bucket = 0
         for (var i = 0; i < $scope.comments.length; i++) {
-            // debugger
             if (!$scope.displayComments[bucket]) $scope.displayComments[bucket] = []
             if ((lowerbound < $scope.comments[i].videoTime) && ($scope.comments[i].videoTime < upperbound)) {
                 $scope.displayComments[bucket].push($scope.comments[i])
             } else {
                 i--
+                $scope.displayComments[bucket].push()
                 bucket += 1
                 lowerbound += number
                 upperbound += number
             }
         }
-
+        $scope.refreshDisplay(0)
     }
-
+    $scope.changeInterval(5)
     $rootScope.$on('status', function(event, player) {
         if (player.getPlayerState() === 1) {
             window.clearInterval(refresher)
             refresher = window.setInterval(function() {
                 $rootScope.$emit('playing', player.getCurrentTime())
             }, $scope.interval)
-        } else if (player.getPlayerState() === 2) {
+        } else if (player.getPlayerState() === 3) {
+            $scope.refreshDisplay(player.getCurrentTime())
+        } else {
+            console.log(player.getPlayerState())
             window.clearInterval(refresher)
             refresher = undefined
         }
     })
-
     $rootScope.$on('playing', function(event, currentTime) {
-        var x = currentTime / $scope.interval
-        $scope.displaying = $scope.displayComments[x]
+        $scope.refreshDisplay(currentTime)
+        $scope.$digest()
     })
 
     $scope.showForm = function() {
@@ -119,10 +121,10 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         CommentFactory.saveComment(comment).then(function(comment) {
             VideoFactory.addCommentToVid(comment, $scope.video._id).then(function(video) {
                 $scope.comments = video.comments;
+                $scope.displaying.push($scope.comment)
                 $scope.comment = null
             }).catch(console.log);
         });
-
         $scope.hideForm();
 
     }

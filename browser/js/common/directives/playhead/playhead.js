@@ -3,8 +3,7 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
         restrict: 'E',
         scope: {
             video: "=",
-            duration: "=",
-            interval: "="
+            duration: "="
         },
         templateUrl: 'js/common/directives/playhead/playhead.html',
         link: function(scope, element, attrs) {
@@ -16,13 +15,15 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
             }
             scope.seekTo = function(sec) {
                 VideoFactory.seekTo(sec);
+                VideoFactory.playVid();
             }
+            scope.tik = 5
             if (scope.duration > 1000) {
-                scope.interval = Math.floor(scope.duration/200);
+                scope.tik = Math.floor(scope.duration / 200);
             }
 
             $rootScope.$on('playing', function(event, currentTime) {
-                scope.selectedN = scope.timeline.indexOf(Math.ceil(currentTime / scope.interval) * scope.interval);
+                scope.selectedN = scope.timeline.indexOf(Math.ceil(currentTime / scope.tik) * scope.tik);
                 scope.$digest();
             })
 
@@ -33,7 +34,8 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
             }
 
             scope.timeline = []
-            for (var i = 0; i < scope.duration; i += scope.interval) {
+
+            for (var i = 0; i < scope.duration; i += scope.tik) {
                 scope.timeline.push(i)
             }
 

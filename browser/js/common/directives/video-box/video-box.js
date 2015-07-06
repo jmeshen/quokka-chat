@@ -11,16 +11,15 @@ app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state,
             $rootScope.$on('duration', function(event, player) {
                 var videobox = document.getElementsByTagName('video-box');
                 scope.duration = player.getDuration()
-                scope.interval = 5;
                 var playhead = angular.element(document.createElement('playhead'));
                 playhead.attr('duration', 'duration')
                 playhead.attr('video', 'video')
-                playhead.attr('interval', 'interval')
                 var el = $compile(playhead)(scope);
                 if (angular.element(videobox[0]).children.length) {
                     angular.element(videobox[0].lastChild).replaceWith(playhead)
                 }
                 angular.element(videobox[0]).append(playhead)
+
             })
         }
     };
