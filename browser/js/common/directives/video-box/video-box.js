@@ -14,7 +14,6 @@ app.directive('videoBox', function($rootScope, AuthService, AUTH_EVENTS, $state,
                 var playhead = angular.element(document.createElement('playhead'));
                 playhead.attr('duration', 'duration')
                 playhead.attr('video', 'video')
-                playhead.attr('interval', 'interval')
                 var el = $compile(playhead)(scope);
                 if (angular.element(videobox[0]).children.length) {
                     angular.element(videobox[0].lastChild).replaceWith(playhead)
