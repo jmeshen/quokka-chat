@@ -7,7 +7,6 @@
 
     "browser_action": {
         "default_icon": "quokka.png",
-        "default_popup": "popup.html",
         "default_title": "QUOKKA!!!"
     },
     "content_scripts": [{
@@ -15,9 +14,7 @@
         "js": ["quokka.js"]
     }],
     "permissions": [
-        "<all_urls>",
         "activeTab",
-        "contentSettings",
         "https://ajax.googleapis.com/"
     ]
 }
