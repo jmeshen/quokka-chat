@@ -1,17 +1,23 @@
-<form id="signUpForm" name="signUpForm" ng-submit="signUpForm.$valid && sendSignUp(signUp)">
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3">
 
-    <alert type="danger" ng-show="error">
-        {{ error }}
-    </alert>
+    <form id="signUpForm" name="signUpForm" ng-submit="signUpForm.$valid && sendSignUp(signUp)">
 
-    <h3 id='newUserGreet'>You are a new user! Create a log-in name</h3>
-    <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="text" ng-model="signUp.email" class="form-control" id="email" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-        <label for="signUp-password">Password</label>
-        <input type="password" ng-model="signUp.password" class="form-control" id="signUp-password" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
+        <alert type="danger" ng-show="error">
+            {{ error }}
+        </alert>
+
+        <h3 id='newUserGreet'>You are a new user! Create a log-in name</h3>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="text" ng-model="signUp.email" class="form-control" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="signUp-password">Password</label>
+            <input type="password" ng-model="signUp.password" class="form-control" id="signUp-password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+
+</div>
