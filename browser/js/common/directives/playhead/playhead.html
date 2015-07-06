@@ -1,3 +1,7 @@
-<div class="playhead">
-  <div class="playbits" ng-repeat="n in timeline" ng-click="seekTo(n)"></div>
+ <div class="playhead">
+  <div class="playbits {{'time-'+n}}" ng-repeat="n in timeline" ng-click="seekTo(n); playbitSelected($index)" ng-class="{'active': $index == selectedN}">
+
+    <span>{{n | secondsToDateTime}}</span>
+
+  </div>
 </div>

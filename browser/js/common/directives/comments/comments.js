@@ -20,9 +20,18 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             //////////////////////children stuff////////////////////////////////////
 
             scope.childComment = {};
+            scope.upVote = function(comment) {
+                comment.rating++;
+                CommentFactory.changeRating(comment._id, comment);
+            }
+
+            scope.downVote = function(comment) {
+                comment.rating--;
+                CommentFactory.changeRating(comment._id, comment);
+            }
+
 
             scope.reply = function() {
-
                 scope.childComment.parent = scope.comment._id;
                 scope.childComment.userId = scope.user._id
                 CommentFactory.addReply(scope.childComment.parent, scope.childComment)
@@ -37,9 +46,18 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             scope.getReplies = function(parent) {
                 scope.parent = parent;
                 CommentFactory.getReplies(parent._id).then(function(replies) {
+                    console.log(replies);
                     scope.grandChildren = replies;
                 });
             }
+
+            // scope.getUsers = function(userID) {
+            //     CommentFactory.getUsers(userID)
+            //         .then(function(reply) {
+            //             scope.commentUser = reply.email;
+            //         });
+            // }
+
             scope.grandChild = {};
             scope.replyToReply = function() {
                 scope.grandChild.parent = scope.parent._id;

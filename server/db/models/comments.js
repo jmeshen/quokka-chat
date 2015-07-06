@@ -7,6 +7,9 @@ var schema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    title: {
+        type: String
+    },
     content: {
         type: String,
         required: true

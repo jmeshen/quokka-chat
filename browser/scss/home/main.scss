@@ -10,3 +10,20 @@
   }
 }
 
+.quokka {
+  // background: url("https://files.slack.com/files-pri/T024FPYBQ-F076GHNCV/quokka.png") no-repeat;
+  img {
+    float: left;
+    width: 300px;
+    transform-origin: left;
+    transform: rotate(90deg) translateX(-120px) translateY(460px);
+    transition: all 1s ease-in-out;
+    &:hover {
+      -webkit-transform: rotate(90deg) translateX(-120px) translateY(270px);
+      -moz-transform: rotate(90deg) translateX(-120px) translateY(270px);
+      -o-transform: rotate(90deg) translateX(-120px) translateY(270px);
+      -ms-transform: rotate(90deg) translateX(-120px) translateY(270px);
+      transform: rotate(90deg) translateX(-120px) translateY(270px);
+    }
+  }
+}

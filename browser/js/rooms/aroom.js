@@ -67,6 +67,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     $scope.changeInterval(5)
     $rootScope.$on('status', function(event, player) {
         if (player.getPlayerState() === 1) {
+            window.clearInterval(refresher)
             refresher = window.setInterval(function() {
                 $rootScope.$emit('playing', player.getCurrentTime())
             }, $scope.interval)
@@ -98,13 +99,18 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     }
     $scope.getReplies = function(parent) {
         CommentFactory.getReplies(parent._id).then(function(replies) {
+            replies.sort(function(a, b) {
+                return parseFloat(b.rating) - parseFloat(a.rating);
+            });
             $scope.children = replies;
         });
     }
 
     $scope.addingComment = function(comment) {
+        console.log(comment)
         comment = {
             user: $scope.user._id,
+            title: $scope.comment.title,
             videoTime: VideoFactory.getCurTime(),
             content: $scope.comment.content,
             tags: $scope.comment.tags
@@ -112,6 +118,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         CommentFactory.saveComment(comment).then(function(comment) {
             VideoFactory.addCommentToVid(comment, $scope.video._id).then(function(video) {
                 $scope.comments = video.comments;
+                $scope.comment = null
             }).catch(console.log);
         });
         $scope.hideForm();

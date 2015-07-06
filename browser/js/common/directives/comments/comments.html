@@ -1,14 +1,28 @@
-<div class ="comment">
+<div class ="question">
 	<div class='children' ng-hide='checked'>
-		<p ng-repeat='child in children' ng-click='toggle(); getReplies(child)'>{{child.content}}</p>
-		<form ng-submit="reply()">
-			<input type="text" class="form-control" placeholder="Write a comment..." ng-model='childComment.content'></input>
-			<button>Add response</button>
-		</form>
+		<div class='comments'>
+			<div class = "comment-content"><h4>{{comment.content}} | {{comment.user.username}}</h4></div>
+			<div ng-repeat='child in children'>
+				<div class="col-sm-12">
+					<p>{{child.user.username}} | {{child.commentTime}}</p>
+				</div>
+				<p class='col-md-11 child' ng-click='toggle(); getReplies(child)'>{{child.content}}</p>
+				<div class='rating col-md-1'>
+					<button class='glyphicon glyphicon-chevron-up' ng-click='upVote(child)'></button>
+					<p>{{ child.rating }}</p>
+					<button class='glyphicon glyphicon-chevron-down' ng-click='downVote(child)'></button>
+				</div>
+			</div>
+			<form ng-submit="reply()">
+				<input type="text" class="form-control" placeholder="Write a comment..." ng-model='childComment.content'></input>
+				<button>Add response</button>
+			</form>
+		</div>
 	</div>
 	<button ng-hide='!checked' ng-click='toggle()'>&larr;</button>
 	<div class='grandchildren' ng-show='checked'>
-		<p ng-repeat='kid in grandChildren'> {{kid.content}} </p>
+		<p ng-repeat='kid in grandChildren'> {{kid.content}} <br>
+			{{kid.user.username}} | {{kid.commentTime}}</p>
 		<form ng-submit='replyToReply(child)'>
 			<input type="text" class="form-control" placeholder="add a reply" ng-model='grandChild.content'></input>
 			<button>Add response</button>

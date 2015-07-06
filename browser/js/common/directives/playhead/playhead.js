@@ -3,7 +3,8 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
         restrict: 'E',
         scope: {
             video: "=",
-            duration: "="
+            duration: "=",
+            interval: "="
         },
         templateUrl: 'js/common/directives/playhead/playhead.html',
         link: function(scope, element, attrs) {
@@ -17,11 +18,29 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
                 VideoFactory.seekTo(sec);
 
             }
+            if (scope.duration > 1000) {
+                scope.interval = Math.floor(scope.duration / 200);
+            }
+
+            $rootScope.$on('playing', function(event, currentTime) {
+                scope.selectedN = scope.timeline.indexOf(Math.ceil(currentTime / scope.interval) * scope.interval);
+                scope.$digest();
+            })
+
+            scope.selectedN = 0;
+            scope.playbitSelected = function($index) {
+                scope.selectedN = $index;
+
+            }
+
             scope.timeline = []
-            for (var i = 0; i < scope.duration; i += 5) {
+
+            for (var i = 0; i < scope.duration; i += scope.interval) {
                 scope.timeline.push(i)
             }
+
             $compile(element.contents())(scope);
+
         }
     };
 });
