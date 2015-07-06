@@ -35,15 +35,17 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             scope.reply = function() {
                 scope.childComment.parent = scope.comment._id;
                 scope.childComment.userId = scope.user._id
+
+                scope.childComment.username = scope.user.username
+
+
                 CommentFactory.addReply(scope.childComment.parent, scope.childComment)
                     .then(function(child) {
-                        child.user = {
-                            username: scope.user.username
-                        };
                         scope.children.push(child);
                         console.log(child);
                         scope.childComment = null;
                     }).catch(console.log);
+
             }
 
 
@@ -55,13 +57,6 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                     scope.grandChildren = replies;
                 });
             }
-
-            // scope.getUsers = function(userID) {
-            //     CommentFactory.getUsers(userID)
-            //         .then(function(reply) {
-            //             scope.commentUser = reply.email;
-            //         });
-            // }
 
             scope.grandChild = {};
             scope.replyToReply = function() {
