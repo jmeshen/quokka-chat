@@ -8,6 +8,7 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
         },
         templateUrl: 'js/common/directives/comments/comments.html',
         link: function(scope) {
+
             scope.checked = false;
 
             scope.toggle = function() {
@@ -36,7 +37,11 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                 scope.childComment.userId = scope.user._id
                 CommentFactory.addReply(scope.childComment.parent, scope.childComment)
                     .then(function(child) {
+                        child.user = {
+                            username: scope.user.username
+                        };
                         scope.children.push(child);
+                        console.log(child);
                         scope.childComment = null;
                     }).catch(console.log);
             }
@@ -64,6 +69,9 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                 scope.grandChild.userId = scope.user._id;
                 CommentFactory.addReply(scope.grandChild.parent, scope.grandChild)
                     .then(function(grandChild) {
+                        grandChild.user = {
+                            username: scope.user.username
+                        };
                         scope.grandChildren.push(grandChild);
                         scope.grandChild = null;
                     }).catch(console.log);
