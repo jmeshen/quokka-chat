@@ -25,6 +25,7 @@ router.get('/:parentId/response/', function(req, res, next) {
     }).populate('user').exec(function(err, comments) {
         if (err) return handleError(err);
     }).then(function(comments) {
+        console.log(comments);
         res.json(comments);
     })
 })

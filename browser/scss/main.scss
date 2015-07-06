@@ -4,7 +4,15 @@
 h1, h2, h3, h4 {
   font-family: 'Quicksand', sans-serif;
 }
+// Colors
+$navbar: #A19EA5;
+$bg: #fff;
+$layer: #EAEAEA;
+$accent: #3C2088;
 
+body {
+  // background: $bg !important;
+}
 @mixin clearfix {
   &:after {
     content: "";

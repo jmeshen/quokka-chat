@@ -4,7 +4,7 @@
 			<div class = "comment-content"><h4>{{comment.content}} | {{comment.user.username}}</h4></div>
 			<div ng-repeat='child in children'>
 				<div class="col-sm-12">
-					<p>{{child.user.username}} | {{child.commentTime}}</p>
+					<p>{{child.user.username}} | {{child.commentTime | date: 'short'}}</p>
 				</div>
 				<p class='col-md-11 child' ng-click='toggle(); getReplies(child)'>{{child.content}}</p>
 				<div class='rating col-md-1'>
@@ -22,7 +22,7 @@
 	<button ng-hide='!checked' ng-click='toggle()'>&larr;</button>
 	<div class='grandchildren' ng-show='checked'>
 		<p ng-repeat='kid in grandChildren'> {{kid.content}} <br>
-			{{kid.user.username}} | {{kid.commentTime}}</p>
+			{{kid.user.username}} | {{kid.commentTime | date: 'short'}}</p>
 		<form ng-submit='replyToReply(child)'>
 			<input type="text" class="form-control" placeholder="add a reply" ng-model='grandChild.content'></input>
 			<button>Add response</button>

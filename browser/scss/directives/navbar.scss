@@ -1,7 +1,6 @@
 navbar {
-
   display: block;
-  background: #282424;
+  background: $navbar;
 
   img {
     padding-top: 10px;
@@ -19,13 +18,15 @@ navbar {
   .nav > li > a {
     cursor: pointer;
     &.active {
-      color: #f30046;
+      color: $accent;
     }
     &:hover {
+      background-color: inherit;
+      color: $accent;
       transition: color 0.2s;
     }
     &:focus {
-      color: #f30046;
+      color: $accent;
       background: transparent;
     }
   }
@@ -42,7 +43,7 @@ navbar {
       color: white;
     }
     a {
-      color: #f30046;
+      color: $accent;
       cursor: pointer;
     }
   }

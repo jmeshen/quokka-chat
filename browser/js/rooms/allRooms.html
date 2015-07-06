@@ -1,7 +1,7 @@
 <div class="col-md-12">
 		<div class='row'>
 			<form ng-submit='searchVidsByTag(whichTag)'>
-				<div class="col-md-10 col-md-offset-1 input-group">
+				<div class="col-md-4 col-md-offset-4 input-group">
 					<input type="text" class="form-control" placeholder="Search videos by tag" ng-model='whichTag'>
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="button">Filter</button>
@@ -9,10 +9,12 @@
 				</div>
 			</form>
 		</div>
-  <div ng-repeat="video in videos" ui-sref="aRoom({id:video._id})" class="col-sm-6 col-md-4">
-    <div class="room-card">
-      <h2>{{video.name}}</h2>
-      <p>{{video.description}}</p>
+  <div class="cards-cont">
+    <div ng-repeat="video in videos" ui-sref="aRoom({id:video._id})" class="col-sm-6 col-md-4">
+      <div class="room-card">
+        <h2>{{video.name}}</h2>
+        <p>{{video.description}}</p>
+      </div>
     </div>
   </div>
 </div>
