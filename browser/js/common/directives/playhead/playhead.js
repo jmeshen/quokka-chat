@@ -17,6 +17,10 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
             scope.seekTo = function(sec) {
                 VideoFactory.seekTo(sec);
             }
+            if (scope.duration > 1000) {
+                scope.interval = Math.floor(scope.duration/200);
+            }
+
             $rootScope.$on('playing', function(event, currentTime) {
                 scope.selectedN = scope.timeline.indexOf(Math.ceil(currentTime / scope.interval) * scope.interval);
                 scope.$digest();
