@@ -7,6 +7,11 @@ var schema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+
+    username: {
+        type: String,
+    },
+
     title: {
         type: String
     },
@@ -42,6 +47,7 @@ schema.methods.createChild = function(reply, cb) {
     var response = new Comment({
         parent: this._id,
         user: reply.userId,
+        username: reply.username,
         content: reply.content
     });
 
