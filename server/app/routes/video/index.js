@@ -44,6 +44,7 @@ router.get('/tag/:tag', function(req, res) {
 })
 
 router.post('/', function(req, res) {
+    console.log('hitting this route');
     var video = new Video(req.body);
     video.save(function(err, vid) {
         if (err) console.log(err);
