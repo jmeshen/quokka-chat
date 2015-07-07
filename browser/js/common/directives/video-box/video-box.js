@@ -15,7 +15,7 @@ app.directive('videoBox', function($rootScope, VideoFactory) {
                     duration: scope.duration,
                     video: scope.video
                 })
-                scope.$apply();
+                scope.$digest();
             })
 
         }

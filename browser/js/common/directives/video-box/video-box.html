@@ -1,5 +1,6 @@
 <div class="embed-responsive embed-responsive-4by3">
   <div id="player"></div>
 </div>
+<heatmap ng-if = "arr.length>0" ng-repeat = "play in arr" duration = "play.duration" video = "play.video"></heatmap>
   <playhead ng-if="arr.length>0" ng-repeat="play in arr" duration="play.duration" ></playhead>
-  <heatmap ng-if = "arr.length>0" ng-repeat = "play in arr" duration = "play.duration" video = "play.video"></heatmap>
+  
