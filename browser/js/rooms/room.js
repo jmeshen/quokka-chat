@@ -6,10 +6,19 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('AllRoomCtrl', function($scope, VideoFactory) {
+app.controller('AllRoomCtrl', function($scope, VideoFactory, $state) {
     VideoFactory.getAll().then(function(videos) {
         $scope.videos = videos;
     })
+
+    $scope.deleteVideo = function(vidId, $event) {
+        $event.stopPropagation();
+        VideoFactory.removeVideo(vidId).then(function() {
+            return VideoFactory.getAll();
+        }).then(function(videos) {
+            $scope.videos = videos;
+        })
+    }
 
     $scope.whichTag;
 

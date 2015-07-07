@@ -93,5 +93,9 @@ app.factory('VideoFactory', function($http, $rootScope) {
         return timeline;
     }
 
+    video.removeVideo = function(id) {
+        return $http.delete('/api/video/remove/' + id);
+    }
+
     return video;
 });

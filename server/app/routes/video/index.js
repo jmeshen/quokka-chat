@@ -1,13 +1,18 @@
 'use strict'
-var request = require('request');
-var cheerio = require('cheerio');
+// var request = require('request');
+// var cheerio = require('cheerio');
 var router = require('express').Router();
 module.exports = router;
-var _ = require('lodash');
+// var _ = require('lodash');
 var mongoose = require('mongoose');
 var Video = mongoose.model('Video');
-var Promise = require('bluebird')
-var deepPopulate = require('mongoose-deep-populate');
+// var Promise = require('bluebird')
+// var deepPopulate = require('mongoose-deep-populate');
+
+function hasAdminPower(req, res, next) {
+    if (req.user.powerLevel === 'admin') next();
+    else res.status(403).end();
+}
 
 router.get('/', function(req, res) {
     Video.find({}).exec().then(function(videos) {
@@ -28,7 +33,6 @@ router.get('/:videoId', function(req, res) {
 });
 
 router.get('/tag/:tag', function(req, res) {
-    console.log('THIS IS THE TAG WE BE SEARCHING, yo', req.params.tag);
 
     Video.find({
         tags: {
@@ -71,5 +75,9 @@ router.put('/:id', function(req, res, next) {
         .then(null, next);
 });
 
-
-// .Populate('comments').deepPopulate('comments.user')
+router.delete('/remove/:id', hasAdminPower, function(req, res, next) {
+    Video.findByIdAndRemove(req.params.id).exec()
+        .then(function() {
+            res.status(204).send();
+        }).then(null, next);
+})
