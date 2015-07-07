@@ -46,6 +46,8 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         if (!$scope.displaying) $scope.displaying = []
         if ($scope.displaying.length === 0) $scope.empty = true
         else $scope.empty = false
+        $scope.$apply()
+
     }
     $scope.changeInterval = function(number) {
         $scope.interval = number * 1000
@@ -64,6 +66,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
                 upperbound += number
             }
         }
+
         $scope.refreshDisplay(0)
     }
     $scope.changeInterval(5)
@@ -72,11 +75,10 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
             window.clearInterval(refresher)
             refresher = window.setInterval(function() {
                 $rootScope.$emit('playing', player.getCurrentTime())
-            }, $scope.interval)
+            }, 1000)
         } else if (player.getPlayerState() === 3) {
             $scope.refreshDisplay(player.getCurrentTime())
         } else {
-            console.log(player.getPlayerState())
             window.clearInterval(refresher)
             refresher = undefined
         }
@@ -93,6 +95,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
 
     $scope.hideForm = function() {
         $scope.clicked = false
+        $scope.comment = null
     }
     $scope.getReplies = function(parent) {
         CommentFactory.getReplies(parent._id).then(function(replies) {
@@ -114,7 +117,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
             // // },
 
             user: $scope.user._id,
-                // username: $scope.user.username
+            // username: $scope.user.username
 
             title: $scope.comment.title,
             videoTime: VideoFactory.getCurTime(),
@@ -129,6 +132,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
             }).catch(console.log);
         });
         $scope.hideForm();
-
+        $scope.empty = false
     }
 });
