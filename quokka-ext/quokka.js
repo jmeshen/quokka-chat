@@ -1,25 +1,8 @@
-var siteDiv = document.getElementById("watch7-user-header"),
-    parent = siteDiv.parentElement,
-    next = siteDiv.nextSibling,
-    a = document.createElement("div"),
-    text = document.createTextNode("our stuffs go here");
+//https://developer.chrome.com/extensions/getstarted
+
+//http://minimul.com/modify-an-existing-page-with-a-chrome-extension-built-using-angular-and-yeoman-part-1.html
+
+//http://www.accessify.com/tools-and-wizards/developer-tools/html-javascript-convertor/
 
 
-
-// a.setAttribute('onclick', "location.href='http://localhost:1337/add';");
-a.setAttribute('class', 'quokka')
-
-a.appendChild(text);
-if (next) parent.insertBefore(a, next);
-else parent.appendChild(a);
-
-$(document).ready(function() {
-    $('.quokka').replaceAll('#watch-discussion');
-    // $('.quokka').html('<h1>our stuffs go here!!!</h1>');
-    $.get('http://localhost:1337/api/quokka', function(data) {
-        console.log('success?????', data)
-    })
-    $('.quokka').load('http://localhost:1337/api/quokka');
-
-
-})
+$('#watch7-user-header').append('<button class="quokka yt-uix-button yt-uix-button-size-default yt-uix-button-subscribe-branded yt-can-buffer">Add To Quokka Chat!</button>');
