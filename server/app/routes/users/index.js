@@ -17,8 +17,6 @@ router.get('/userEmail/:email', hasAdminPower, function(req, res, next) {
     User.findOne({
         email: req.params.email
     }).exec().then(function(user) {
-        // var something = JSON.parse(JSON.stringify(user));
-        // console.log('USER TO OBJECT', something);
         res.json(_.omit(user.toJSON(), ['password', 'salt']));
     })
         .then(null, next);
