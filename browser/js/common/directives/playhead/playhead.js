@@ -23,8 +23,8 @@ app.directive('playhead', function($rootScope, AuthService, AUTH_EVENTS, $state,
             }
 
             $rootScope.$on('playing', function(event, currentTime) {
-                scope.selectedN = scope.timeline.indexOf(Math.ceil(currentTime / scope.tik) * scope.tik);
-                scope.$digest();
+                scope.selectedN = scope.timeline.indexOf(Math.floor(currentTime / scope.tik) * scope.tik);
+                scope.$apply();
             })
 
             scope.selectedN = 0;
