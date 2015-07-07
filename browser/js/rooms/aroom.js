@@ -41,13 +41,13 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         $scope.duration = player.getDuration()
     })
     $scope.refreshDisplay = function(num) {
-        var x = Math.ceil(num / ($scope.interval / 1000))
-        console.log($scope.displayComments)
+        var x = Math.floor(num / ($scope.interval / 1000))
         $scope.displaying = $scope.displayComments[x]
         if (!$scope.displaying) $scope.displaying = []
         if ($scope.displaying.length === 0) $scope.empty = true
         else $scope.empty = false
-        console.log('display', $scope.displaying, x)
+        $scope.$apply()
+
     }
     $scope.changeInterval = function(number) {
         $scope.interval = number * 1000
@@ -66,6 +66,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
                 upperbound += number
             }
         }
+
         $scope.refreshDisplay(0)
     }
     $scope.changeInterval(5)
@@ -74,18 +75,17 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
             window.clearInterval(refresher)
             refresher = window.setInterval(function() {
                 $rootScope.$emit('playing', player.getCurrentTime())
-            }, $scope.interval)
+            }, 1000)
         } else if (player.getPlayerState() === 3) {
             $scope.refreshDisplay(player.getCurrentTime())
         } else {
-            console.log(player.getPlayerState())
             window.clearInterval(refresher)
             refresher = undefined
         }
     })
     $rootScope.$on('playing', function(event, currentTime) {
         $scope.refreshDisplay(currentTime)
-        $scope.$digest()
+        $scope.$apply()
     })
 
     $scope.showForm = function() {
@@ -95,6 +95,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
 
     $scope.hideForm = function() {
         $scope.clicked = false
+        $scope.comment = null
     }
     $scope.getReplies = function(parent) {
         console.log('this is the parent', parent);
@@ -110,6 +111,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     $scope.addingComment = function(comment) {
         comment = {
             user: $scope.user._id,
+
             username: $scope.user.username,
             title: $scope.comment.title,
             videoTime: VideoFactory.getCurTime(),
@@ -125,6 +127,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
             }).catch(console.log);
         });
         $scope.hideForm();
-
+        $scope.empty = false
     }
 });
