@@ -98,6 +98,8 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         $scope.comment = null
     }
     $scope.getReplies = function(parent) {
+        console.log('this is the parent', parent);
+        console.log(parent._id);
         CommentFactory.getReplies(parent._id).then(function(replies) {
             replies.sort(function(a, b) {
                 return parseFloat(b.rating) - parseFloat(a.rating);
@@ -107,27 +109,20 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     }
 
     $scope.addingComment = function(comment) {
-        console.log(comment)
-        console.log(user);
         comment = {
-            // user:
-            // // {
-            //     userID: $scope.user._id,
-            // //     userName: $scope.user.username
-            // // },
-
             user: $scope.user._id,
-            // username: $scope.user.username
 
+            username: $scope.user.username,
             title: $scope.comment.title,
             videoTime: VideoFactory.getCurTime(),
             content: $scope.comment.content,
             tags: $scope.comment.tags
         }
+        console.log(comment, "after");
         CommentFactory.saveComment(comment).then(function(comment) {
             VideoFactory.addCommentToVid(comment, $scope.video._id).then(function(video) {
                 $scope.comments = video.comments;
-                $scope.displaying.push($scope.comment)
+                $scope.displaying.push(comment)
                 $scope.comment = null
             }).catch(console.log);
         });
