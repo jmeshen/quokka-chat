@@ -1,0 +1,33 @@
+<div>
+	<h1>ADMIN-ONLY</h1>
+	<div>
+		<div ng-hide='successMessage'>
+			<h3>Manage User</h3>
+			<h4>Find user</h4>
+			<form ng-submit='getUser(email)'>
+				<div class = 'form-group'>
+					<input type="text" class="form-control" placeholder="Find a user by email" ng-model='email'></input>
+				</div>
+				<button type='submit' class='btn btn-default'>Find user!</button>
+			</form>
+		</div>
+		<div ng-show='failMessage'>
+			<h4>User not found. Please try again</h4>
+		</div>
+		<div ng-show='searchingUser'>
+			<h4>User: {{foundUser.email}}</h4>
+			<h4>Status: {{foundUser.powerLevel}}</h4>
+			<h4>Change status?</h4>
+			<form ng-submit='promoteToAdmin(type)'>
+				<select class='dropdown' ng-model='type'>
+					<option>user</option>
+					<option>admin</option>
+				</select>
+				<button type='submit' class='btn btn-default'>Save Changes</button>
+			</form>
+		</div>
+		<div ng-show='successMessage'>
+			<h4>SUCCESS! User permissions changed successfully!</h4>
+		</div>
+	</div>
+</div>

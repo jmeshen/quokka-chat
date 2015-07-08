@@ -59,3 +59,11 @@ router.put('/:commentId', function(req, res, next) {
         });
     })
 });
+
+router.delete('/delete/:commentId', function(req, res, next) {
+    console.log('hitting delete route!');
+    Comment.findOneAndRemove(req.params.commentId).exec()
+        .then(function() {
+            res.status(204).send();
+        }).then(null, next);
+})

@@ -2,14 +2,38 @@ app.config(function($stateProvider) {
     $stateProvider.state('allRooms', {
         url: '/rooms',
         templateUrl: 'js/rooms/allRooms.html',
-        controller: 'AllRoomCtrl'
+        controller: 'AllRoomCtrl',
+        resolve: {
+            user: function(AuthService) {
+                return AuthService.getLoggedInUser().then(function(user) {
+                    return user
+                })
+            }
+        }
     });
 });
 
-app.controller('AllRoomCtrl', function($scope, VideoFactory) {
+app.controller('AllRoomCtrl', function($scope, VideoFactory, user, $state) {
+
+    $scope.isAdmin = function() {
+        if (user) {
+            return user.powerLevel === 'admin';
+        }
+    }
+    // console.log($scope.isAdmin());
+
     VideoFactory.getAll().then(function(videos) {
         $scope.videos = videos;
     })
+
+    $scope.deleteVideo = function(vidId, $event) {
+        $event.stopPropagation();
+        VideoFactory.removeVideo(vidId).then(function() {
+            return VideoFactory.getAll();
+        }).then(function(videos) {
+            $scope.videos = videos;
+        })
+    }
 
     $scope.whichTag;
 

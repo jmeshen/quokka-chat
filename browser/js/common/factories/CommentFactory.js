@@ -25,5 +25,9 @@ app.factory('CommentFactory', function($http) {
         })
     }
 
+    comment.removeComment = function(commentId) {
+        return $http.delete('/api/comments/delete/' + commentId);
+    }
+
     return comment;
 });
