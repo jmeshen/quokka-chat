@@ -18,7 +18,7 @@
 					<!-- <p class='col-md-11 child' ng-click='getReplies(child)' slide-toggle="#derp">{{child.content}}</p> -->
 					<!-- <div class="comment-content"> -->
 						<br>
-						<small class="text-muted">Posted by {{child.username}} at {{child.commentTime | date: 'medium'}}</small>
+						<small class="text-muted">Posted by {{child.username}} at {{child.commentTime | date: 'medium'}} | <span ng-click='deleteComment(child)'>delete</span></small>
 					<!-- </div> -->
 					<hr>
 				</div>

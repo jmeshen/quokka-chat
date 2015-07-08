@@ -22,7 +22,7 @@
             </accordion-group>
         </accordion>
     </div>
-    <button class="btn btn-info" ng-hide='hideAddComment()' ng-click="showForm()" ng-hide="clicked">
+    <button class="btn btn-info" ng-hide='hideAddComment()' ng-click="showForm()" ng-show="!clicked">
     +
     </button>
     <button class="btn btn-default" ng-show="clicked" ng-click="hideForm()">&larr;</button>

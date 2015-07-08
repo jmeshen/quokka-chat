@@ -12,12 +12,15 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             scope.checked = false;
 
             scope.toggle = function() {
-                if (scope.checked === true) {
+
+                if (scope.checked) {
                     scope.checked = false;
                 } else {
                     scope.checked = true;
                 }
+
             }
+
             //////////////////////children stuff////////////////////////////////////
 
             scope.childComment = {};
@@ -44,7 +47,6 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
 
             }
 
-
             //////////////////////grandkids stuff////////////////////////////////////
             scope.getReplies = function(parent) {
                 scope.parent = parent;
@@ -64,6 +66,20 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                         scope.grandChild = null;
                     }).catch(console.log);
 
+            }
+
+            //////////////////////////DELETE COMMENTS///////////////////////////
+
+            scope.deleteComment = function(comment) {
+                console.log(comment)
+                var rent = comment.parent;
+                CommentFactory.removeComment(comment._id).then(function() {
+                    console.log('THIS IS SCOPE.CHILDREN!!!', scope.children)
+                    console.log('COMMENT REMOVED!');
+                    var index = scope.children.indexOf(comment)
+                    scope.children.splice(index, 1);
+                    console.log('SCOPE.CHILDREN AFTER', scope.children)
+                })
             }
 
         }
