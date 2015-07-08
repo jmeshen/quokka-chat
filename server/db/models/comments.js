@@ -41,6 +41,11 @@ var schema = new mongoose.Schema({
     }
 })
 
+schema.pre('save', function(next) {
+    this.videoTime = Math.floor(this.videoTime)
+    next()
+})
+
 schema.methods.createChild = function(reply, cb) {
     var Comment = this.constructor;
 

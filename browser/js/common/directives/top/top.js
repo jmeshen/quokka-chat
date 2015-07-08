@@ -28,10 +28,13 @@ app.directive('top', function(VideoFactory) {
             })
 
             scope.seek = function(sec) {
-                console.log('hi')
                 VideoFactory.seekTo(sec)
+                VideoFactory.playVid()
             };
-            scope.comments.splice(25);
+            scope.comments.splice(5);
+            scope.comments.forEach(function(a) {
+                a.videoTime = Math.floor(a.videoTime)
+            })
         }
     }
 })
