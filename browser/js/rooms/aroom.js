@@ -31,7 +31,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         else return 0
     })
     $scope.oneAtATime = true;
-    $scope.isLoggedIn = AuthService.isAuthenticated();
     $scope.displayComments = []
     $scope.clicked = false;
     $scope.display = false;
@@ -40,6 +39,17 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     $rootScope.$on('duration', function(event, player) {
         $scope.duration = player.getDuration()
     })
+
+
+    $scope.hideAddComment = function() {
+        if (user) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
     $scope.refreshDisplay = function(num) {
         var x = Math.floor(num / 5)
         $scope.displaying = $scope.displayComments[x]
@@ -98,14 +108,24 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         $scope.comment = null
     }
     $scope.getReplies = function(parent) {
-        console.log('this is the parent', parent);
-        console.log(parent._id);
+        // console.log('this is the parent', parent);
+        // console.log(parent._id);
         CommentFactory.getReplies(parent._id).then(function(replies) {
-            replies.sort(function(a, b) {
-                return parseFloat(b.rating) - parseFloat(a.rating);
+            replies = replies.sort(function(a, b) {
+                return parseInt(b.rating) - parseInt(a.rating);
             });
             $scope.children = replies;
         });
+    }
+
+    $scope.upVote = function(comment) {
+        comment.rating++;
+        CommentFactory.changeRating(comment._id, comment);
+    }
+
+    $scope.downVote = function(comment) {
+        comment.rating--;
+        CommentFactory.changeRating(comment._id, comment);
     }
 
     $scope.addingComment = function(comment) {
@@ -118,7 +138,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
             content: $scope.comment.content,
             tags: $scope.comment.tags
         }
-        console.log(comment, "after");
+        // console.log(comment, "after");
         CommentFactory.saveComment(comment).then(function(comment) {
             VideoFactory.addCommentToVid(comment, $scope.video._id).then(function(video) {
                 $scope.comments = video.comments;

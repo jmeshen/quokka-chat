@@ -9,15 +9,26 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
         templateUrl: 'js/common/directives/comments/comments.html',
         link: function(scope) {
 
+            console.log(scope.user);
+
+            scope.isAdmin = function() {
+                if (scope.user) {
+                    return scope.user.powerLevel === 'admin';
+                }
+            }
+
             scope.checked = false;
 
             scope.toggle = function() {
-                if (scope.checked === true) {
+
+                if (scope.checked) {
                     scope.checked = false;
                 } else {
                     scope.checked = true;
                 }
+
             }
+
             //////////////////////children stuff////////////////////////////////////
 
             scope.childComment = {};
@@ -39,18 +50,15 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                 CommentFactory.addReply(scope.childComment.parent, scope.childComment)
                     .then(function(child) {
                         scope.children.push(child);
-                        console.log(child);
                         scope.childComment = null;
                     }).catch(console.log);
 
             }
 
-
             //////////////////////grandkids stuff////////////////////////////////////
             scope.getReplies = function(parent) {
                 scope.parent = parent;
                 CommentFactory.getReplies(parent._id).then(function(replies) {
-                    console.log(replies);
                     scope.grandChildren = replies;
                 });
             }
@@ -66,6 +74,19 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                         scope.grandChild = null;
                     }).catch(console.log);
 
+            }
+
+            //////////////////////////DELETE COMMENTS///////////////////////////
+
+            scope.deleteComment = function(comment) {
+                console.log(comment)
+                // var rent = comment.parent;
+                CommentFactory.removeComment(comment._id).then(function() {
+                    console.log('THIS IS SCOPE.CHILDREN BEFORE', scope.children);
+                    var index = scope.children.indexOf(comment);
+                    scope.children.splice(index);
+                    console.log('THIS IS SCOPE.CHILDREN AFTER', scope.children);
+                })
             }
 
         }
