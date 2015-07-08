@@ -9,6 +9,14 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
         templateUrl: 'js/common/directives/comments/comments.html',
         link: function(scope) {
 
+            console.log(scope.user);
+
+            scope.isAdmin = function() {
+                if (scope.user) {
+                    return scope.user.powerLevel === 'admin';
+                }
+            }
+
             scope.checked = false;
 
             scope.toggle = function() {
