@@ -2,5 +2,5 @@
   <div id="player"></div>
 </div>
 <heatmap ng-if = "arr.length>0" ng-repeat = "play in arr" duration = "play.duration" video = "play.video"></heatmap>
-  <playhead ng-if="arr.length>0" ng-repeat="play in arr" duration="play.duration" ></playhead>
-  
+<playhead ng-if="arr.length>0" ng-repeat="play in arr" duration="play.duration" ></playhead>
+<top ng-if = "arr.length >0" ng-repeat = "play in arr" video = "play.video"></top>

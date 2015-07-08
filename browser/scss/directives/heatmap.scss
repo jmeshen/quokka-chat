@@ -2,16 +2,16 @@
 
 .d3-tip {
   line-height: 1;
-  font-weight: bold;
-  padding: 12px;
+  font-size:8;
+  padding: 8px;
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 
 .bar:hover {
-  fill: orangered ;
+  fill: periwinkle ;
 }
 
 heatmap{
