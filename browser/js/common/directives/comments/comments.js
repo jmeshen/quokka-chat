@@ -39,7 +39,6 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                 CommentFactory.addReply(scope.childComment.parent, scope.childComment)
                     .then(function(child) {
                         scope.children.push(child);
-                        console.log(child);
                         scope.childComment = null;
                     }).catch(console.log);
 
@@ -50,7 +49,6 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             scope.getReplies = function(parent) {
                 scope.parent = parent;
                 CommentFactory.getReplies(parent._id).then(function(replies) {
-                    console.log(replies);
                     scope.grandChildren = replies;
                 });
             }

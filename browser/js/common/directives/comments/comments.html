@@ -28,7 +28,7 @@
 	<!-- <div class='grandchildren' id='derp' class="slideable" ng-show='checked'> -->
 		<p ng-repeat='kid in grandChildren'> {{kid.content}} <br>
 			{{kid.username}} | {{kid.commentTime | date: 'short'}}</p>
-		<form ng-submit='replyToReply(child)'>
+		<form ng-submit='replyToReply()'>
 			<input type="text" class="form-control" placeholder="add a reply" ng-model='grandChild.content'></input>
 			<button>Add response</button>
 		</form>
