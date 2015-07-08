@@ -72,13 +72,12 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
 
             scope.deleteComment = function(comment) {
                 console.log(comment)
-                var rent = comment.parent;
+                // var rent = comment.parent;
                 CommentFactory.removeComment(comment._id).then(function() {
-                    console.log('THIS IS SCOPE.CHILDREN!!!', scope.children)
-                    console.log('COMMENT REMOVED!');
-                    var index = scope.children.indexOf(comment)
-                    scope.children.splice(index, 1);
-                    console.log('SCOPE.CHILDREN AFTER', scope.children)
+                    console.log('THIS IS SCOPE.CHILDREN BEFORE', scope.children);
+                    var index = scope.children.indexOf(comment);
+                    scope.children.splice(index);
+                    console.log('THIS IS SCOPE.CHILDREN AFTER', scope.children);
                 })
             }
 
