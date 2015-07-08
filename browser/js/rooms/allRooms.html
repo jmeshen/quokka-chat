@@ -15,7 +15,7 @@
         <h2>{{video.name}}</h2>
         <p>{{video.description}}</p>
         <div>
-	        <button class='btn btn-default' ng-click='deleteVideo(video._id, $event)'>x</button>
+	        <button ng-show='isAdmin()' class='btn btn-default' ng-click='deleteVideo(video._id, $event)'>x</button>
         </div>
       </div>
     </div>
