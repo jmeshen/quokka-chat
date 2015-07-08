@@ -1,8 +1,18 @@
 .comment-container {
   height: 85vh;
   overflow: scroll;
+  .row {
+    width: 70%;
+  }
 }
-
+.comment-content {
+  position: relative;
+  small {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
 .comments {
   max-height: 300px;
   overflow: scroll;
