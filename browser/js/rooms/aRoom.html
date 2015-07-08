@@ -6,10 +6,16 @@
         <div class="row" video="video" ng-hide='clicked'>
             <accordion close-others="oneAtATime">
                 <h3><span ng-show = "empty">There's nothing here. Start a discussion!</span></h3>
-                <accordion-group heading="{{comment.title}}" ng-repeat="comment in displaying" class="accordion-toggle" ng-click="getReplies(comment); toggleOpen()"><button>hi</button>
+                    <accordion-group ng-repeat="comment in displaying" is-open="status.open" class="accordion-toggle">
+                        <accordion-heading ng-click="getReplies(comment)">
+                            <span ng-click="getReplies(comment)">{{comment.title}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></span>
+                        </accordion-heading>
+                        <!-- <accordion-heading ng-click="getReplies(comment)">
+                        {{comment.title}}
+                        </accordion-heading> -->
+                        <comments user = 'user' comment='comment' children='children'></comments>
+                    </accordion-group>
 
-                    <comments user = 'user' comment='comment' children='children'></comments>
-                </accordion-group>
             </accordion>
         </div>
 

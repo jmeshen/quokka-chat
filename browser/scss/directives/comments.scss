@@ -14,7 +14,7 @@
   }
 }
 .comments {
-  max-height: 300px;
+  // max-height: 300px;
   overflow: scroll;
   // .child {
   // 	border: 1px solid black;
@@ -24,4 +24,16 @@
 .panel-collapse {
   max-height: 300px;
   overflow: scroll;
+}
+
+.children {
+  textarea {
+    width: 75%;
+  }
+}
+
+.child-comments {
+  small {
+    float: right;
+  }
 }
