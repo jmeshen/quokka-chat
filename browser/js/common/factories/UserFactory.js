@@ -6,14 +6,20 @@ app.factory('UserFactory', function($http) {
                     return response.data;
                 });
         },
+        getUserByEmail: function(email) {
+            return $http.get('/api/users/userEmail/' + email)
+                .then(function(response) {
+                    return response.data;
+                });
+        },
         getUserById: function(id) {
-            return $http.get("/" + id)
+            return $http.get("/api/users/" + id)
                 .then(function(response) {
                     return response.data;
                 });
         },
         promoteUserStatus: function(id, info) {
-            return $http.put('/promote/' + id, info)
+            return $http.put('/api/users/promote/' + id, info)
                 .then(function(response) {
                     return response.data;
                 })

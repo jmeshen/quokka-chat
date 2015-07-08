@@ -24,7 +24,7 @@ app.directive('top', function(VideoFactory) {
             // }
 
             scope.comments = scope.video.comments.sort(function(a, b) {
-                (a.rating < b.rating) ? -1 : ((a.rating > b.rating) ? 1 : return 0)
+                (a.rating < b.rating) ? -1 : ((a.rating > b.rating) ? 1 : 0)
             })
 
             scope.seek = function(sec) {
