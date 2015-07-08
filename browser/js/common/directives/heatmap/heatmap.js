@@ -42,7 +42,7 @@ app.directive('heatmap', function() {
 
             var tip = d3.tip()
                 .attr('class', 'd3-tip')
-                .offset([(h / factor) * 1.5, 0]).html(function(d) {
+                .offset([-5, 0]).html(function(d) {
                     return "<span><strong>" + d + " Comments" + "</strong></span>"
                 });
             svg.call(tip)
@@ -65,7 +65,7 @@ app.directive('heatmap', function() {
                     return d * factor;
                 })
                 .attr("fill", function(d) {
-                    return "rgb(" + (d * 50) + ",0, 0)";
+                    return "rgb(" + (d * 15) + "," + d * 15 + "," + d * 20 + ")";
                 })
                 .on('mouseover', tip.show)
                 .on('mouseout', tip.hide);
