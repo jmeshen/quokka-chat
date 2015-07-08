@@ -11,7 +11,7 @@
 
 
 .bar:hover {
-  fill: periwinkle ;
+  fill: cornsilk ;
 }
 
 heatmap{
@@ -25,6 +25,7 @@ heatmap{
     height: 40px;
     padding-bottom: 10%; /* aspect ratio */
     vertical-align: top;
+    background-color: #ccc
 }
 .svg-content-responsive {
     display: inline-block;
