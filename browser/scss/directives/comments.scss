@@ -25,3 +25,15 @@
   max-height: 300px;
   overflow: scroll;
 }
+
+.children {
+  textarea {
+    width: 75%;
+  }
+}
+
+.child-comments {
+  small {
+    float: right;
+  }
+}
