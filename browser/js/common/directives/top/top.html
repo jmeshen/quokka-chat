@@ -1,0 +1,4 @@
+<h3>These are the top comments of the video!</h3>
+<button class = "topComment" ng-repeat = "comment in comments" ng-click = "seek(comment.videoTime)">
+	{{comment.title}} <span class = "score">{{comment.rating}}</span>
+</button>
