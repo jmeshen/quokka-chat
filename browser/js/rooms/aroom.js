@@ -118,6 +118,16 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         });
     }
 
+    $scope.upVote = function(comment) {
+        comment.rating++;
+        CommentFactory.changeRating(comment._id, comment);
+    }
+
+    $scope.downVote = function(comment) {
+        comment.rating--;
+        CommentFactory.changeRating(comment._id, comment);
+    }
+
     $scope.addingComment = function(comment) {
         comment = {
             user: $scope.user._id,

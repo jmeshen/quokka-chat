@@ -5,13 +5,20 @@
         <accordion close-others="oneAtATime">
             <h3><span ng-show = "empty">There's nothing here. Start a discussion!</span></h3>
             <accordion-group ng-repeat="comment in displaying" is-open="status.open" class="accordion-toggle">
-                <accordion-heading ng-click="getReplies(comment)">
-                    <span ng-click="getReplies(comment)">{{comment.title}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></span>
+                <accordion-heading>
+                    <span ng-click="getReplies(comment)">
+                        {{comment.title}}
+                        
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}">
+                        </i>
+                    </span>
                 </accordion-heading>
-                <!-- <accordion-heading ng-click="getReplies(comment)">
-                    {{comment.title}}
-                </accordion-heading> -->
-                <comments user = 'user' comment='comment' children='children'></comments>
+                <div class='rating col-md-1'>
+                    <span ng-click='upVote(comment)' class='upvote glyphicon glyphicon-chevron-up'></span>
+                    <p>{{comment.rating}}</p>
+                    <span ng-click='downVote(comment)' class='downvote glyphicon glyphicon-chevron-down'></span>
+                </div>
+                <comments class='col-md-11' user='user' comment='comment' children='children'></comments>
             </accordion-group>
         </accordion>
     </div>
@@ -21,7 +28,7 @@
     <button class="btn btn-default" ng-show="clicked" ng-click="hideForm()">&larr;</button>
     <form class='row' ng-show="clicked" ng-submit="addingComment(comment)">
         <div class="form-group">
-            <input type = "text" class="form-control" id = "newCommentTitle" placeholder = "Comment title" ng-model = "comment.title">
+            <input type="text" class="form-control" id="newCommentTitle" placeholder="Comment title" ng-model="comment.title">
             <input type="text" class="form-control" id="newCommentText" placeholder="Give some context" ng-model="comment.content">
         </div>
         <div class="form-group">
