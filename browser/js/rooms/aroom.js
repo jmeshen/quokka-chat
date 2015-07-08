@@ -51,7 +51,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
 
 
     $scope.refreshDisplay = function(num) {
-        var x = Math.floor(num / ($scope.interval / 1000))
+        var x = Math.floor(num / 5)
         $scope.displaying = $scope.displayComments[x]
         if (!$scope.displaying) $scope.displaying = []
         if ($scope.displaying.length === 0) $scope.empty = true
@@ -95,7 +95,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     })
     $rootScope.$on('playing', function(event, currentTime) {
         $scope.refreshDisplay(currentTime)
-        $scope.$apply()
+
     })
 
     $scope.showForm = function() {

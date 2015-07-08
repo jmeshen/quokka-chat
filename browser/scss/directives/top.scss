@@ -1,0 +1,39 @@
+.topContainer{
+	border: 2px dotted #aaa;
+	padding: 0 2% 2% 2%;
+	margin-top: 30px;
+}
+.header{
+	font-weight: bold;
+
+}
+
+.topComment{
+	margin-left:30px;
+	position: relative;
+	.title{
+		// float: left;
+
+	}
+	.score{
+		position: absolute;
+		right:0;
+		top:0;	
+		padding-right: 5px;
+		color: red;
+	}
+	&:hover{
+		background-color: #ccc;
+		span{
+			position:relative;
+			display: inline;
+			vertical-align: middle;
+
+		}
+	}
+	span{
+		display: none;
+	}
+	border: 2px solid #ddd;
+	padding: 5px;
+}
