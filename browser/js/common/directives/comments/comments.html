@@ -7,7 +7,7 @@
 					<small>Discussion started by {{comment.username}} at {{comment.commentTime | date: 'medium'}}</small>
 				</div>
 			<hr>
-			<div ng-repeat='child in children' class="child-comments">
+			<div ng-repeat='child in children' class="child-comments" popover="Click comment to see replies" popover-trigger="mouseenter" popover-placement="top">
 				<div class='rating col-md-1'>
 					<span class='glyphicon glyphicon-chevron-up' ng-click='upVote(child)'></span>
 					<p>{{ child.rating }}</p>
