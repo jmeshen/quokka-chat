@@ -1,15 +1,53 @@
 <div class="row room">
 
     <video-box class="col-md-5" video="video"></video-box>
+    <!-- <div class="col-md-7 comment-container" video="video" ng-hide='clicked'>
+        <h3><span ng-show = "empty">There's nothing here. Start a discussion!</span></h3>
+        <md-content style="height: 600px;" md-theme="altTheme">
+            <section ng-click="getReplies(comment)" ng-repeat="comment in displaying">
+              <md-subheader class="md-primary">{{comment.title}}</md-subheader>
+              <md-list layout-padding>
+                <md-list-item class="md-3-line">
+                    <div class="md-list-item-text">
+                      <h3></h3>
+                      <h4></h4>
+                      <p>
+                        {{comment.content}}
+                      </p>
+                      <comments user = 'user' comment='comment' children='children'></comments>
+                    </div>
+                <md-divider ></md-divider>
+                </md-list-item>
+              </md-list>
+            </section>
+
+        </md-content>
+    </div>
+    <button class="btn btn-info" ng-show= "isLoggedIn" ng-click="showForm()" ng-hide="clicked">
+        +
+    </button>
+
+    <button class="btn btn-default" ng-show = "clicked" ng-click = "hideForm()">&larr;</button>
+    <form class='row' ng-show="clicked" ng-submit="addingComment(comment)">
+        <div class="form-group">
+            <input type = "text" class="form-control" id = "newCommentTitle" placeholder = "Comment title" ng-model = "comment.title">
+            <input type="text" class="form-control" id="newCommentText" placeholder="Give some context" ng-model="comment.content">
+        </div>
+        <div class="form-group">
+            <tags-input ng-model='comment.tags'></tags-input>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div> -->
     <div class='col-md-7 comment-container'>
 
         <div class="row" video="video" ng-hide='clicked'>
             <accordion close-others="oneAtATime">
                 <h3><span ng-show = "empty">There's nothing here. Start a discussion!</span></h3>
-                <accordion-group heading="{{comment.title}}" ng-repeat="comment in displaying" class="accordion-toggle" ng-click="getReplies(comment); toggleOpen()">
+                    <accordion-group heading="{{comment.title}}" ng-repeat="comment in displaying" class="accordion-toggle" ng-click="getReplies(comment); toggleOpen()">
 
-                    <comments user = 'user' comment='comment' children='children'></comments>
-                </accordion-group>
+                        <comments user = 'user' comment='comment' children='children'></comments>
+                    </accordion-group>
             </accordion>
         </div>
 

@@ -1,12 +1,14 @@
 <div class ="question">
 	<div class='children' ng-hide='checked'>
 		<div class='comments'>
-			<div class = "comment-content"><h4>{{comment.content}} | {{comment.username}}</h4></div>
+			<div class = "comment-content"><h4>{{comment.content}}</h4><br><small>Posted by {{comment.username}} at {{comment.commentTime | date: 'medium'}}</small></div>
+			<hr>
 			<div ng-repeat='child in children'>
 				<div class="col-sm-12">
-					<p>{{child.username}} | {{child.commentTime | date: 'short'}}</p>
+					<p>{{child.username}} | {{child.commentTime | date: 'medium'}}</p>
 				</div>
 				<p class='col-md-11 child' ng-click='getReplies(child); toggle()'>{{child.content}}</p>
+				<!-- <p class='col-md-11 child' ng-click='getReplies(child)' slide-toggle="#derp">{{child.content}}</p> -->
 				<div class='rating col-md-1'>
 					<button class='glyphicon glyphicon-chevron-up' ng-click='upVote(child)'></button>
 					<p>{{ child.rating }}</p>
@@ -19,8 +21,11 @@
 			</form>
 		</div>
 	</div>
+	<!-- go back to children -->
 	<button ng-hide='!checked' ng-click='toggle()'>&larr;</button>
+<!-- show grandchildren -->
 	<div class='grandchildren' ng-show='checked'>
+	<!-- <div class='grandchildren' id='derp' class="slideable" ng-show='checked'> -->
 		<p ng-repeat='kid in grandChildren'> {{kid.content}} <br>
 			{{kid.username}} | {{kid.commentTime | date: 'short'}}</p>
 		<form ng-submit='replyToReply(child)'>
