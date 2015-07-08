@@ -1,40 +1,33 @@
 <div class="row room">
-
-    <video-box class="col-md-5" video="video"></video-box>
-    <div class='col-md-7 comment-container'>
-
-        <div class="row" video="video" ng-hide='clicked'>
-            <accordion close-others="oneAtATime">
-                <h3><span ng-show = "empty">There's nothing here. Start a discussion!</span></h3>
-                    <accordion-group ng-repeat="comment in displaying" is-open="status.open" class="accordion-toggle">
-                        <accordion-heading ng-click="getReplies(comment)">
-                            <span ng-click="getReplies(comment)">{{comment.title}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></span>
-                        </accordion-heading>
-                        <!-- <accordion-heading ng-click="getReplies(comment)">
-                        {{comment.title}}
-                        </accordion-heading> -->
-                        <comments user = 'user' comment='comment' children='children'></comments>
-                    </accordion-group>
-
-            </accordion>
-        </div>
-
-        <button class="btn btn-info" ng-show= "isLoggedIn" ng-click="showForm()" ng-hide="clicked">
-        +
-        </button>
-
-        <button class="btn btn-default" ng-show = "clicked" ng-click = "hideForm()">&larr;</button>
-        <form class='row' ng-show="clicked" ng-submit="addingComment(comment)">
-            <div class="form-group">
-                <input type = "text" class="form-control" id = "newCommentTitle" placeholder = "Comment title" ng-model = "comment.title">
-                <input type="text" class="form-control" id="newCommentText" placeholder="Give some context" ng-model="comment.content">
-            </div>
-            <div class="form-group">
-                <tags-input ng-model='comment.tags'></tags-input>
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-
+<video-box class="col-md-5" video="video"></video-box>
+<div class='col-md-7 comment-container'>
+    <div class="row" video="video" ng-hide='clicked'>
+        <accordion close-others="oneAtATime">
+            <h3><span ng-show = "empty">There's nothing here. Start a discussion!</span></h3>
+            <accordion-group ng-repeat="comment in displaying" is-open="status.open" class="accordion-toggle">
+                <accordion-heading ng-click="getReplies(comment)">
+                    <span ng-click="getReplies(comment)">{{comment.title}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></span>
+                </accordion-heading>
+                <!-- <accordion-heading ng-click="getReplies(comment)">
+                    {{comment.title}}
+                </accordion-heading> -->
+                <comments user = 'user' comment='comment' children='children'></comments>
+            </accordion-group>
+        </accordion>
     </div>
-
+    <button class="btn btn-info" ng-hide='hideAddComment()' ng-click="showForm()" ng-hide="clicked">
+    +
+    </button>
+    <button class="btn btn-default" ng-show="clicked" ng-click="hideForm()">&larr;</button>
+    <form class='row' ng-show="clicked" ng-submit="addingComment(comment)">
+        <div class="form-group">
+            <input type = "text" class="form-control" id = "newCommentTitle" placeholder = "Comment title" ng-model = "comment.title">
+            <input type="text" class="form-control" id="newCommentText" placeholder="Give some context" ng-model="comment.content">
+        </div>
+        <div class="form-group">
+            <tags-input ng-model='comment.tags'></tags-input>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
 </div>

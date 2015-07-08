@@ -31,7 +31,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         else return 0
     })
     $scope.oneAtATime = true;
-    $scope.isLoggedIn = AuthService.isAuthenticated();
     $scope.displayComments = []
     $scope.clicked = false;
     $scope.display = false;
@@ -40,6 +39,17 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     $rootScope.$on('duration', function(event, player) {
         $scope.duration = player.getDuration()
     })
+
+
+    $scope.hideAddComment = function() {
+        if (user) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
     $scope.refreshDisplay = function(num) {
         var x = Math.floor(num / ($scope.interval / 1000))
         $scope.displaying = $scope.displayComments[x]
@@ -101,8 +111,8 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         // console.log('this is the parent', parent);
         // console.log(parent._id);
         CommentFactory.getReplies(parent._id).then(function(replies) {
-            replies.sort(function(a, b) {
-                return parseFloat(b.rating) - parseFloat(a.rating);
+            replies = replies.sort(function(a, b) {
+                return parseInt(b.rating) - parseInt(a.rating);
             });
             $scope.children = replies;
         });
