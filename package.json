@@ -4,8 +4,7 @@
     "description": "Creating timestamped discussion rooms since 2015. ",
     "main": "server/start.js",
     "scripts": {
-        "start": "nodemon --watch server -e js,html server/start.js",
-        "postinstall": "gulp build"
+        "start": "nodemon --watch server -e js,html server/start.js"
     },
     "dependencies": {
         "angular": "^1.4.0",
