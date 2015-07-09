@@ -27,12 +27,8 @@
                         </i>
                     </span>
                 </accordion-heading>
-                <div class='rating col-md-1'>
-                    <span ng-click='upVote(comment)' class='upvote glyphicon glyphicon-chevron-up'></span>
-                    <p>{{comment.rating.score}}</p>
-                    <span ng-click='downVote(comment)' class='downvote glyphicon glyphicon-chevron-down'></span>
-                </div>
-                <comments class='col-md-11' user='user' comment='comment' children='children'></comments>
+
+                <comments class='col-md-12' user='user' comment='comment' children='children'></comments>
             </accordion-group>
         </accordion>
     </div>
