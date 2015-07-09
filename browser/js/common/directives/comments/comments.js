@@ -9,8 +9,6 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
         templateUrl: 'js/common/directives/comments/comments.html',
         link: function(scope) {
 
-            console.log(scope.user);
-
             scope.isAdmin = function() {
                 if (scope.user) {
                     return scope.user.powerLevel === 'admin';
@@ -79,13 +77,17 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             //////////////////////////DELETE COMMENTS///////////////////////////
 
             scope.deleteComment = function(comment) {
-                console.log(comment)
                 // var rent = comment.parent;
                 CommentFactory.removeComment(comment._id).then(function() {
-                    console.log('THIS IS SCOPE.CHILDREN BEFORE', scope.children);
-                    var index = scope.children.indexOf(comment);
-                    scope.children.splice(index);
-                    console.log('THIS IS SCOPE.CHILDREN AFTER', scope.children);
+                    if (scope.grandChildren) {
+                        if (scope.grandChildren.indexOf(comment) > -1) {
+                            var index = scope.grandChildren.indexOf(comment);
+                            scope.grandChildren.splice(index, 1);
+                        }
+                    } else {
+                        var index = scope.children.indexOf(comment);
+                        scope.children.splice(index, 1);
+                    }
                 })
             }
 
