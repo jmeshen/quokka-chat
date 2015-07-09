@@ -3,7 +3,7 @@
 }
 
 a {
-  color: #8153E0;
+  color: $accent;
 }
 
 a:hover {
@@ -13,7 +13,7 @@ a:hover {
 
 .market1 {
   height: 70vh;
-  background-color: rgba(187, 182, 205, 0.25);
+  background-color: $purple;
   text-align: center;
 }
 
@@ -24,7 +24,7 @@ a:hover {
 }
 
 .market3 {
-  background-color: rgba(187, 182, 205, 0.25);
+  background-color: $purple;
   text-align: center;
   height: 70vh;
 }
