@@ -7,15 +7,21 @@
 
     "browser_action": {
         "default_icon": "quokka.png",
-        "default_title": "QUOKKA!!!",
+        "default_title": "Quokka",
         "default_popup": "popup.html"
     },
     "content_scripts": [{
         "matches": ["https://www.youtube.com/watch*"],
-        "js": ["/js/jquery-2.1.4.min.js", "quokka.js"]
+        "js": ["/js/jquery-2.1.4.min.js", "/js/quokka.js"]
     }],
     "permissions": [
         "activeTab",
-        "https://ajax.googleapis.com/"
-    ]
+        "https://ajax.googleapis.com/",
+        "http://localhost:1337/*",
+        "https://www.youtube.com/watch*"
+    ],
+    "externally_connectable": {
+        "ids": ["*"],
+        "matches": ["https://quokka-chat.herokuapp.com/*"]
+    }
 }
