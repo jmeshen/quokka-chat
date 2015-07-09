@@ -90,7 +90,7 @@ gulp.task('buildCSS', function() {
         includePaths: require('node-bourbon').includePaths
     })
     return gulp.src('./browser/scss/main.scss')
-        .pipe(plumber())
+        // .pipe(plumber())
         .pipe(sass({
             includePaths: __dirname + '/node_modules/node-bourbon/node_modules/bourbon/app/assets/stylesheets'
         }))
