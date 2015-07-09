@@ -36,7 +36,7 @@
 	<div class='grandchildren' ng-show='checked'>
 	<!-- <div class='grandchildren' id='derp' class="slideable" ng-show='checked'> -->
 		<p ng-repeat='kid in grandChildren'> {{kid.content}} <br>
-			{{kid.username}} | {{kid.commentTime | date: 'short'}}</p>
+			{{kid.username}} | {{kid.commentTime | date: 'short'}} <span ng-show='isAdmin()' ng-click='deleteComment(kid)'>| delete</span></p>
 		<form ng-show='user' ng-submit='replyToReply()'>
 			<input type="text" class="form-control" placeholder="add a reply" ng-model='grandChild.content'></input>
 			<button>Add response</button>
