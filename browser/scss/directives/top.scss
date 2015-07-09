@@ -5,7 +5,8 @@
 }
 .header{
 	font-weight: bold;
-
+	text-align: center;
+	
 }
 
 .topComment{
@@ -18,7 +19,7 @@
 	.score{
 		position: absolute;
 		right:0;
-		top:0;	
+		top:-10px;	
 		padding-right: 5px;
 		color: red;
 	}
