@@ -89,7 +89,7 @@ gulp.task('buildCSS', function() {
     return gulp.src('./browser/scss/main.scss')
         .pipe(plumber())
         .pipe(sass({
-            includePaths: require('node-bourbon').includePaths
+            // includePaths: require('node-bourbon').includePaths
         }))
         .pipe(rename('style.css'))
         .pipe(gulp.dest('./public'));
