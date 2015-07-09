@@ -4,8 +4,19 @@
 h1, h2, h3, h4 {
   font-family: 'Raleway', sans-serif;
 }
+
+.footerDiv {
+ height: 15vh;
+ text-align: center;
+ padding-top: 35px;
+  .footerLinks > a {
+  	color: #480293;
+  }
+ // position: fixed;
+ // bottom: 
+}
 // Colors
-$purple:rgba(187, 182, 205, 0.25)
+$purple:rgba(187, 182, 205, 0.25);
 $navbar: #A19EA5;
 $bg: #fff;
 $layer: #EAEAEA;
@@ -45,7 +56,6 @@ $primary-font: 'Source Sans Pro', sans-serif;
 @import 'tutorial/main';
 @import 'login/main';
 @import 'rooms/main';
-
 
 
 /* -------------------------------- 
