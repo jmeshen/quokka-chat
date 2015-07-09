@@ -1,51 +1,83 @@
+// navbar {
+//   display: block;
+//   background: $navbar;
+
+//   img {
+//     padding-top: 10px;
+//     margin-right: 20px;
+//     width: 45px;
+//   }
+
+//   a {
+//     color: white;
+//     &:hover {
+//       color: white;
+//     }
+//   }
+
+//   .navbar-nav {
+//     float: right;
+//   }
+
+//   .nav > li > a {
+//     cursor: pointer;
+//     &.active {
+//       color: $accent;
+//     }
+//     &:hover {
+//       background-color: inherit;
+//       color: $accent;
+//       transition: color 0.2s;
+//     }
+//     &:focus {
+//       color: $accent;
+//       background: transparent;
+//     }
+//   }
+
+//   .login-button {
+//     float: right;
+//     margin-top: 8px;
+//   }
+
+//   .welcome {
+//     float: right;
+//     margin-top: 12px;
+//     span {
+//       color: white;
+//     }
+//     a {
+//       color: $accent;
+//       cursor: pointer;
+//     }
+//   }
+
+// }
+
 navbar {
-  display: block;
-  background: $navbar;
 
   img {
-    padding-top: 10px;
-    margin-right: 20px;
-    width: 45px;
+    float: left;
+    height: 52px;
+    margin-top: 30px;
+    margin-left: 10px;
   }
 
-  a {
-    color: white;
-    &:hover {
-      color: white;
-    }
-  }
-
-  .nav > li > a {
-    cursor: pointer;
-    &.active {
-      color: $accent;
-    }
-    &:hover {
-      background-color: inherit;
-      color: $accent;
-      transition: color 0.2s;
-    }
-    &:focus {
-      color: $accent;
-      background: transparent;
-    }
-  }
-
-  .login-button {
+  .navbar-nav {
     float: right;
-    margin-top: 8px;
+    height: 52px;
+    margin-top: 30px;
+    margin-right: 10px;
   }
 
+  .nav-container {
+    width: 90%;
+    margin: 0 auto;
+
+  }
   .welcome {
-    float: right;
-    margin-top: 12px;
-    span {
-      color: white;
-    }
-    a {
-      color: $accent;
-      cursor: pointer;
-    }
+    display: flex;
+    align-items: center;
   }
 
 }
