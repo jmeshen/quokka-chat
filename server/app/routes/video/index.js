@@ -1,13 +1,39 @@
 'use strict'
-// var request = require('request');
-// var cheerio = require('cheerio');
+var request = require('request');
+var cheerio = require('cheerio');
 var router = require('express').Router();
 module.exports = router;
 // var _ = require('lodash');
 var mongoose = require('mongoose');
 var Video = mongoose.model('Video');
-// var Promise = require('bluebird')
+var Promise = require('bluebird');
 // var deepPopulate = require('mongoose-deep-populate');
+
+function scrape(url, searchItem) {
+    return new Promise(function(resolve, reject) {
+        request.get(url, function(err, response) {
+            if (err) {
+                console.log('scraping err', err);
+                reject(err);
+            } else {
+                var $ = cheerio.load(response.body);
+                var item = $(searchItem).text().trim();
+                resolve(item);
+            }
+        })
+    })
+
+}
+
+function getVideoInfo(url) {
+    var titleP = scrape(url, '#eow-title');
+    var descriptionP = scrape(url, '#eow-description');
+    return Promise.all([titleP, descriptionP]);
+}
+
+// getVideoInfo('https://www.youtube.com/watch?v=YkoiTA3EqCM').then(function(info) {
+//     console.log(info);
+// })
 
 function hasAdminPower(req, res, next) {
     if (req.user.powerLevel === 'admin') next();
@@ -48,10 +74,20 @@ router.get('/tag/:tag', function(req, res) {
 })
 
 router.post('/', function(req, res) {
-    var video = new Video(req.body);
-    video.save(function(err, vid) {
-        if (err) console.log(err);
-        res.json(vid);
+    var url = req.body.url;
+    getVideoInfo(url).then(function(info) {
+        var body = {
+            tags: req.body.tags,
+            name: info[0],
+            description: info[1],
+            url: url,
+            embedId: req.body.embedId
+        }
+        var video = new Video(body);
+        video.save(function(err, vid) {
+            if (err) console.log(err);
+            res.json(vid);
+        })
     })
 })
 
