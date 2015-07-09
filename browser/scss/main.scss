@@ -5,10 +5,11 @@ h1, h2, h3, h4 {
   font-family: 'Raleway', sans-serif;
 }
 // Colors
+$purple:rgba(187, 182, 205, 0.25);
 $navbar: #A19EA5;
 $bg: #fff;
 $layer: #EAEAEA;
-$accent: #3C2088;
+$accent: #8153E0;
 
 body {
   // background: $bg !important;
@@ -21,6 +22,10 @@ body {
   }
 }
 
+.btn-default{
+	background-color: $accent !important;
+	color: white !important;
+}
 //headline animation
 // colors
 

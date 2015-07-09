@@ -1,20 +1,23 @@
-<form ng-submit="addVideo()">
-  <div class="form-group">
-    <label for="video">Video ID</label>
-    <input type="text" class="form-control" id="videoID" placeholder="Link to video here" ng-model="video.url">
-  </div>
-  <div class="form-group">
-    <label for="video">Title</label>
-    <input type="text" class="form-control" id="videoTitle" ng-model="video.name">
-  </div>
-  <div class="form-group">
-    <label for="video">Description</label>
-    <input type="text" class="form-control" id="videoDescription" ng-model="video.description">
-  </div>
-  <div class="form-group">
-    <label for="video">Tags</label>
-    <tags-input ng-model='video.tags'></tags-input>
-    <!--     <pre>{{video.tags}}</pre> -->
-  </div>
-  <button type="submit" class="btn btn-default">Add</button>
-</form>
+<div class='col-sm-6 col-sm-offset-3'>
+  <form ng-submit="addVideo()">
+    <h3>Add a YouTube video to begin your discussion</h3>
+    <div class="form-group">
+      <label for="video">Video ID</label>
+      <input type="text" class="form-control" id="videoID" placeholder="Link to video here" ng-model="video.url">
+    </div>
+<!--     <div class="form-group">
+      <label for="video">Title</label>
+      <input type="text" class="form-control" id="videoTitle" ng-model="video.name">
+    </div>
+    <div class="form-group">
+      <label for="video">Description</label>
+      <input type="text" class="form-control" id="videoDescription" ng-model="video.description">
+    </div> -->
+    <div class="form-group">
+      <label for="video">Tags</label>
+      <tags-input ng-model='video.tags'></tags-input>
+      <!--     <pre>{{video.tags}}</pre> -->
+    </div>
+    <button type="submit" class="btn btn-default">Add</button>
+  </form>
+</div>

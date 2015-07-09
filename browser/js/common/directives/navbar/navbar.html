@@ -32,11 +32,11 @@
         </div>
         </div>
         <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+            <li class = "navLink" ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
             <li ng-show='user.powerLevel === "admin"'>
-                <a ui-sref-active="active" ui-sref="admin-only">Admin Only</a>
+                <a ui-sref-active="active" ui-sref="admin-only">Admin</a>
             </li>
             <li ng-show="user"><a ng-click="logout()">Logout</a></li>
             <li ng-show="!user" ui-sref="login"><a>Login</a></li>
