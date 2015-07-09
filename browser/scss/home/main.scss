@@ -1,7 +1,15 @@
 .changingHeader {
-  height: 40vh;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -103px;
+
 }
 
+body > div > div.col-lg-12.changingHeader.ng-scope > section > h1{
+  text-size: 5.5em;
+}
 a {
   color: $accent;
 }
@@ -12,13 +20,13 @@ a:hover {
 }
 
 .market1 {
-  height: 70vh;
+  height: 100vh;
   background-color: $purple;
   text-align: center;
 }
 
 .market2 {
-  height: 70vh;
+  height: 100vh;
   background-color: white;
   text-align: center;
 }
@@ -26,16 +34,27 @@ a:hover {
 .market3 {
   background-color: $purple;
   text-align: center;
-  height: 70vh;
+  height: 100vh;
 }
 
-#marketBoxes {
-  padding-top: 135px;
+.marketBoxes {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  h1{
+    font-weight: bold;
+    font-size: 6rem;
+  }
+  p{
+    width:80%;
+    margin:0 auto;
+    font-size: 3rem;
+    text-align: left;
+  }
 }
 
 .homeIcons {
-  font-size: 169px;
-  padding-top: 120px;
+  font-size: 200px;
   text-align: center;
 }
 
