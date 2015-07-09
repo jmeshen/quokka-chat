@@ -20,8 +20,14 @@ var schema = new mongoose.Schema({
         required: true
     },
     rating: {
-        type: Number,
-        default: 0
+        score: {
+            type: Number,
+            default: 0
+        },
+        users: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }]
     },
     videoTime: {
         type: Number
