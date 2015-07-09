@@ -1,4 +1,4 @@
-app.directive('heatmap', function() {
+app.directive('heatmap', function(VideoFactory) {
     return {
         restrict: 'E',
         scope: {
@@ -24,8 +24,7 @@ app.directive('heatmap', function() {
                 var bucket = Math.floor(scope.comments[i].videoTime / 5)
                 scope.heatMapComments[bucket]++
             }
-            // scope.heatMapComments = [22, 41, 2, 3, 1, 44, 12, 31, 52, 11, 5, 8, 4, 7, 29, 6, 2, 4, 7, 3, 1, 4, 4, 56, 2, 5, 5, 2, 4, 6, 3, 4, 54, 64, 2, 57, 2, 5, 8, 2, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-            console.log(scope.heatMapComments.length * 5, scope.duration)
+            // scope.heatMapComments = [22, 41, 2, 3, 1, 44, 12, 31, 52, 11, 5, 8, 4, 7, 29, 36, 27, 48, 17, 3, 13, 4, 42, 56, 21, 53, 34, 22, 44, 26, 33, 64, 54, 64, 42, 57, 23, 51, 28, 25, 15, 11, 31, 21, 41, 51, 13, 31, 16, 19, 18, 14, 12, 13, 14, 31]
             var w = 400
             var h = 40
             var factor = h / Math.max.apply(Math, scope.heatMapComments)
@@ -65,10 +64,14 @@ app.directive('heatmap', function() {
                     return d * factor;
                 })
                 .attr("fill", function(d) {
-                    return "rgb(" + (d * 15) + "," + d * 15 + "," + d * 20 + ")";
+
+                    return "rgb(" + Math.floor((d * factor * 3)) + "," + Math.floor((d * factor * 3.5)) + "," + Math.floor((d * factor * 6)) + ")";
                 })
                 .on('mouseover', tip.show)
-                .on('mouseout', tip.hide);
+                .on('mouseout', tip.hide)
+                .on('click', function(d, i) {
+                    VideoFactory.seekTo(i * 5)
+                })
 
             // svg.selectAll("text")
             //     .data(scope.heatMapComments)
