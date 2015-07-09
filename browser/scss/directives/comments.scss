@@ -22,9 +22,12 @@
 .comments {
   // max-height: 300px;
   overflow: scroll;
-  // .child {
-  //  border: 1px solid black;
-  // }
+  .child {
+    .glyphicon-comment {
+      font-size: 22px;
+      float: right;
+    }
+  }
 }
 
 .panel-collapse {
