@@ -86,13 +86,16 @@ gulp.task('testBrowserJS', function(done) {
 });
 
 gulp.task('buildCSS', function() {
+    console.log("HELLO", {
+        includePaths: require('node-bourbon').includePaths
+    })
     return gulp.src('./browser/scss/main.scss')
         .pipe(plumber())
         .pipe(sass({
             includePaths: require('node-bourbon').includePaths
         }))
         .pipe(rename('style.css'))
-        .pipe(gulp.deherst('./public'));
+        .pipe(gulp.dest('./public'));
 });
 
 gulp.task('seedDB', function() {
