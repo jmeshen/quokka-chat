@@ -1,27 +1,44 @@
+.changingHeader {
+  height: 40vh;
+}
 
-#home {
-  fullstack-logo {
-    padding-top: 30px;
-    padding-bottom: 80px;
-    width: 150px;
-    margin: 0 auto;
-  }
-  h1 {
-    margin-top: 40px;
-    text-align: center;
-  }
+a {
+  color: #8153E0;
 }
-.home-cont {
-  padding-bottom: 5%;
+
+a:hover {
+  color: black;
+  text-decoration: none;
 }
-.jumbotron .container {
+
+.market1 {
+  height: 70vh;
+  background-color: rgba(187, 182, 205, 0.25);
   text-align: center;
-  // color: $accent;
 }
-.jumbotron {
-  background: white;
-  margin-top: -20px;
+
+.market2 {
+  height: 70vh;
+  background-color: white;
+  text-align: center;
 }
+
+.market3 {
+  background-color: rgba(187, 182, 205, 0.25);
+  text-align: center;
+  height: 70vh;
+}
+
+#marketBoxes {
+  padding-top: 135px;
+}
+
+.glyphicon {
+  font-size: 169px;
+  padding-top: 120px;
+  text-align: center;
+}
+
 .quokka {
   // background: url("https://files.slack.com/files-pri/T024FPYBQ-F076GHNCV/quokka.png") no-repeat;
   img {
