@@ -1,11 +1,12 @@
-<div>
-	<h1>ADMIN-ONLY</h1>
-	<div id='manage-user' class='col-md-4'>
+<div class='col-sm-6 col-sm-offset-3'>
+	<h1>ADMIN ONLY</h1>
+	<div id='manage-user'>
 		<div ng-hide='successMessage'>
+			<br/>
 			<h3>Manage User</h3>
-			<h4>Find user</h4>
 			<form ng-submit='getUser(email)'>
-				<div class = 'form-group'>
+				<div class='form-group'>
+					<label for='manage-user'>Find User</label>
 					<input type="text" class="form-control" placeholder="Find a user by email" ng-model='email'></input>
 				</div>
 				<button type='submit' class='btn btn-default'>Find user!</button>
