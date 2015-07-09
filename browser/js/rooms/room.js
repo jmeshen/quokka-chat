@@ -20,7 +20,6 @@ app.controller('AllRoomCtrl', function($scope, VideoFactory, user, $state) {
             return user.powerLevel === 'admin';
         }
     }
-    // console.log($scope.isAdmin());
 
     VideoFactory.getAll().then(function(videos) {
         $scope.videos = videos;
