@@ -40,7 +40,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         $scope.duration = player.getDuration()
     })
 
-
     $scope.hideAddComment = function() {
         if (user) {
             return false;
@@ -48,7 +47,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
             return true;
         }
     }
-
+    console.log($scope.comments)
 
     $scope.refreshDisplay = function(num) {
         var x = Math.floor(num / 5)
@@ -112,20 +111,32 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         // console.log(parent._id);
         CommentFactory.getReplies(parent._id).then(function(replies) {
             replies = replies.sort(function(a, b) {
-                return parseInt(b.rating) - parseInt(a.rating);
+                return parseInt(b.rating.score) - parseInt(a.rating.score);
             });
             $scope.children = replies;
         });
     }
 
     $scope.upVote = function(comment) {
-        comment.rating++;
-        CommentFactory.changeRating(comment._id, comment);
+        if (comment.rating.users.indexOf($scope.user) !== -1) {
+            comment.rating.score--;
+            comment.rating.users.splice(comment.rating.users.indexOf($scope.user), 1)
+        } else {
+            comment.rating.score++
+            comment.rating.users.push($scope.user)
+            CommentFactory.changeRating(comment._id, comment);
+        }
     }
 
     $scope.downVote = function(comment) {
-        comment.rating--;
-        CommentFactory.changeRating(comment._id, comment);
+        if (comment.rating.users.indexOf($scope.user) !== -1) {
+            comment.rating.score++;
+            comment.rating.users.splice(comment.rating.users.indexOf($scope.user), 1)
+        } else {
+            comment.rating.score--
+            comment.rating.users.push($scope.user)
+            CommentFactory.changeRating(comment._id, comment);
+        }
     }
 
     $scope.addingComment = function(comment) {

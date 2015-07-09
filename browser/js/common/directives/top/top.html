@@ -1,8 +1,9 @@
 <div class = "topContainer">
 	<h4 class = "header">These are the top comments of the video!</h4>
+	<hr>
 	<div class = "topComment" tooltip="@{{comment.videoTime | secondsToDateTime}}" ng-repeat = "comment in comments" ng-click = "seek(comment.videoTime)" tooltip-placement="left">
 		<h5 class = "title">{{comment.title}}</h5>
 			<span>{{comment.content}}</span>
-		<h5 class = "score">{{comment.rating}}</h5> 
+		<h5 class = "score">{{comment.rating.score}}</h5> 
 	</div>
 </div>
