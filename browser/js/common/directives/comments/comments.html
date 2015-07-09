@@ -2,9 +2,9 @@
 	<div class='children' ng-hide='checked'>
 		<div class='comments'>
 				<div class = "comment-content">
-					<h4>{{comment.content}}</h4>
+					<p>{{comment.content}}</p>
 					<br>
-					<small>Discussion started by {{comment.username}} at {{comment.commentTime | date: 'medium'}}</small>
+					<small class="text-muted">Discussion started by {{comment.username}} at {{comment.commentTime | date: 'medium'}}</small>
 				</div>
 			<hr>
 			<div ng-repeat='child in children' class="child-comments" popover="Click comment to see replies" popover-trigger="mouseenter" popover-placement="top">
