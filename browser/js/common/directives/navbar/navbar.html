@@ -1,4 +1,4 @@
-<nav class="navbar navbar-static-top">
+<!-- <nav class="navbar navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <img ui-sref="home" src="/../../img/quokka.svg">
@@ -18,4 +18,54 @@
             <a ng-click="logout()">Logout</a>
         </div>
     </div>
+
+</nav> -->
+
+<nav class="navbar navbar-static-top">
+    <div class="nav-container">
+        <div class="navbar-header">
+        <div ng-show="user" class="welcome">
+            
+            <img ui-sref="home" src="/../../img/quokka.svg">
+            <span>Hi, {{ user.username }}!</span>
+            
+        </div>
+        </div>
+        <ul class="nav navbar-nav">
+            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+            </li>
+            <li ng-show='user.powerLevel === "admin"'>
+                <a ui-sref-active="active" ui-sref="admin-only">Admin Only</a>
+            </li>
+            <li ng-show="user"><a ng-click="logout()">Logout</a></li>
+            <li ng-show="!user" ui-sref="login"><a>Login</a></li>
+            <li ng-show="!user" ui-sref="signUp"><a>Sign-up</a></li>
+        </ul>
+    </div>
+
 </nav>
+
+<!-- <nav class="desktop">
+    <div ng-show="user" class="welcome">
+        <span>Hi, {{ user.username }}!</span>
+            
+        <img ui-sref="home" src="/../../img/quokka.svg">
+    </div>
+        <ul class="nav navbar-nav">
+            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+            </li>
+            <li ng-show='user.powerLevel === "admin"'>
+                <a ui-sref-active="active" ui-sref="admin-only">Admin Only</a>
+            </li>
+            <li ng-show="!user" ui-sref="login">
+                <a ui-sref-active="active" ui-sref="login">Login</a>
+            </li>
+            <li>
+                <a ng-click="logout()">Logout</a>
+            </li>
+        </ul>
+
+
+</nav> -->
