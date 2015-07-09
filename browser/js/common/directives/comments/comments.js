@@ -77,7 +77,6 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
             //////////////////////////DELETE COMMENTS///////////////////////////
 
             scope.deleteComment = function(comment) {
-                // var rent = comment.parent;
                 CommentFactory.removeComment(comment._id).then(function() {
                     if (scope.grandChildren) {
                         if (scope.grandChildren.indexOf(comment) > -1) {
@@ -85,8 +84,10 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                             scope.grandChildren.splice(index, 1);
                         }
                     } else {
+                        console.log('BEFORE', scope.children);
                         var index = scope.children.indexOf(comment);
                         scope.children.splice(index, 1);
+                        console.log('AFTER', scope.children);
                     }
                 })
             }
