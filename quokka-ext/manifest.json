@@ -7,7 +7,7 @@
 
     "browser_action": {
         "default_icon": "quokka.png",
-        "default_title": "QUOKKA!!!",
+        "default_title": "Quokka",
         "default_popup": "popup.html"
     },
     "content_scripts": [{
@@ -19,5 +19,9 @@
         "https://ajax.googleapis.com/",
         "http://localhost:1337/*",
         "https://www.youtube.com/watch*"
-    ]
+    ],
+    "externally_connectable": {
+        "ids": ["*"],
+        "matches": ["https://quokka-chat.herokuapp.com/*"]
+    }
 }

@@ -28,9 +28,14 @@ $('.quokka').click(function() {
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:1337/api/video/",
+        url: "https://quokka-chat.herokuapp.com/api/video/",
         beforeSend: function(xhr) {
-            xhr.setRequestHeader('X-My-Custom-Header-Name', '42');
+            // xhr.setRequestHeader('X-My-Custom-Header-Name', '42');
+        },
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
         },
         data: {
             embedId: 'embedId',
