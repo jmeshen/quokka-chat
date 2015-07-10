@@ -1,16 +1,16 @@
 <div class="row room">
 <video-box class="col-md-5" video="video"></video-box>
 <div class='col-md-7 comment-container'>
-    <div class="row" video="video" ng-hide='clicked'>
+    <div class="row" video="video">
         <div class="comment-box-header">
-            <h1>Discuss: "{{video.name}}"<span slide-toggle="#add-comment" ng-hide='hideAddComment()' class="glyphicon glyphicon-plus-sign"></span></h1>
-            <div id="add-comment" class="slideable">
-                <form class='row' ng-submit="addingComment(comment)">
+            <h1>Discuss: "{{video.name}}"<span ng-click='showForm()' ng-hide='clicked' class="glyphicon glyphicon-plus-sign"></span><span ng-click='hideForm()' ng-show='clicked' class="glyphicon glyphicon-minus-sign"></span></h1>
+            <div id="add-comment" ng-show='clicked'>
+                <form class='row' ng-submit="addingComment(comment);">
                     <div class="form-group">
                         <input type="text" class="form-control" id="newCommentTitle" placeholder="Comment title" ng-model="comment.title">
 
                         <textarea class="form-control" id="newCommentText" placeholder="Give some context" ng-model="comment.content"></textarea>
-                        <button type="submit" slide-toggle="#add-comment" class="btn btn-default" ng-hide='hideAddComment()'>Submit</button>
+                        <button type="submit" class="btn btn-default">Submit</button>
                     </div>
                     <!-- <div class="form-group">
                         <tags-input ng-model='comment.tags'></tags-input>
