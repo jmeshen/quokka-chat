@@ -86,13 +86,15 @@ gulp.task('testBrowserJS', function(done) {
 });
 
 gulp.task('buildCSS', function() {
-
+    fs.writeFileSync.err("HELLO.txt",
+        __dirname + '/node_modules/node-bourbon/node_modules/bourbon/app/assets/stylesheets'
+    )
     // throw Error(require('node-bourbon').includePaths)
     console.log('hello', require('node-bourbon').includePaths)
     return gulp.src('./browser/scss/main.scss')
         // .pipe(plumber())
         .pipe(sass({
-            includePaths: require('node-bourbon').includePaths
+        // includePaths: [__dirname + '/node_modules/node-bourbon/node_modules/bourbon/app/assets/stylesheets']
         }))
         .pipe(rename('style.css'))
         .pipe(gulp.dest('./public'));
