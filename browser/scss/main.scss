@@ -17,7 +17,7 @@ $navbar: #A19EA5;
 $bg: #fff;
 $layer: #EAEAEA;
 $accent: #8153E0;
-span:focus {
+span:focus, a:focus {
     // outline:0px !important;
     // -webkit-appearance:none;
     outline: none;
