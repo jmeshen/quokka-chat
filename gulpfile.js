@@ -86,12 +86,13 @@ gulp.task('testBrowserJS', function(done) {
 });
 
 gulp.task('buildCSS', function() {
+
     // throw Error(require('node-bourbon').includePaths)
     console.log('hello', require('node-bourbon').includePaths)
     return gulp.src('./browser/scss/main.scss')
         // .pipe(plumber())
         .pipe(sass({
-            includePaths: ['/app/node_modules/node-bourbon/node_modules/bourbon/app/assets/stylesheets']
+            includePaths: require('node-bourbon').includePaths
         }))
         .pipe(rename('style.css'))
         .pipe(gulp.dest('./public'));
