@@ -25,13 +25,11 @@ router.get('/:parentId/response/', function(req, res, next) {
     }).populate('user').exec(function(err, comments) {
         if (err) return handleError(err);
     }).then(function(comments) {
-        console.log(comments);
         res.json(comments);
     })
 })
 
 router.post('/', function(req, res, next) {
-    console.log("made it", req.body);
     var comment = new Comment(req.body);
     comment.save(function(err) {
         if (err) return next(err);
@@ -50,7 +48,6 @@ router.post('/:parentId/response/', function(req, res, next) {
 })
 
 router.put('/:commentId', function(req, res, next) {
-    console.log('THIS IS REQ.BODY!!!', req.body)
     Comment.findById(req.params.commentId, function(err, comment) {
         if (err) return next(err);
         comment.rating = req.body.rating;
@@ -61,11 +58,9 @@ router.put('/:commentId', function(req, res, next) {
 });
 
 router.delete('/delete/:commentId', function(req, res, next) {
-    console.log('hitting delete route!');
     Comment.findById(req.params.commentId).exec()
         .then(function(comment) {
-            console.log(comment);
             comment.remove();
-        res.status(204).send();
+            res.status(204).send();
         }).then(null, next);
 })
