@@ -3,7 +3,15 @@ app.config(function($stateProvider) {
     $stateProvider.state('login', {
         url: '/login',
         templateUrl: 'js/login/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        resolve: {
+            user: function(AuthService, $state) {
+                return AuthService.getLoggedInUser().then(function(user) {
+                    console.log(user)
+                    if (user) $state.go('allRooms')
+                })
+            }
+        }
     });
 
 });

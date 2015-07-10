@@ -117,19 +117,19 @@ a {
 
 .cd-intro {
 	width: 90%;
-	max-width: $M;
+	// max-width: $M;
 	text-align: center;
 }
 
 .cd-intro {
-	margin: 4em auto;
+	// margin: 4em auto;
 
 	@include MQ(M) {
-		margin: 5em auto;
+		// margin: 5em auto;
 	}
 
 	@include MQ(L) {
-		margin: 6em auto;
+		// margin: 6em auto;
 	}
 }
 
@@ -138,12 +138,12 @@ a {
 	line-height: 1.2;
 
 	@include MQ(M) {
-		font-size: 4.4rem;
+		font-size: 5rem;
 		font-weight: 300;
 	}
 
 	@include MQ(L) {
-		font-size: 6rem;
+		font-size: 8rem;
 	}
 }
 
