@@ -12,9 +12,6 @@ app.directive('footer', function($rootScope, $state) {
             }, {
                 label: 'Quincy',
                 state: 'quincy'
-            }, {
-                label: 'Contact',
-                state: 'contact'
             }];
         }
     };

@@ -1,9 +1,9 @@
 .comment-container {
-  height: 85vh;
-  overflow: scroll;
-  .row {
-    width: 70%;
-  }
+  // height: 85vh;
+  overflow: auto;
+  // .row {
+  //   width: 70%;
+  // }
 }
 .comment-content {
   position: relative;
@@ -12,18 +12,47 @@
     bottom: 0;
     right: 0;
   }
+  div {
+    display: inline-block;
+  }
+  .comment-context {
+
+  }
+}
+.comment-box-header {
+  // text-align: center;
+  span {
+    float: right;
+  }
+  h1 {
+    display: inline-block;
+    span {
+      font-size: 1.1em;
+      color: #ccc;
+      &:hover {
+        color: $accent;
+      }
+    }
+
+  }
+  input, textarea {
+    width: 40%;
+  }
 }
 .comments {
   // max-height: 300px;
-  overflow: scroll;
-  // .child {
-  // 	border: 1px solid black;
-  // }
+  // overflow: scroll;
+  .child {
+    .glyphicon-comment {
+      font-size: 22px;
+      float: right;
+    }
+  }
 }
 
 .panel-collapse {
-  max-height: 300px;
-  overflow: scroll;
+  // max-height: 300px;
+  // overflow: scroll;
 }
 
 .children {
@@ -36,4 +65,39 @@
   small {
     float: right;
   }
+}
+.panel-default > .panel-heading {
+  background-color: #fff;
+}
+.panel-group .panel {
+  border-radius: 0;
+}
+.panel-heading {
+  border-radius: 0;
+  background-color: #fff;
+  border-color: none;
+  // box-shadow: 0px 3px #E5E4E5;
+  padding: 2%;
+}
+
+.vote-btns {
+  position: relative;
+  span {
+    position: absolute;
+  }
+  p {
+    position: relative;
+  }
+  span:first-of-type {
+  }
+  span:last-of-type {
+    top: 30px;
+  }
+  p {
+    top: 12px;
+    left: 3px;
+  }
+  height: 45px;
+  width: 27px;
+  margin-left: -12px;
 }

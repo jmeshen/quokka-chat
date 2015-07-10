@@ -2,7 +2,7 @@
   margin: 0 auto;
 }
 .room {
-  height: 85vh;
+  height: auto;
   overflow: hidden;
   width: 95%
 }
@@ -15,4 +15,5 @@
   padding: 1px 30px;
   background-color: #eee;
   cursor: pointer;
+  word-wrap: break-word;
 }

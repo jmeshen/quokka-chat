@@ -71,6 +71,12 @@ app.factory('VideoFactory', function($http, $rootScope) {
         })
     }
 
+    video.getVideoByEmbedId = function(embedId) {
+        return $http.get('/api/video/embedid/' + embedId).then(function(video) {
+            return video.data;
+        })
+    }
+
     video.add = function(newVideo) {
         return $http.post('api/video/', newVideo).then(function(response) {
             return response.data;

@@ -5,10 +5,16 @@ h1, h2, h3, h4 {
   font-family: 'Raleway', sans-serif;
 }
 
+p {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 100;
+}
+
 .footerDiv {
- height: 15vh;
+ height: 35vh;
  text-align: center;
  padding-top: 35px;
+ bottom: 0;
   .footerLinks > a {
   	color: #480293;
   }
@@ -21,6 +27,12 @@ $navbar: #A19EA5;
 $bg: #fff;
 $layer: #EAEAEA;
 $accent: #8153E0;
+span:focus {
+    // outline:0px !important;
+    // -webkit-appearance:none;
+    outline: none;
+    border: 0;
+}
 
 body {
   // background: $bg !important;
@@ -33,6 +45,10 @@ body {
   }
 }
 
+.btn-default{
+	background-color: $accent !important;
+	color: white !important;
+}
 //headline animation
 // colors
 
@@ -40,9 +56,9 @@ $color-1: #aebcb9; // Tower Gray
 $color-2: #0096a7; // Bondi Blue
 $color-3: #0d0d0d; // Cod Gray
 
-// fonts 
+// fonts
 
-$primary-font: 'Source Sans Pro', sans-serif;
+//$primary-font: 'Roboto', sans-serif;
 //^ headline animation
 
 
@@ -56,13 +72,10 @@ $primary-font: 'Source Sans Pro', sans-serif;
 @import 'tutorial/main';
 @import 'login/main';
 @import 'rooms/main';
+@import 'quincy/main';
 
 
-/* -------------------------------- 
 
-Primary style
-
--------------------------------- */
 
 *, *::after, *::before {
 	@include box-sizing(border-box);
@@ -80,7 +93,7 @@ html {
 body {
 	font: {
 		size: 1.6rem;
-		family: $primary-font; // variables inside partials > _variables.scss
+		//family: $primary-font; // variables inside partials > _variables.scss
 	}
 	color: $color-1;
 	background-color: $color-3;
@@ -117,19 +130,19 @@ a {
 
 .cd-intro {
 	width: 90%;
-	max-width: $M;
+	// max-width: $M;
 	text-align: center;
 }
 
 .cd-intro {
-	margin: 4em auto;
+	// margin: 4em auto;
 
 	@include MQ(M) {
-		margin: 5em auto;
+		// margin: 5em auto;
 	}
 
 	@include MQ(L) {
-		margin: 6em auto;
+		// margin: 6em auto;
 	}
 }
 
@@ -138,12 +151,12 @@ a {
 	line-height: 1.2;
 
 	@include MQ(M) {
-		font-size: 4.4rem;
+		font-size: 5rem;
 		font-weight: 300;
 	}
 
 	@include MQ(L) {
-		font-size: 6rem;
+		font-size: 8rem;
 	}
 }
 
@@ -166,7 +179,7 @@ a {
 
 	.no-js & b {
 		opacity: 0;
-		
+
 		&.is-visible {
 			opacity: 1;
 		}
@@ -174,14 +187,14 @@ a {
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xrotate-1 
+xrotate-1
 
 -------------------------------- */
 
 .cd-headline.rotate-1 {
-	
+
 	.cd-words-wrapper {
 		@include perspective(300px);
 	}
@@ -246,14 +259,14 @@ xrotate-1
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xtype 
+xtype
 
 -------------------------------- */
 
 .cd-headline.type {
-	
+
 	.cd-words-wrapper {
 		vertical-align: top;
 		overflow: hidden;
@@ -271,7 +284,7 @@ xtype
 
 		&.waiting::after {
 			@include animation(cd-pulse 1s infinite);
-		} 
+		}
 
 		&.selected {
 			background-color: $color-1;
@@ -323,9 +336,9 @@ xtype
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xrotate-2 
+xrotate-2
 
 -------------------------------- */
 
@@ -414,9 +427,9 @@ xrotate-2
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xloading-bar 
+xloading-bar
 
 -------------------------------- */
 
@@ -462,9 +475,9 @@ xloading-bar
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xslide 
+xslide
 
 -------------------------------- */
 
@@ -530,9 +543,9 @@ xslide
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xclip 
+xclip
 
 -------------------------------- */
 
@@ -568,9 +581,9 @@ xclip
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xzoom 
+xzoom
 
 -------------------------------- */
 
@@ -618,9 +631,9 @@ xzoom
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xrotate-3 
+xrotate-3
 
 -------------------------------- */
 
@@ -682,9 +695,9 @@ xrotate-3
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xscale 
+xscale
 
 -------------------------------- */
 
@@ -751,9 +764,9 @@ xscale
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xpush 
+xpush
 
 -------------------------------- */
 
