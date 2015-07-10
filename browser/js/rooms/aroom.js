@@ -117,27 +117,27 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         });
     }
 
-    $scope.upVote = function(comment) {
-        if (comment.rating.users.indexOf($scope.user) !== -1) {
-            comment.rating.score--;
-            comment.rating.users.splice(comment.rating.users.indexOf($scope.user), 1)
-        } else {
-            comment.rating.score++
-            comment.rating.users.push($scope.user)
-            CommentFactory.changeRating(comment._id, comment);
-        }
-    }
+    // $scope.upVote = function(comment) {
+    //     if (comment.rating.users.indexOf($scope.user) !== -1) {
+    //         comment.rating.score--;
+    //         comment.rating.users.splice(comment.rating.users.indexOf($scope.user), 1)
+    //     } else {
+    //         comment.rating.score++
+    //         comment.rating.users.push($scope.user)
+    //         CommentFactory.changeRating(comment._id, comment);
+    //     }
+    // }
 
-    $scope.downVote = function(comment) {
-        if (comment.rating.users.indexOf($scope.user) !== -1) {
-            comment.rating.score++;
-            comment.rating.users.splice(comment.rating.users.indexOf($scope.user), 1)
-        } else {
-            comment.rating.score--
-            comment.rating.users.push($scope.user)
-            CommentFactory.changeRating(comment._id, comment);
-        }
-    }
+    // $scope.downVote = function(comment) {
+    //     if (comment.rating.users.indexOf($scope.user) !== -1) {
+    //         comment.rating.score++;
+    //         comment.rating.users.splice(comment.rating.users.indexOf($scope.user), 1)
+    //     } else {
+    //         comment.rating.score--
+    //         comment.rating.users.push($scope.user)
+    //         CommentFactory.changeRating(comment._id, comment);
+    //     }
+    // }
 
     $scope.addingComment = function(comment) {
         comment = {

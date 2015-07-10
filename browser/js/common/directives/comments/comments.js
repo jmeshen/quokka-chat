@@ -31,13 +31,25 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
 
             scope.childComment = {};
             scope.upVote = function(comment) {
-                comment.rating++;
-                CommentFactory.changeRating(comment._id, comment);
+                if (comment.rating.users.indexOf(scope.user) !== -1) {
+                    comment.rating.score--;
+                    comment.rating.users.splice(comment.rating.users.indexOf(scope.user), 1)
+                } else {
+                    comment.rating.score++
+                    comment.rating.users.push(scope.user)
+                    CommentFactory.changeRating(comment._id, comment);
+                }
             }
 
             scope.downVote = function(comment) {
-                comment.rating--;
-                CommentFactory.changeRating(comment._id, comment);
+                if (comment.rating.users.indexOf(scope.user) !== -1) {
+                    comment.rating.score++;
+                    comment.rating.users.splice(comment.rating.users.indexOf(scope.user), 1)
+                } else {
+                    comment.rating.score--
+                    comment.rating.users.push(scope.user)
+                    CommentFactory.changeRating(comment._id, comment);
+                }
             }
 
 

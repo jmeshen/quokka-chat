@@ -73,6 +73,16 @@ router.get('/tag/:tag', function(req, res) {
     })
 })
 
+router.get('/embedid/:embedId', function(req, res) {
+    Video.findOne({
+        embedId: req.params.embedId
+    }).exec().then(function(video) {
+        res.json(video);
+    }, function(err) {
+        console.log(err);
+    })
+})
+
 router.post('/', function(req, res) {
     var url = req.body.url;
     getVideoInfo(url).then(function(info) {
