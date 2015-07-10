@@ -10,17 +10,7 @@ p {
 	font-weight: 100;
 }
 
-.footerDiv {
- height: 35vh;
- text-align: center;
- padding-top: 35px;
- bottom: 0;
-  .footerLinks > a {
-  	color: #480293;
-  }
- // position: fixed;
- // bottom: 
-}
+
 // Colors
 $purple:rgba(187, 182, 205, 0.25);
 $navbar: #A19EA5;
@@ -37,6 +27,18 @@ span:focus {
 body {
   // background: $bg !important;
 }
+
+.footerDiv {
+ height: 10vh;
+ background-color: #8153E0;
+ padding-top: 20px;
+ text-align: center;
+ bottom: 0;
+  .footerLinks > a {
+  	color: white;
+  } 
+}
+
 @mixin clearfix {
   &:after {
     content: "";
