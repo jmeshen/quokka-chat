@@ -109,13 +109,11 @@ router.put('/:id', function(req, res, next) {
             return video.save();
         })
         .then(function(video) {
-            console.log('saved', video);
             return Video.populate(video, {
                 path: 'comments'
             })
         })
         .then(function(video) {
-            console.log('pop', video)
             res.json(video);
         })
         .then(null, next);
