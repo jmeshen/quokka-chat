@@ -86,7 +86,7 @@ gulp.task('testBrowserJS', function(done) {
 });
 
 gulp.task('buildCSS', function() {
-    console.log("HELLO",
+    console.err("HELLO",
         __dirname + '/node_modules/node-bourbon/node_modules/bourbon/app/assets/stylesheets'
     )
     // throw Error(require('node-bourbon').includePaths)
