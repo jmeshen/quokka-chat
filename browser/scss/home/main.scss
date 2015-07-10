@@ -7,7 +7,7 @@
 
 }
 
-body > div > div.col-lg-12.changingHeader.ng-scope > section > h1{
+body > div > div.col-md-12.changingHeader.ng-scope > section > h1{
   text-size: 5.5em;
 }
 a {
@@ -17,6 +17,21 @@ a {
 a:hover {
   color: black;
   text-decoration: none;
+}
+
+.home-pane {
+  > a {
+    font-size: 4em;
+    position: absolute;
+    bottom: 0;
+    left: 49%;
+    transition: all 1s ease-in-out;
+    &:hover {
+      transform: translateY(10px);
+    }
+  }
+  position: relative;
+
 }
 
 .market1 {
@@ -54,7 +69,7 @@ a:hover {
 }
 
 .homeIcons {
-  font-size: 200px;
+  font-size: 13em;
   text-align: center;
 }
 
