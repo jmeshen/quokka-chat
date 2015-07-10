@@ -25,8 +25,8 @@
 					<span class='glyphicon glyphicon-chevron-down' ng-click='downVote(child)'></span>
 				</div>
 				<div class='col-md-11 child'>
-					<span ng-click='getReplies(child)' slide-toggle="#grandkid_{{$index}}" class="glyphicon glyphicon-comment"></span>
-					<p>{{child.content}}</p>
+					<span ng-click='getReplies(child); toggle()' class="glyphicon glyphicon-comment"></span>
+					<p ng-click='getReplies(child); toggle()'>{{child.content}}</p>
 					<!-- <p class='col-md-11 child' ng-click='getReplies(child)' slide-toggle="#derp">{{child.content}}</p> -->
 					<!-- <div class="comment-content"> -->
 						<br>
@@ -34,14 +34,14 @@
 					<!-- </div> -->
 					<!-- <hr> -->
 				</div>
-				<div class='col-md-12 grandchildren slideable' id="grandkid_{{$index}}">
+				<!-- <div class='col-md-12 grandchildren slideable' id="grandkid_{{$index}}">
 					<p ng-repeat='kid in grandChildren'> {{kid.content}} <br>
 						{{kid.username}} | {{kid.commentTime | date: 'short'}} <span ng-show='isAdmin()' ng-click='deleteComment(kid)'>| delete</span></p>
 					<form ng-show='user' ng-submit='replyToReply()'>
 						<input type="text" class="form-control" placeholder="add a reply" ng-model='grandChild.content'></input>
 						<button>Add response</button>
 					</form>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<form ng-show='user' ng-submit="reply()">
@@ -53,13 +53,13 @@
 	<!-- go back to children -->
 	<button ng-hide='!checked' ng-click='toggle()'>&larr;</button>
 <!-- show grandchildren -->
-	<!-- <div class='grandchildren' ng-show='checked'> -->
-	<!-- <div class='grandchildren'>
+	<div class='grandchildren' ng-show='checked'>
+	<div class='grandchildren'>
 		<p ng-repeat='kid in grandChildren'> {{kid.content}} <br>
 			{{kid.username}} | {{kid.commentTime | date: 'short'}} <span ng-show='isAdmin()' ng-click='deleteComment(kid)'>| delete</span></p>
 		<form ng-show='user' ng-submit='replyToReply()'>
 			<input type="text" class="form-control" placeholder="add a reply" ng-model='grandChild.content'></input>
 			<button>Add response</button>
 		</form>
-	</div> -->
-<!-- </div> -->
+	</div>
+</div>
