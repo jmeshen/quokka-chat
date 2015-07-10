@@ -73,6 +73,14 @@ a:hover {
   text-align: center;
 }
 
+.footerLinks {
+  list-style: none;
+  padding-top: 2vh;
+  padding-left: 10px;
+  display: inline-block;
+  color: white;
+}
+
 .quokka {
   // background: url("https://files.slack.com/files-pri/T024FPYBQ-F076GHNCV/quokka.png") no-repeat;
   img {
