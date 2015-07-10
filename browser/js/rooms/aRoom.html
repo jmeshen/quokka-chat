@@ -3,14 +3,14 @@
 <div class='col-md-7 comment-container'>
     <div class="row" video="video" ng-hide='clicked'>
         <div class="comment-box-header">
-            <h1>Discuss: "{{video.name}}"<span slide-toggle="#add-comment" class="glyphicon glyphicon-plus-sign"></span></h1>
+            <h1>Discuss: "{{video.name}}"<span slide-toggle="#add-comment" ng-hide='hideAddComment()' class="glyphicon glyphicon-plus-sign"></span></h1>
             <div id="add-comment" class="slideable">
                 <form class='row' ng-submit="addingComment(comment)">
                     <div class="form-group">
                         <input type="text" class="form-control" id="newCommentTitle" placeholder="Comment title" ng-model="comment.title">
 
                         <textarea class="form-control" id="newCommentText" placeholder="Give some context" ng-model="comment.content"></textarea>
-                        <button type="submit" slide-toggle="#add-comment" class="btn btn-default">Submit</button>
+                        <button type="submit" slide-toggle="#add-comment" class="btn btn-default" ng-hide='hideAddComment()'>Submit</button>
                     </div>
                     <!-- <div class="form-group">
                         <tags-input ng-model='comment.tags'></tags-input>
