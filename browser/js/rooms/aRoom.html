@@ -2,22 +2,25 @@
 <video-box class="col-md-5" video="video"></video-box>
 <div class='col-md-7 comment-container'>
     <div class="row" video="video" ng-hide='clicked'>
-        <accordion close-others="oneAtATime">
-            <h3><span ng-show="empty && !user">There's nothing here. <a ui-sref="login">Login</a> or <a ui-sref="signUp">sign up</a> to start a discussion!</span><span ng-show="empty && user">There's nothing here. Start a discussion!</span></h3>
-            <!-- <button class="btn btn-info" ng-hide='hideAddComment()' ng-click="showForm()" ng-show="!clicked">Add a comment <span class="glyphicon glyphicon-plus-sign"></span></button> -->
-            <button class="btn btn-info" slide-toggle="#add-comment">Add a comment <span class="glyphicon glyphicon-plus-sign"></span></button>
-            <div id="add-comment" class="slideable" duration="1s">
+        <div class="comment-box-header">
+            <h1>Discuss: "{{video.name}}"<span slide-toggle="#add-comment" class="glyphicon glyphicon-plus-sign"></span></h1>
+            <div id="add-comment" class="slideable">
                 <form class='row' ng-submit="addingComment(comment)">
                     <div class="form-group">
                         <input type="text" class="form-control" id="newCommentTitle" placeholder="Comment title" ng-model="comment.title">
-                        <input type="text" class="form-control" id="newCommentText" placeholder="Give some context" ng-model="comment.content">
+
+                        <textarea class="form-control" id="newCommentText" placeholder="Give some context" ng-model="comment.content"></textarea>
+                        <button type="submit" slide-toggle="#add-comment" class="btn btn-default">Submit</button>
                     </div>
                     <!-- <div class="form-group">
                         <tags-input ng-model='comment.tags'></tags-input>
                     </div> -->
-                    <button type="submit" class="btn btn-default">Submit</button>
                 </form>
             </div>
+        </div>
+        <accordion close-others="oneAtATime">
+            <h3><span ng-show="empty && !user">There's nothing here. <a ui-sref="login">Login</a> or <a ui-sref="signUp">sign up</a> to start a discussion!</span><span ng-show="empty && user">There's nothing here. Start a discussion!</span></h3>
+
             <accordion-group ng-repeat="comment in displaying" is-open="status.open" class="accordion-toggle">
                 <accordion-heading>
                     <span ng-click="getReplies(comment)">

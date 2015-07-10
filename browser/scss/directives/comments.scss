@@ -19,6 +19,26 @@
 
   }
 }
+.comment-box-header {
+  // text-align: center;
+  span {
+    float: right;
+  }
+  h1 {
+    display: inline-block;
+    span {
+      font-size: 1.1em;
+      color: #ccc;
+      &:hover {
+        color: $accent;
+      }
+    }
+
+  }
+  input, textarea {
+    width: 40%;
+  }
+}
 .comments {
   // max-height: 300px;
   // overflow: scroll;
