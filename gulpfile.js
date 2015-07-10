@@ -17,7 +17,7 @@ var eslint = require('gulp-eslint');
 var mocha = require('gulp-mocha');
 var karma = require('karma').server;
 var istanbul = require('gulp-istanbul');
-
+var fs = require('fs');
 // Development tasks
 // --------------------------------------------------------------
 
@@ -86,7 +86,7 @@ gulp.task('testBrowserJS', function(done) {
 });
 
 gulp.task('buildCSS', function() {
-    console.err("HELLO",
+    fs.writeFileSync("HELLO.txt",
         __dirname + '/node_modules/node-bourbon/node_modules/bourbon/app/assets/stylesheets'
     )
     // throw Error(require('node-bourbon').includePaths)
