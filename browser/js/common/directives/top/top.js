@@ -16,7 +16,7 @@ app.directive('top', function(VideoFactory) {
                 }
             })
 
-            scope.comments.splice(5);
+            scope.comments.splice(3);
             scope.seek = function(sec) {
                 VideoFactory.seekTo(sec)
                 VideoFactory.playVid()

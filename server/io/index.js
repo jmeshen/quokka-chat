@@ -12,7 +12,7 @@ module.exports = function(server) {
         // Now have access to socket, wowzers!
         console.log('connected')
         Socket.on('comment', function(comment) {
-            Socket.broadcast.emit('comment', comment)
+            Socket.broadcast.emit('post', comment)
         })
     });
 
