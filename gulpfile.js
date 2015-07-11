@@ -17,8 +17,6 @@ var eslint = require('gulp-eslint');
 var mocha = require('gulp-mocha');
 var karma = require('karma').server;
 var istanbul = require('gulp-istanbul');
-
-
 // Development tasks
 // --------------------------------------------------------------
 
@@ -87,10 +85,12 @@ gulp.task('testBrowserJS', function(done) {
 });
 
 gulp.task('buildCSS', function() {
+    // throw Error(require('node-bourbon').includePaths)
+    console.log('hello', require('node-bourbon').includePaths)
     return gulp.src('./browser/scss/main.scss')
-        .pipe(plumber())
+        // .pipe(plumber())
         .pipe(sass({
-            // includePaths: require('node-bourbon').includePaths
+            // includePaths: [__dirname + '/node_modules/node-bourbon/node_modules/bourbon/app/assets/stylesheets']
         }))
         .pipe(rename('style.css'))
         .pipe(gulp.dest('./public'));
