@@ -22,6 +22,7 @@ app.config(function($stateProvider) {
 
 
 app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, CommentFactory, VideoFactory, AuthService, Socket) {
+    //declaration of scope variables
     $scope.user = user
     $scope.video = VideoObj;
     $scope.clicked = false;
@@ -34,10 +35,10 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     $scope.displayComments = []
     $scope.clicked = false;
     $scope.display = false;
-    var refresher;
     $scope.empty = true
+    var refresher;
     ///////////////////////////////////////////////////////////////////////
-
+    //declaration of local functions
 
     $scope.hideAddComment = function() {
         if (user) {
@@ -57,7 +58,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
 
     }
     $scope.changeInterval = function(number) {
-        // $scope.interval = number * 1000
         var bucket = 0
         for (var i = 0; i < $scope.comments.length; i++) {
             if (!$scope.displayComments[bucket]) $scope.displayComments[bucket] = []
@@ -71,11 +71,12 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
 
         $scope.refreshDisplay(0)
     }
+    $scope.changeInterval(5)
+
+    //declaration of event emitters
     $rootScope.$on('duration', function(event, player) {
         $scope.duration = player.getDuration()
     })
-
-    $scope.changeInterval(5)
 
     $rootScope.$on('status', function(event, player) {
         if (player.getPlayerState() === 1) {
@@ -90,15 +91,18 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
             refresher = undefined
         }
     })
+
     $rootScope.$on('playing', function(event, currentTime) {
         $scope.refreshDisplay(currentTime)
 
     })
     ///////////////////////////////////////////////////////////////////////////
+
     Socket.on('post', function(SockComment) {
         var bucket = Math.floor(SockComment.videoTime / 5)
         $scope.displayComments[bucket].push(SockComment)
     })
+
     //////////////////////////////////////////////////////////////////////////
 
 
@@ -112,8 +116,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         $scope.comment = null
     }
     $scope.getReplies = function(parent) {
-        // console.log('this is the parent', parent);
-        // console.log(parent._id);
         CommentFactory.getReplies(parent._id).then(function(replies) {
             replies = replies.sort(function(a, b) {
                 return parseInt(b.rating.score) - parseInt(a.rating.score);
@@ -125,14 +127,12 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     $scope.addingComment = function(comment) {
         comment = {
             user: $scope.user._id,
-
             username: $scope.user.username,
             title: $scope.comment.title,
             videoTime: VideoFactory.getCurTime(),
             content: $scope.comment.content,
             tags: $scope.comment.tags
         }
-        // console.log(comment, "after");
         CommentFactory.saveComment(comment).then(function(comment) {
             VideoFactory.addCommentToVid(comment, $scope.video._id).then(function(video) {
                 $scope.comments = video.comments;
