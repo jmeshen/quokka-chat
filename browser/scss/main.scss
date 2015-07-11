@@ -70,8 +70,11 @@ $color-3: #0d0d0d; // Cod Gray
 //^ headline animation
 
 
-@import 'home/animate';
 
+@import '../../node_modules/node-bourbon/node_modules/bourbon/app/assets/stylesheets/_bourbon'; // http://bourbon.io/
+@import 'home/mixins'; // custom mixins
+@import 'home/layout'; // responsive grid and media queries
+@import 'home/animate';
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
