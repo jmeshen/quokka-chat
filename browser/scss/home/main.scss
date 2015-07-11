@@ -1,7 +1,15 @@
 .changingHeader {
-  height: 40vh;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -103px;
+
 }
 
+body > div > div.col-md-12.changingHeader.ng-scope > section > h1{
+  text-size: 5.5em;
+}
 a {
   color: $accent;
 }
@@ -11,14 +19,27 @@ a:hover {
   text-decoration: none;
 }
 
+.home-pane {
+  > a {
+    font-size: 4em;
+    position: absolute;
+    bottom: 0;
+    left: 49%;
+    transition: all 1s ease-in-out;
+    &:hover {
+      transform: translateY(10px);
+    }
+  }
+  position: relative;
+  height: 100vh;
+}
+
 .market1 {
-  height: 70vh;
   background-color: $purple;
   text-align: center;
 }
 
 .market2 {
-  height: 70vh;
   background-color: white;
   text-align: center;
 }
@@ -26,17 +47,45 @@ a:hover {
 .market3 {
   background-color: $purple;
   text-align: center;
-  height: 70vh;
 }
 
-#marketBoxes {
-  padding-top: 135px;
+.marketBoxes {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  h1{
+    font-weight: bold;
+    font-size: 6rem;
+  }
+  p{
+    width:80%;
+    margin:0 auto;
+    font-size: 3rem;
+    text-align: left;
+  }
 }
 
 .homeIcons {
-  font-size: 169px;
-  padding-top: 120px;
+  font-size: 13em;
   text-align: center;
+}
+
+.footerLinks {
+  list-style: none;
+  padding-top: 2vh;
+  padding-left: 10px;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  span, a {
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.navbar-toggle .icon-bar {
+  background-color: $accent;
 }
 
 .quokka {
@@ -63,6 +112,38 @@ a:hover {
       -o-transform: translateY(0%);
       -ms-transform: translateY(0%);
       transform: translateY(0%);
+    }
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .navbar-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  navbar .navbar-nav {
+    height: auto;
+  }
+  .home-pane {
+    > a {
+      font-size: 1.5em;
+    }
+    height: 60vh;
+    .marketBoxes {
+      .homeIcons {
+        font-size: 6em;
+      }
+      p {
+        font-size: 2rem;
+      }
+      h1 {
+        font-size: 4rem;
+      }
+      top: 35%;
+      &:last-of-type {
+        padding-top: 10%;
+      }
     }
   }
 }

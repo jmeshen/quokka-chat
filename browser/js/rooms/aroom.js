@@ -21,7 +21,8 @@ app.config(function($stateProvider) {
 
 
 
-app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, CommentFactory, VideoFactory, AuthService) {
+app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, CommentFactory, VideoFactory, AuthService, Socket) {
+    //declaration of scope variables
     $scope.user = user
     $scope.video = VideoObj;
     $scope.clicked = false;
@@ -34,11 +35,10 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     $scope.displayComments = []
     $scope.clicked = false;
     $scope.display = false;
-    var refresher;
     $scope.empty = true
-    $rootScope.$on('duration', function(event, player) {
-        $scope.duration = player.getDuration()
-    })
+    var refresher;
+    ///////////////////////////////////////////////////////////////////////
+    //declaration of local functions
 
     $scope.hideAddComment = function() {
         if (user) {
@@ -47,7 +47,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
             return true;
         }
     }
-    console.log($scope.comments)
 
     $scope.refreshDisplay = function(num) {
         var x = Math.floor(num / 5)
@@ -59,26 +58,26 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
 
     }
     $scope.changeInterval = function(number) {
-        $scope.interval = number * 1000
-        var lowerbound = 0 - (number / 2)
-        var upperbound = 0 + (number / 2)
         var bucket = 0
         for (var i = 0; i < $scope.comments.length; i++) {
             if (!$scope.displayComments[bucket]) $scope.displayComments[bucket] = []
-            if ((lowerbound < $scope.comments[i].videoTime) && ($scope.comments[i].videoTime < upperbound)) {
+            if ((Math.floor($scope.comments[i].videoTime / number) === bucket)) {
                 $scope.displayComments[bucket].push($scope.comments[i])
             } else {
                 i--
-                $scope.displayComments[bucket].push()
                 bucket += 1
-                lowerbound += number
-                upperbound += number
             }
         }
 
         $scope.refreshDisplay(0)
     }
     $scope.changeInterval(5)
+
+    //declaration of event emitters
+    $rootScope.$on('duration', function(event, player) {
+        $scope.duration = player.getDuration()
+    })
+
     $rootScope.$on('status', function(event, player) {
         if (player.getPlayerState() === 1) {
             window.clearInterval(refresher)
@@ -92,10 +91,20 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
             refresher = undefined
         }
     })
+
     $rootScope.$on('playing', function(event, currentTime) {
         $scope.refreshDisplay(currentTime)
 
     })
+    ///////////////////////////////////////////////////////////////////////////
+
+    Socket.on('post', function(SockComment) {
+        var bucket = Math.floor(SockComment.videoTime / 5)
+        $scope.displayComments[bucket].push(SockComment)
+    })
+
+    //////////////////////////////////////////////////////////////////////////
+
 
     $scope.showForm = function() {
         $scope.clicked = true;
@@ -107,8 +116,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         $scope.comment = null
     }
     $scope.getReplies = function(parent) {
-        // console.log('this is the parent', parent);
-        // console.log(parent._id);
         CommentFactory.getReplies(parent._id).then(function(replies) {
             replies = replies.sort(function(a, b) {
                 return parseInt(b.rating.score) - parseInt(a.rating.score);
@@ -117,44 +124,21 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
         });
     }
 
-    $scope.upVote = function(comment) {
-        if (comment.rating.users.indexOf($scope.user) !== -1) {
-            comment.rating.score--;
-            comment.rating.users.splice(comment.rating.users.indexOf($scope.user), 1)
-        } else {
-            comment.rating.score++
-            comment.rating.users.push($scope.user)
-            CommentFactory.changeRating(comment._id, comment);
-        }
-    }
-
-    $scope.downVote = function(comment) {
-        if (comment.rating.users.indexOf($scope.user) !== -1) {
-            comment.rating.score++;
-            comment.rating.users.splice(comment.rating.users.indexOf($scope.user), 1)
-        } else {
-            comment.rating.score--
-            comment.rating.users.push($scope.user)
-            CommentFactory.changeRating(comment._id, comment);
-        }
-    }
-
     $scope.addingComment = function(comment) {
         comment = {
             user: $scope.user._id,
-
             username: $scope.user.username,
             title: $scope.comment.title,
             videoTime: VideoFactory.getCurTime(),
             content: $scope.comment.content,
             tags: $scope.comment.tags
         }
-        // console.log(comment, "after");
         CommentFactory.saveComment(comment).then(function(comment) {
             VideoFactory.addCommentToVid(comment, $scope.video._id).then(function(video) {
                 $scope.comments = video.comments;
                 $scope.displaying.push(comment)
                 $scope.comment = null
+                Socket.emit('comment', comment)
             }).catch(console.log);
         });
         $scope.hideForm();

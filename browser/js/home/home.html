@@ -1,46 +1,52 @@
-<div class="col-lg-12 changingHeader">
+<div class="col-md-12 home-pane changingHeader" id='#'>
   <section class="cd-intro">
-        <h1 class="cd-headline type letters">
-          <span>Quokka.chat is <br>a place for</span>
-          <span class="cd-words-wrapper">
-            <b class="is-visible">learning.</b>
-            <b>discussion.</b>
-            <b>community.</b>
-          </span>
-        </h1>
-    </section>
+    <h1 class="cd-headline type letters">
+      <span>Quokka.chat is <br>a place for</span>
+      <span class="cd-words-wrapper">
+        <b class="is-visible">learning.</b>
+        <b>discussion.</b>
+        <b>community.</b>
+      </span>
+    </h1>
+  </section>
+  <a ng-click="scrollToNext('watch')"><span class='glyphicon glyphicon-chevron-down'></span></a>
 </div>
-<div class="col-lg-12 market1">
-  <div class="row">
-    <div id="marketBoxes" class="col-md-6">
-      <a ui-sref="allRooms" href="#"><h1>Watch</h1></a>
-      <p>All videos come with their own discussion rooms. Browse through categories, and see what conversations are happening!</p>
-    </div>
-    <div class="col-md-6">
-      <a ui-sref="allRooms" href="#"><span class="glyphicon glyphicon-play-circle homeIcons"></span></a>
-    </div>
-  </div>   
-</div>
-<div class="col-lg-12 market2">
-  <div class="row">
-    <div class="col-md-6">
-      <a ui-sref="allRooms" href="#"><span class="glyphicon glyphicon-comment homeIcons"></span></a>
-    </div>
-    <div id="marketBoxes" class="col-md-6">
-      <a ui-sref="allRooms" href="#"><h1>Interact</h1></a>
-      <p>At any point in the video, you may ask a question or create a discussion topic to get feedback from others. <a ui-sref="signUp">Sign-up</a> to join the conversation!</p>
-    </div>
+<div class="col-md-12 home-pane market1" id='watch'>
+  <div class="col-sm-6 marketBoxes">
+    <a ui-sref="allRooms" href="#"><h1>Watch</h1></a>
+    <p>All videos come with their own discussion rooms. Browse through categories, and see what conversations are happening throughout the video!</p>
   </div>
-</div>
-<div class="col-lg-12 market3">
-  <div class="row">
-    <div id="marketBoxes" class="col-md-6">
-      <a href="#"><h1>Go Further</h1></a>
-      <p>A Chrome Extension that allows you to add videos directly from YouTube. Learn <a href="#">more</a>.</p>
-    </div>
-    <div class="col-md-6">
-      <a ui-sref="allRooms" href="#"><span class="glyphicon glyphicon-film homeIcons"></span></a>
-    </div>
+  <div class="col-sm-6 marketBoxes">
+    <a ui-sref="allRooms" href="#"><span class=" glyphicon glyphicon-play-circle homeIcons"></span></a>
   </div>
+  <a ng-click="scrollToNext('interact')"><span class='glyphicon glyphicon-chevron-down'></span></a>
+</div>
+<div class="col-md-12 home-pane market2" id='interact'>
+  <div class="col-sm-6 marketBoxes">
+    <a ui-sref="allRooms" href="#"><span class="glyphicon glyphicon-comment homeIcons"></span></a>
+  </div>
+  <div class="col-sm-6 marketBoxes">
+    <a ui-sref="allRooms" href="#"><h1>Interact</h1></a>
+    <p>You're not watching alone. At any point in the video, you can ask a question or create a discussion topic and get feedback from others. <a ui-sref="signUp">Sign-up</a> to join the conversation!</p>
+  </div>
+  <a ng-click="scrollToNext('go-further')"><span class='glyphicon glyphicon-chevron-down'></span></a>
+</div>
+<div class="col-md-12 home-pane market3" id='go-further'>
+  <div id="marketBoxes" class="col-sm-6 marketBoxes">
+    <a href="#"><h1>Go Further</h1></a>
+    <p>A Chrome Extension that allows you to add videos directly from YouTube. Learn <a href="#">more</a>.</p>
+  </div>
+  <div class="col-sm-6 marketBoxes">
+    <a ui-sref="allRooms" href="#"><span class="glyphicon glyphicon-film homeIcons"></span></a>
+  </div>
+  <a ng-click="scrollToNext('#')" id="chev-up"><span class='glyphicon glyphicon-chevron-up'></span></a>
+</div>
+<!-- <footer></footer> -->
+<div class="col-md-12 footerDiv">
+    <li class='footerLinks'><a ui-sref='about'>About</a></li>
+    <span class='footerLinks'> | </span>
+    <li class='footerLinks'><a ui-sref='quincy'>Quincy</a></li>
+    <span class='footerLinks'> | </span>
+    <li class='footerLinks'><a href='https://github.com/jmeshen/rooms/' target="_blank">Github Repo</a></li>
 </div>
 <div class="quokka"><img src="/../../img/quokka.svg"></div>

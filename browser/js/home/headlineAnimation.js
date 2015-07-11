@@ -18,7 +18,6 @@ function startAnimation($) {
 
 
     function initHeadline() {
-        console.log(document.getElementsByClassName('cd-headline'))
         //insert <i> element for each letter of a changing word
         singleLetters($('.cd-headline.letters').find('b'));
         //initialise headline animation
@@ -26,12 +25,10 @@ function startAnimation($) {
     }
 
     function singleLetters($words) {
-        console.log($words);
         $words.each(function() {
             var word = $(this),
                 letters = word.text().split(''),
                 selected = word.hasClass('is-visible');
-            console.log(word, letters, selected);
             for (var i in letters) {
                 if (word.parents('.rotate-2').length > 0) letters[i] = '<em>' + letters[i] + '</em>';
                 letters[i] = (selected) ? '<strong class="in">' + letters[i] + '</strong>' : '<strong>' + letters[i] + '</strong>';
@@ -43,10 +40,8 @@ function startAnimation($) {
 
     function animateHeadline($headlines) {
         var duration = animationDelay;
-        console.log('animating headlines', $headlines)
         $headlines.each(function() {
             var headline = $(this);
-            console.log('headline', headline)
             if (headline.hasClass('loading-bar')) {
                 duration = barAnimationDelay;
                 setTimeout(function() {

@@ -3,13 +3,21 @@ app.config(function($stateProvider) {
     $stateProvider.state('signUp', {
         url: '/signup',
         templateUrl: 'js/signUp/signUp.html',
-        controller: 'SignUpCtrl'
+        controller: 'SignUpCtrl',
+        resolve: {
+            user: function(AuthService, $state) {
+                return AuthService.getLoggedInUser().then(function(user) {
+                    console.log(user)
+                    if (user) $state.go('allRooms')
+                })
+            }
+        }
     });
 
 });
 
-app.controller('SignUpCtrl', function($scope, UserFactory, AuthService, $state) {
-
+app.controller('SignUpCtrl', function($scope, UserFactory, AuthService, $state, user) {
+    console.log(user)
     $scope.signup = {};
     $scope.error = null;
 

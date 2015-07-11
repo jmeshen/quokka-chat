@@ -7,6 +7,7 @@ module.exports = router;
 router.use('/comments', require('./comments'));
 router.use('/video', require('./video'));
 router.use('/users', require('./users'));
+// router.use('socket', require('/socket'));
 
 // Make sure this is after all of
 // the registered routes!
