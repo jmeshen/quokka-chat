@@ -1,3 +1,6 @@
+@import '../../node_modules/node-bourbon/node_modules/bourbon/app/assets/stylesheets/_bourbon';
+@import 'home/mixins'; // custom mixins
+@import 'home/layout'; // responsive grid and media queries
 
 *, *::after, *::before {
 	@include box-sizing(border-box);
