@@ -1,26 +1,3 @@
-<!-- <nav class="navbar navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <img ui-sref="home" src="/../../img/quokka.svg">
-        </div>
-        <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-            <li ng-show='user.powerLevel === "admin"'>
-                <a ui-sref-active="active" ui-sref="admin-only">Admin Only</a>
-            </li>
-        </ul>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-        <button ng-show="!user" ui-sref="signUp" class="btn login-button">Sign-up</button>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
-            <a ng-click="logout()">Logout</a>
-        </div>
-    </div>
-
-</nav> -->
-
 <nav class="navbar navbar-static-top">
     <div class="nav-container">
         <div class="navbar-header">
@@ -45,27 +22,3 @@
     </div>
 
 </nav>
-
-<!-- <nav class="desktop">
-    <div ng-show="user" class="welcome">
-        <span>Hi, {{ user.username }}!</span>
-            
-        <img ui-sref="home" src="/../../img/quokka.svg">
-    </div>
-        <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-            <li ng-show='user.powerLevel === "admin"'>
-                <a ui-sref-active="active" ui-sref="admin-only">Admin Only</a>
-            </li>
-            <li ng-show="!user" ui-sref="login">
-                <a ui-sref-active="active" ui-sref="login">Login</a>
-            </li>
-            <li>
-                <a ng-click="logout()">Logout</a>
-            </li>
-        </ul>
-
-
-</nav> -->

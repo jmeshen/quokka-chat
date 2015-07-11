@@ -1,6 +1,5 @@
 app.factory('CommentFactory', function($http) {
     var comment = {};
-
     comment.getReplies = function(parentId) {
         return $http.get('/api/comments/' + parentId + '/response/').then(function(response) {
             return response.data;
@@ -28,6 +27,8 @@ app.factory('CommentFactory', function($http) {
     comment.removeComment = function(commentId) {
         return $http.delete('/api/comments/delete/' + commentId);
     }
+
+
 
     return comment;
 });
