@@ -61,7 +61,7 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                     .then(function(child) {
                         scope.children.push(child);
                         scope.childComment = null;
-                    }).catch(console.log);
+}).catch(console.log);
 
             }
 
@@ -96,10 +96,8 @@ app.directive('comments', function($q, $rootScope, AuthService, AUTH_EVENTS, $st
                             scope.grandChildren.splice(index, 1);
                         }
                     } else {
-                        console.log('BEFORE', scope.children);
                         var index = scope.children.indexOf(comment);
                         scope.children.splice(index, 1);
-                        console.log('AFTER', scope.children);
                     }
                 })
             }
