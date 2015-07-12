@@ -40,14 +40,6 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
     ///////////////////////////////////////////////////////////////////////
     //declaration of local functions
 
-    $scope.hideAddComment = function() {
-        if (user) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     $scope.refreshDisplay = function(num) {
         var x = Math.floor(num / 5)
         $scope.displaying = $scope.displayComments[x]
