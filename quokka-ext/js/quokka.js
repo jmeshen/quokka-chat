@@ -27,8 +27,10 @@ $(document).on('ready', function() {
             if (req.command === 'get') {
                 console.log('THIS IS REQ.MESSAGE!!!', req.message !== null);
                 if (req.message !== null) {
+                    console.log('it already exists! redirecting! :)')
                     location.href = 'http://www.quokka.chat/room/' + req.message._id;
                 } else {
+                    console.log('creating video!!!');
                     chrome.runtime.sendMessage({
                         command: 'send',
                         data: data
