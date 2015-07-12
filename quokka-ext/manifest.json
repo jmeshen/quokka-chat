@@ -21,6 +21,7 @@
     }],
     "permissions": [
         "activeTab",
+        "tabs",
         "https://*/*",
         "http://*/*"
     ]
