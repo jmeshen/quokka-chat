@@ -5,11 +5,11 @@ var util = require('util');
 
 var rootPath = path.join(__dirname, '../../../');
 var indexPath = path.join(rootPath, './server/app/views/index.html');
-var faviconPath = path.join(rootPath, './server/app/views/favicon.ico');
+var faviconPath = path.join(rootPath, './server/app/views/quokka.png');
 
 var env = require(path.join(rootPath, './server/env'));
 
-var logMiddleware = function (req, res, next) {
+var logMiddleware = function(req, res, next) {
     util.log(('---NEW REQUEST---'));
     console.log(util.format(chalk.red('%s: %s %s'), 'REQUEST ', req.method, req.path));
     console.log(util.format(chalk.yellow('%s: %s'), 'QUERY   ', util.inspect(req.query)));
@@ -17,7 +17,7 @@ var logMiddleware = function (req, res, next) {
     next();
 };
 
-module.exports = function (app) {
+module.exports = function(app) {
     app.setValue('env', env);
     app.setValue('projectRoot', rootPath);
     app.setValue('indexHTMLPath', indexPath);
