@@ -1,4 +1,4 @@
-# Quokka.chat
+# [Quokka.chat](http://www.quokka.chat)
 
 ### Web application that improves the UX of YouTube comments.
 
