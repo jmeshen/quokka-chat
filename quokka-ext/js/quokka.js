@@ -18,31 +18,29 @@ $(document).on('ready', function() {
     console.log('THIS IS DATA', data)
 
     $('.quokka').on('click', function() {
-        console.log("this was clicked");
+
         chrome.runtime.sendMessage({
-            command: 'send',
-            data: data
-        });
+            command: 'get',
+            embedId: data.embedId
+        })
+        chrome.runtime.onMessage.addListener(function(req, sender) {
+            if (req.command === 'get') {
+                console.log('THIS IS REQ.MESSAGE!!!', req.message !== null);
+                if (req.message !== null) {
+                    location.href = 'http://www.quokka.chat/room/' + req.message._id;
+                } else {
+                    chrome.runtime.sendMessage({
+                        command: 'send',
+                        data: data
+                    });
+                    chrome.runtime.onMessage.addListener(function(req, sender) {
+                        if (req.command === 'send') {
+                            console.log('THIS IS POSTED VIDEO', req.message);
+                            location.href = 'http://www.quokka.chat/room/' + req.message._id;
+                        }
+                    })
+                }
+            }
+        })
     });
 })
-
-// $.ajax({
-//     type: "POST",
-//     url: "https://www.quokka.chat/api/video/",
-//     beforeSend: function(xhr) {
-//         // xhr.setRequestHeader('X-My-Custom-Header-Name', '42');
-//     },
-//     headers: {
-//         'Access-Control-Allow-Origin': '*',
-//         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-//         'Access-Control-Allow-Headers': '*'
-//     },
-//     data: {
-//         embedId: embedId,
-//         url: url
-//     },
-//     success: function(data) {
-//         console.log(data);
-//     },
-//     dataType: "json"
-// })
