@@ -15,6 +15,9 @@
         "default_title": "Quokka",
         "default_popup": "popup.html"
     },
+    "icons": {
+        "128": "quokka.png"
+    },
     "content_scripts": [{
         "matches": ["http://*/*", "https://*/*"],
         "js": ["/js/jquery-2.1.4.min.js", "/js/quokka.js"]
