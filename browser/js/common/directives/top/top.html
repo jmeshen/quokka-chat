@@ -1,7 +1,7 @@
-<div class = "topContainer">
-	<h4 class = "header">Top Comments</h4>
-	<hr>
-	<div class = "topComment" tooltip="@{{comment.videoTime | secondsToDateTime}}" ng-repeat = "comment in comments" ng-click = "seek(comment.videoTime)" tooltip-placement="left">
-		<h5 class = "title">{{comment.title}}</h5>
-	</div>
+<div class="topContainer">
+  <h3 class="header">Top Comments</h3>
+  <hr>
+  <div class="topComment" tooltip="@{{comment.videoTime | secondsToDateTime}}" ng-repeat="comment in comments" ng-click="seek(comment.videoTime)" tooltip-placement="left">
+    <h4 class="title">{{comment.title}}</h4>
+  </div>
 </div>

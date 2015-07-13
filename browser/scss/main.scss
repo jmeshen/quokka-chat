@@ -27,6 +27,9 @@ span:focus, a:focus {
     outline: none;
     border: 0;
 }
+a:focus {
+  color: $accent;
+}
 
 body {
 	font-family: 'quicksand', sans-serif;

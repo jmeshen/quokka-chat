@@ -2,7 +2,8 @@
   margin: 0 auto;
 }
 .room {
-  height: auto;
+  height: 86vh;
+  margin: 0 auto;
   overflow: hidden;
   width: 95%
 }
@@ -16,4 +17,15 @@
   background-color: #eee;
   cursor: pointer;
   word-wrap: break-word;
+}
+
+@media screen and (max-width: 991px) {
+  .topContainer {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .comment-container {
+    height: auto;
+    overflow: visible;
+  }
 }

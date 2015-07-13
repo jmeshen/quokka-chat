@@ -31,8 +31,14 @@ navbar {
 
   }
   .welcome {
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
+    margin-top: -16px;
+  }
+  .navbar-brand {
+    padding: 15px 35px;
+    font-size: 30px;
+    line-height: 60px;
   }
 
 }
