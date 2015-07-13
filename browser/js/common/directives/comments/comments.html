@@ -25,27 +25,27 @@
 				<div class='col-md-11 child'>
 					<span ng-click='getReplies(child); toggle()' class="glyphicon glyphicon-comment"></span>
 					<p ng-click='getReplies(child); toggle()'>{{child.content}}</p>
-						<br>
-						<small class="text-muted">Posted by {{child.username}} at {{child.commentTime | date: 'medium'}} <span ng-show='isAdmin()' ng-click='deleteComment(child)'>| delete</span></small>
+					<br>
+					<small class="text-muted">Posted by {{child.username}} at {{child.commentTime | date: 'medium'}} <span ng-show='isAdmin()' ng-click='deleteComment(child)'>| delete</span></small>
 				</div>
 			</div>
 		</div>
 		<form ng-show='user' ng-submit="reply()">
-			<textarea cols="50" type="text" class="form-control" placeholder="Write a comment..." ng-model='childComment.content'></textarea cols="50">
-			<button>Add response</button>
-		</form>
+			<textarea rows="3" type="text" class="form-control" placeholder="Write a comment..." ng-model='childComment.content'></textarea cols="50">
+				<button class="btn btn-default">Add response</button>
+			</form>
+		</div>
 	</div>
-</div>
 	<!-- go back to children -->
-	<button ng-hide='!checked' ng-click='toggle()'>&larr;</button>
-<!-- show grandchildren -->
+	<button class="btn btn-default" ng-hide='!checked' ng-click='toggle()'>&larr;</button>
+	<!-- show grandchildren -->
 	<div class='grandchildren' ng-show='checked'>
-	<div class='grandchildren'>
-		<p ng-repeat='kid in grandChildren'> {{kid.content}} <br>
-			{{kid.username}} | {{kid.commentTime | date: 'short'}} <span ng-show='isAdmin()' ng-click='deleteComment(kid)'>| delete</span></p>
-		<form ng-show='user' ng-submit='replyToReply()'>
-			<input type="text" class="form-control" placeholder="add a reply" ng-model='grandChild.content'></input>
-			<button>Add response</button>
-		</form>
-	</div>
-</div>
+		<div class='grandchildren'>
+			<p ng-repeat='kid in grandChildren'> {{kid.content}} <br>
+				{{kid.username}} | {{kid.commentTime | date: 'short'}} <span ng-show='isAdmin()' ng-click='deleteComment(kid)'>| delete</span></p>
+				<form ng-show='user' ng-submit='replyToReply()'>
+					<textarea rows="3" class="form-control" placeholder="add a reply" ng-model='grandChild.content'></textarea>
+					<button class="btn btn-default">Add response</button>
+				</form>
+			</div>
+		</div>

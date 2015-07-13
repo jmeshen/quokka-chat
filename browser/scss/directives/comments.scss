@@ -1,5 +1,5 @@
 .comment-container {
-  // height: 85vh;
+  height: 82vh;
   overflow: auto;
   // .row {
   //   width: 70%;
@@ -57,7 +57,13 @@
 
 .children {
   textarea {
-    width: 75%;
+    width: 100%;
+  }
+  .glyphicon-comment {
+    &:hover {
+      color: $accent;
+    }
+    margin: 5px;
   }
 }
 

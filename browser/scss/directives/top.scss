@@ -1,15 +1,15 @@
 .topContainer{
 	border: 1px solid #DDD;
 	padding: 0 2% 2% 2%;
-	//margin-top: 30px;
-	height: 35vh;
+	// margin-top: 30px;
+	height: 34vh;
 	overflow: auto;
 }
 .header{
 	font-weight: bold;
 	text-align: center;
-	padding-top: 10px;
-	
+	padding-top: 20px;
+
 }
 
 .topComment{
@@ -24,7 +24,7 @@
 	.score{
 		position: absolute;
 		right:0;
-		top:-10px;	
+		top:-10px;
 		padding-right: 5px;
 		color: #8153E0;
 	}
