@@ -1,32 +1,33 @@
 <nav class="navbar navbar-static-top">
     <div class="nav-container">
         <div class="navbar-header">
-            <div ng-show="user" class="welcome">
 
-                <img ui-sref="home" src="/../../img/quokka.svg">
-                <span>Hi, {{ user.username }}!</span>
-
-            </div>
+            <img ui-sref="home" src="/../../img/quokka.svg">
             <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand" href="/">Quokka.chat</a>
         </div>
         <div class="collapse navbar-collapse" collapse="navCollapsed">
-        <ul class="nav navbar-nav">
-            <li class = "navLink" ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-            <li ng-show='user.powerLevel === "admin"'>
-                <a ui-sref-active="active" ui-sref="admin-only">Admin</a>
-            </li>
-            <li ng-show="user"><a ng-click="logout()">Logout</a></li>
-            <li ng-show="!user" ui-sref="login"><a>Login</a></li>
-            <li ng-show="!user" ui-sref="signUp"><a>Sign-up</a></li>
-        </ul>
+            <ul class="nav navbar-nav">
+                <li class = "navLink" ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+                    <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+                </li>
+                <li ng-show='user.powerLevel === "admin"'>
+                    <a ui-sref-active="active" ui-sref="admin-only">Admin</a>
+                </li>
+                <li ng-show="user"><a ng-click="logout()">Logout</a></li>
+                <li ng-show="!user" ui-sref="login"><a>Login</a></li>
+                <li ng-show="!user" ui-sref="signUp"><a>Sign-up</a></li>
+            </ul>
         </div>
+            <div ng-show="user" class="welcome">
+                <span>Hi, {{ user.username }}!</span>
+
+            </div>
     </div>
 
 </nav>
