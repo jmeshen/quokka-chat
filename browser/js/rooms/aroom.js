@@ -91,7 +91,7 @@ app.controller('SingleRoomCtrl', function($scope, $rootScope, user, VideoObj, Co
 
     Socket.on('post', function(SockComment) {
         var bucket = Math.floor(SockComment.videoTime / 5)
-        console.log('meh', bucket, SockComment, $scope.displayComments)
+        if (!$scope.displayComments[bucket]) $scope.displayComments[bucket] = []
         $scope.displayComments[bucket].push(SockComment);
     })
 
