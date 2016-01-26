@@ -1,6 +1,9 @@
 {
     "name": "Quokka.chat",
     "version": "1.0.0",
+    "engines": {
+        "node": "0.12.4"
+    },
     "description": "Creating timestamped discussion rooms since 2015. ",
     "main": "server/start.js",
     "scripts": {
